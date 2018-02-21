@@ -1,0 +1,65 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2027
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureRemoteLight", "AzureRemoteLight\AzureRemoteLight.csproj", "{09BEAA48-648C-49E7-A47D-7E7DD4368D22}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LightController", "..\LightController\LightController\LightController.csproj", "{B9F1E8BB-93D5-40AE-9B8E-E8DD42CD0BFA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|ARM = Debug|ARM
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|ARM = Release|ARM
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{09BEAA48-648C-49E7-A47D-7E7DD4368D22}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{09BEAA48-648C-49E7-A47D-7E7DD4368D22}.Debug|ARM.ActiveCfg = Debug|ARM
+		{09BEAA48-648C-49E7-A47D-7E7DD4368D22}.Debug|ARM.Build.0 = Debug|ARM
+		{09BEAA48-648C-49E7-A47D-7E7DD4368D22}.Debug|ARM.Deploy.0 = Debug|ARM
+		{09BEAA48-648C-49E7-A47D-7E7DD4368D22}.Debug|x64.ActiveCfg = Debug|x64
+		{09BEAA48-648C-49E7-A47D-7E7DD4368D22}.Debug|x64.Build.0 = Debug|x64
+		{09BEAA48-648C-49E7-A47D-7E7DD4368D22}.Debug|x64.Deploy.0 = Debug|x64
+		{09BEAA48-648C-49E7-A47D-7E7DD4368D22}.Debug|x86.ActiveCfg = Debug|x86
+		{09BEAA48-648C-49E7-A47D-7E7DD4368D22}.Debug|x86.Build.0 = Debug|x86
+		{09BEAA48-648C-49E7-A47D-7E7DD4368D22}.Debug|x86.Deploy.0 = Debug|x86
+		{09BEAA48-648C-49E7-A47D-7E7DD4368D22}.Release|Any CPU.ActiveCfg = Release|x86
+		{09BEAA48-648C-49E7-A47D-7E7DD4368D22}.Release|ARM.ActiveCfg = Release|ARM
+		{09BEAA48-648C-49E7-A47D-7E7DD4368D22}.Release|ARM.Build.0 = Release|ARM
+		{09BEAA48-648C-49E7-A47D-7E7DD4368D22}.Release|ARM.Deploy.0 = Release|ARM
+		{09BEAA48-648C-49E7-A47D-7E7DD4368D22}.Release|x64.ActiveCfg = Release|x64
+		{09BEAA48-648C-49E7-A47D-7E7DD4368D22}.Release|x64.Build.0 = Release|x64
+		{09BEAA48-648C-49E7-A47D-7E7DD4368D22}.Release|x64.Deploy.0 = Release|x64
+		{09BEAA48-648C-49E7-A47D-7E7DD4368D22}.Release|x86.ActiveCfg = Release|x86
+		{09BEAA48-648C-49E7-A47D-7E7DD4368D22}.Release|x86.Build.0 = Release|x86
+		{09BEAA48-648C-49E7-A47D-7E7DD4368D22}.Release|x86.Deploy.0 = Release|x86
+		{B9F1E8BB-93D5-40AE-9B8E-E8DD42CD0BFA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9F1E8BB-93D5-40AE-9B8E-E8DD42CD0BFA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9F1E8BB-93D5-40AE-9B8E-E8DD42CD0BFA}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{B9F1E8BB-93D5-40AE-9B8E-E8DD42CD0BFA}.Debug|ARM.Build.0 = Debug|Any CPU
+		{B9F1E8BB-93D5-40AE-9B8E-E8DD42CD0BFA}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{B9F1E8BB-93D5-40AE-9B8E-E8DD42CD0BFA}.Debug|x64.Build.0 = Debug|Any CPU
+		{B9F1E8BB-93D5-40AE-9B8E-E8DD42CD0BFA}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{B9F1E8BB-93D5-40AE-9B8E-E8DD42CD0BFA}.Debug|x86.Build.0 = Debug|Any CPU
+		{B9F1E8BB-93D5-40AE-9B8E-E8DD42CD0BFA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9F1E8BB-93D5-40AE-9B8E-E8DD42CD0BFA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9F1E8BB-93D5-40AE-9B8E-E8DD42CD0BFA}.Release|ARM.ActiveCfg = Release|Any CPU
+		{B9F1E8BB-93D5-40AE-9B8E-E8DD42CD0BFA}.Release|ARM.Build.0 = Release|Any CPU
+		{B9F1E8BB-93D5-40AE-9B8E-E8DD42CD0BFA}.Release|x64.ActiveCfg = Release|Any CPU
+		{B9F1E8BB-93D5-40AE-9B8E-E8DD42CD0BFA}.Release|x64.Build.0 = Release|Any CPU
+		{B9F1E8BB-93D5-40AE-9B8E-E8DD42CD0BFA}.Release|x86.ActiveCfg = Release|Any CPU
+		{B9F1E8BB-93D5-40AE-9B8E-E8DD42CD0BFA}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3DA35875-2BDF-4924-880A-D6EC3972E1FC}
+	EndGlobalSection
+EndGlobal
