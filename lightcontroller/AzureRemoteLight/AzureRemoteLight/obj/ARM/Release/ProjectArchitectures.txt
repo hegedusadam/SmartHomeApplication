@@ -1,1 +1,1 @@
-C:\Users\Adam\Desktop\blinky\lightcontroller\AzureRemoteLight\AzureRemoteLight\AzureRemoteLight.csproj;arm
+C:\Users\Adam\Desktop\SmartHomeAppliation\SmartHomeApplication\lightcontroller\AzureRemoteLight\AzureRemoteLight\AzureRemoteLight.csproj;arm

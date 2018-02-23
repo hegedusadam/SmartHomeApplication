@@ -21,23 +21,47 @@ namespace LightController
 	/// </summary>
 	public partial class MainWindow : Window
 	{
-		static ServiceClient serviceClient;
-		static string connectionString = "HostName=SmartHomeApplication.azure-devices.net;SharedAccessKeyName=iothubowner;SharedAccessKey=3JE/ceW92b8Gkp79sRz0OAJxmm5KV7vQQ0ADqQOoQ70=";
+		/// <summary>
+		/// Data members
+		/// </summary>
+		private static ServiceClient ServiceClient;
+		private static string connectionString = "HostName=SmartHomeApplication.azure-devices.net;SharedAccessKeyName=iothubowner;SharedAccessKey=3JE/ceW92b8Gkp79sRz0OAJxmm5KV7vQQ0ADqQOoQ70=";
 
+		/// <summary>
+		/// Constructor
+		/// </summary>
 		public MainWindow()
 		{
 			InitializeComponent();
-			serviceClient = ServiceClient.CreateFromConnectionString(connectionString);
+			ServiceClient = ServiceClient.CreateFromConnectionString(connectionString);
 		}
+
+		/// <summary>
+		/// Calls the SendCloudToDeviceMessageAsync method in order to switch the led on or off
+		/// </summary>
+		/// <param name="isOn"></param>
+		/// <returns></returns>
 		private async Task TurnLight(bool isOn)
 		{
 			await SendCloudToDeviceMessageAsync(isOn);
 		}
+
+		/// <summary>
+		/// Send a message to cloud and Azure sends a message to the Raspberry Pi, to switch the led on or off
+		/// </summary>
+		/// <param name="isOn"></param>
+		/// <returns></returns>
 		private static async Task SendCloudToDeviceMessageAsync(bool isOn)
 		{
 			var commandMessage = new Message(Encoding.ASCII.GetBytes(isOn ? "on" : "off"));
-			await serviceClient.SendAsync("rpi3", commandMessage);
+			await ServiceClient.SendAsync("rpi3", commandMessage);
 		}
+
+		/// <summary>
+		/// The UI calls these methods, to change the condition of the LED
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private async void BtnTurnOn_OnClick(object sender, RoutedEventArgs e)
 		{
 			await TurnLight(true);

@@ -10,7 +10,7 @@
     <PackageArchitecture>arm</PackageArchitecture>
     <PackageIdentityName>020b6a2a-96b2-4bce-873b-8164596fed96</PackageIdentityName>
     <PackageIdentityPublisher>CN=Adam</PackageIdentityPublisher>
-    <IntermediateOutputPath>C:\Users\Adam\Desktop\blinky\lightcontroller\AzureRemoteLight\AzureRemoteLight\obj\ARM\Release\</IntermediateOutputPath>
+    <IntermediateOutputPath>C:\Users\Adam\Desktop\SmartHomeAppliation\SmartHomeApplication\lightcontroller\AzureRemoteLight\AzureRemoteLight\obj\ARM\Release\</IntermediateOutputPath>
     <RemoteDeploymentType>
     </RemoteDeploymentType>
     <PackageRegistrationPath>
@@ -18,7 +18,7 @@
     <RemoveNonLayoutFiles>true</RemoveNonLayoutFiles>
     <DeployOptionalPackages>false</DeployOptionalPackages>
     <WindowsSdkPath>C:\Program Files %28x86%29\Windows Kits\10\</WindowsSdkPath>
-    <LayoutDir>C:\Users\Adam\Desktop\blinky\lightcontroller\AzureRemoteLight\AzureRemoteLight\bin\ARM\Release\AppX</LayoutDir>
+    <LayoutDir>C:\Users\Adam\Desktop\SmartHomeAppliation\SmartHomeApplication\lightcontroller\AzureRemoteLight\AzureRemoteLight\bin\ARM\Release\AppX</LayoutDir>
     <RegisteredManifestChecksum>FA02AE3170EE7D11AD2CA6A23CDB22071A13E762A917BFDD7A5ED3CD280432B5</RegisteredManifestChecksum>
     <RegisteredPackageMoniker>020b6a2a-96b2-4bce-873b-8164596fed96_1.0.0.0_arm__7npqabcqw1kgm</RegisteredPackageMoniker>
     <RegisteredUserModeAppID>020b6a2a-96b2-4bce-873b-8164596fed96_7npqabcqw1kgm!App</RegisteredUserModeAppID>
@@ -28,79 +28,79 @@
     <JitOptimizationSuppressed>False</JitOptimizationSuppressed>
   </PropertyGroup>
   <ItemGroup>
-    <AppXManifest Include="C:\Users\Adam\Desktop\blinky\lightcontroller\AzureRemoteLight\AzureRemoteLight\bin\ARM\Release\ilc\AppxManifest.xml">
+    <AppXManifest Include="C:\Users\Adam\Desktop\SmartHomeAppliation\SmartHomeApplication\lightcontroller\AzureRemoteLight\AzureRemoteLight\bin\ARM\Release\ilc\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-02-21T18:14:20.062</Modified>
+      <Modified>2018-02-23T13:26:27.413</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
-    <AppxPackagedFile Include="C:\Users\Adam\Desktop\blinky\lightcontroller\AzureRemoteLight\AzureRemoteLight\bin\ARM\Release\ilc\Assets\LockScreenLogo.scale-200.png">
+    <AppxPackagedFile Include="C:\Users\Adam\Desktop\SmartHomeAppliation\SmartHomeApplication\lightcontroller\AzureRemoteLight\AzureRemoteLight\bin\ARM\Release\ilc\Assets\LockScreenLogo.scale-200.png">
       <PackagePath>Assets\LockScreenLogo.scale-200.png</PackagePath>
       <Modified>2018-02-19T18:50:01.449</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Adam\Desktop\blinky\lightcontroller\AzureRemoteLight\AzureRemoteLight\bin\ARM\Release\ilc\Assets\SplashScreen.scale-200.png">
+    <AppxPackagedFile Include="C:\Users\Adam\Desktop\SmartHomeAppliation\SmartHomeApplication\lightcontroller\AzureRemoteLight\AzureRemoteLight\bin\ARM\Release\ilc\Assets\SplashScreen.scale-200.png">
       <PackagePath>Assets\SplashScreen.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
       <Modified>2018-02-19T18:50:01.449</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Adam\Desktop\blinky\lightcontroller\AzureRemoteLight\AzureRemoteLight\bin\ARM\Release\ilc\Assets\Square150x150Logo.scale-200.png">
+    <AppxPackagedFile Include="C:\Users\Adam\Desktop\SmartHomeAppliation\SmartHomeApplication\lightcontroller\AzureRemoteLight\AzureRemoteLight\bin\ARM\Release\ilc\Assets\Square150x150Logo.scale-200.png">
       <PackagePath>Assets\Square150x150Logo.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
       <Modified>2018-02-19T18:50:01.449</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Adam\Desktop\blinky\lightcontroller\AzureRemoteLight\AzureRemoteLight\bin\ARM\Release\ilc\Assets\Square44x44Logo.scale-200.png">
+    <AppxPackagedFile Include="C:\Users\Adam\Desktop\SmartHomeAppliation\SmartHomeApplication\lightcontroller\AzureRemoteLight\AzureRemoteLight\bin\ARM\Release\ilc\Assets\Square44x44Logo.scale-200.png">
       <PackagePath>Assets\Square44x44Logo.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
       <Modified>2018-02-19T18:50:01.449</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Adam\Desktop\blinky\lightcontroller\AzureRemoteLight\AzureRemoteLight\bin\ARM\Release\ilc\Assets\Square44x44Logo.targetsize-24_altform-unplated.png">
+    <AppxPackagedFile Include="C:\Users\Adam\Desktop\SmartHomeAppliation\SmartHomeApplication\lightcontroller\AzureRemoteLight\AzureRemoteLight\bin\ARM\Release\ilc\Assets\Square44x44Logo.targetsize-24_altform-unplated.png">
       <PackagePath>Assets\Square44x44Logo.targetsize-24_altform-unplated.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
       <Modified>2018-02-19T18:50:01.449</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Adam\Desktop\blinky\lightcontroller\AzureRemoteLight\AzureRemoteLight\bin\ARM\Release\ilc\Assets\StoreLogo.png">
+    <AppxPackagedFile Include="C:\Users\Adam\Desktop\SmartHomeAppliation\SmartHomeApplication\lightcontroller\AzureRemoteLight\AzureRemoteLight\bin\ARM\Release\ilc\Assets\StoreLogo.png">
       <PackagePath>Assets\StoreLogo.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
       <Modified>2018-02-19T18:50:01.449</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Adam\Desktop\blinky\lightcontroller\AzureRemoteLight\AzureRemoteLight\bin\ARM\Release\ilc\Assets\Wide310x150Logo.scale-200.png">
+    <AppxPackagedFile Include="C:\Users\Adam\Desktop\SmartHomeAppliation\SmartHomeApplication\lightcontroller\AzureRemoteLight\AzureRemoteLight\bin\ARM\Release\ilc\Assets\Wide310x150Logo.scale-200.png">
       <PackagePath>Assets\Wide310x150Logo.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
       <Modified>2018-02-19T18:50:01.449</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Adam\Desktop\blinky\lightcontroller\AzureRemoteLight\AzureRemoteLight\bin\ARM\Release\ilc\AzureRemoteLight.dll">
+    <AppxPackagedFile Include="C:\Users\Adam\Desktop\SmartHomeAppliation\SmartHomeApplication\lightcontroller\AzureRemoteLight\AzureRemoteLight\bin\ARM\Release\ilc\AzureRemoteLight.dll">
       <PackagePath>AzureRemoteLight.dll</PackagePath>
-      <Modified>2018-02-21T18:14:18.671</Modified>
+      <Modified>2018-02-23T13:26:26.368</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Adam\Desktop\blinky\lightcontroller\AzureRemoteLight\AzureRemoteLight\bin\ARM\Release\ilc\AzureRemoteLight.exe">
+    <AppxPackagedFile Include="C:\Users\Adam\Desktop\SmartHomeAppliation\SmartHomeApplication\lightcontroller\AzureRemoteLight\AzureRemoteLight\bin\ARM\Release\ilc\AzureRemoteLight.exe">
       <PackagePath>AzureRemoteLight.exe</PackagePath>
-      <Modified>2018-02-21T18:14:20.021</Modified>
+      <Modified>2018-02-23T13:26:27.366</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Adam\Desktop\blinky\lightcontroller\AzureRemoteLight\AzureRemoteLight\bin\ARM\Release\ilc\AzureRemoteLight.pdb">
+    <AppxPackagedFile Include="C:\Users\Adam\Desktop\SmartHomeAppliation\SmartHomeApplication\lightcontroller\AzureRemoteLight\AzureRemoteLight\bin\ARM\Release\ilc\AzureRemoteLight.pdb">
       <PackagePath>AzureRemoteLight.pdb</PackagePath>
-      <Modified>2018-02-21T18:14:20.009</Modified>
+      <Modified>2018-02-23T13:26:27.366</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Adam\Desktop\blinky\lightcontroller\AzureRemoteLight\AzureRemoteLight\bin\ARM\Release\ilc\clrcompression.dll">
+    <AppxPackagedFile Include="C:\Users\Adam\Desktop\SmartHomeAppliation\SmartHomeApplication\lightcontroller\AzureRemoteLight\AzureRemoteLight\bin\ARM\Release\ilc\clrcompression.dll">
       <PackagePath>clrcompression.dll</PackagePath>
       <Modified>2016-06-13T19:43:02.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Adam\Desktop\blinky\lightcontroller\AzureRemoteLight\AzureRemoteLight\bin\ARM\Release\ilc\Microsoft.Azure.Devices.Client.winmd">
+    <AppxPackagedFile Include="C:\Users\Adam\Desktop\SmartHomeAppliation\SmartHomeApplication\lightcontroller\AzureRemoteLight\AzureRemoteLight\bin\ARM\Release\ilc\Microsoft.Azure.Devices.Client.winmd">
       <PackagePath>Microsoft.Azure.Devices.Client.winmd</PackagePath>
-      <Modified>2018-02-21T18:14:20.186</Modified>
+      <Modified>2018-02-23T13:26:27.538</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Adam\Desktop\blinky\lightcontroller\AzureRemoteLight\AzureRemoteLight\bin\ARM\Release\ilc\resources.pri">
+    <AppxPackagedFile Include="C:\Users\Adam\Desktop\SmartHomeAppliation\SmartHomeApplication\lightcontroller\AzureRemoteLight\AzureRemoteLight\bin\ARM\Release\ilc\resources.pri">
       <PackagePath>resources.pri</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-02-21T14:21:20.218</Modified>
+      <Modified>2018-02-23T11:48:19.815</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Adam\Desktop\blinky\lightcontroller\AzureRemoteLight\AzureRemoteLight\bin\ARM\Release\ilc\_Resources\0.rsrc">
+    <AppxPackagedFile Include="C:\Users\Adam\Desktop\SmartHomeAppliation\SmartHomeApplication\lightcontroller\AzureRemoteLight\AzureRemoteLight\bin\ARM\Release\ilc\_Resources\0.rsrc">
       <PackagePath>_Resources\0.rsrc</PackagePath>
-      <Modified>2018-02-21T18:13:21.662</Modified>
+      <Modified>2018-02-23T13:25:41.186</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Adam\Desktop\blinky\lightcontroller\AzureRemoteLight\AzureRemoteLight\bin\ARM\Release\ilc\_Resources\index.txt">
+    <AppxPackagedFile Include="C:\Users\Adam\Desktop\SmartHomeAppliation\SmartHomeApplication\lightcontroller\AzureRemoteLight\AzureRemoteLight\bin\ARM\Release\ilc\_Resources\index.txt">
       <PackagePath>_Resources\index.txt</PackagePath>
-      <Modified>2018-02-21T18:13:21.667</Modified>
+      <Modified>2018-02-23T13:25:41.191</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>

@@ -13,26 +13,40 @@ namespace AzureRemoteLight.ViewModel
 {
 	class MainViewModel : ViewModelBase
 	{
-		public GpioController gpioController { get; }
-		public GpioPin ledPin { get; }
+		/// <summary>
+		/// GPIO settings
+		/// </summary>
+		public GpioController GpioController { get; }
+		public GpioPin LedPin { get; }
 
-		public DeviceClient deviceClient { get; }
+		/// <summary>
+		/// Azure IoT settings of raspberry
+		/// </summary>
+		public DeviceClient DeviceClient { get; }
 
 		public string IotHubUri { get; } = "SmartHomeApplication.azure-devices.net";
 		public string DeviceKey { get; } = "qB1w140QB445Z4zdG5NP04QtKeJohUwzp1R9SEBmRIk=";
 		public string DeviceId => "rpi3";
 
+		private readonly int OpenedPin = 4;
+
+		/// <summary>
+		/// Constructor
+		/// </summary>
 		public MainViewModel()
 		{
-			deviceClient = DeviceClient.Create(IotHubUri, new DeviceAuthenticationWithRegistrySymmetricKey(DeviceId, DeviceKey));
-			gpioController = GpioController.GetDefault();
-			if (null != gpioController)
+			DeviceClient = DeviceClient.Create(IotHubUri, new DeviceAuthenticationWithRegistrySymmetricKey(DeviceId, DeviceKey));
+			GpioController = GpioController.GetDefault();
+			if (null != GpioController)
 			{
-				ledPin = gpioController.OpenPin(4);
-				ledPin.SetDriveMode(GpioPinDriveMode.Output);
+				LedPin = GpioController.OpenPin(OpenedPin);
+				LedPin.SetDriveMode(GpioPinDriveMode.Output);
 			}
 		}
 
+		/// <summary>
+		/// Sending a test message to Cloud
+		/// </summary>
 		public async Task SendDeviceToCloudMessagesAsync()
 		{
 			try
@@ -42,9 +56,10 @@ namespace AzureRemoteLight.ViewModel
 					deviceId = DeviceId,
 					message = "Hello"
 				};
+
 				var messageString = JsonConvert.SerializeObject(telemetryDataPoint);
 				var message = new Message(Encoding.ASCII.GetBytes(messageString));
-				await deviceClient.SendEventAsync(message);
+				await DeviceClient.SendEventAsync(message);
 				Debug.WriteLine("{0} > Sending message: {1}", DateTime.Now, messageString);
 				//IsAzureConnected = true;
 			}
@@ -54,23 +69,33 @@ namespace AzureRemoteLight.ViewModel
 			}
 		}
 
+		/// <summary>
+		/// Receiving message from cloud (on/off)
+		/// </summary>
 		public async Task ReceiveCloudToDeviceMessageAsync()
 		{
 			Debug.WriteLine("\nReceiving cloud to device messages from service");
 			while (true)
 			{
-				Message receivedMessage = await deviceClient.ReceiveAsync();
-				if (receivedMessage == null) continue;
+				Message receivedMessage = await DeviceClient.ReceiveAsync();
+
+				if (receivedMessage == null)
+				{
+					continue;
+				}
+
 				var msg = Encoding.ASCII.GetString(receivedMessage.GetBytes());
+
 				if (msg == "on")
 				{
-					ledPin.Write(GpioPinValue.Low);
+					LedPin.Write(GpioPinValue.Low);
 				}
-				if (msg == "off")
+				else if (msg == "off")
 				{
-					ledPin.Write(GpioPinValue.High);
+					LedPin.Write(GpioPinValue.High);
 				}
-				await deviceClient.CompleteAsync(receivedMessage);
+
+				await DeviceClient.CompleteAsync(receivedMessage);
 			}
 		}
 	}

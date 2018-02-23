@@ -1,7 +1,7 @@
-/In:"C:\Users\Adam\Desktop\blinky\lightcontroller\AzureRemoteLight\AzureRemoteLight\obj\ARM\Release\ilc\in"
-/Lib:"C:\Users\Adam\Desktop\blinky\lightcontroller\AzureRemoteLight\AzureRemoteLight\obj\ARM\Release\ilc\in"
+/In:"C:\Users\Adam\Desktop\SmartHomeAppliation\SmartHomeApplication\lightcontroller\AzureRemoteLight\AzureRemoteLight\obj\ARM\Release\ilc\in"
+/Lib:"C:\Users\Adam\Desktop\SmartHomeAppliation\SmartHomeApplication\lightcontroller\AzureRemoteLight\AzureRemoteLight\obj\ARM\Release\ilc\in"
 /Lib:"C:\Program Files (x86)\Microsoft SDKs\NuGetPackagesFallback\microsoft.net.native.compiler\1.7.3\tools\ARM\ilc\lib\Private"
-/WinMD:"C:\Users\Adam\Desktop\blinky\lightcontroller\AzureRemoteLight\AzureRemoteLight\obj\ARM\Release\ilc\in\WinMetadata\Windows.winmd"
-/VSTelemetrySessionSettings:"{"AppId":1001,"AppInsightsInstrumentationKey":"f144292e-e3b2-4011-ac90-20e5c03fbce5","AsimovInstrumentationKey":"AIF-312cbd79-9dbb-4c48-a7da-3cc2a931cb70","HostName":"Dev14","Id":"c5454b66-fa31-40cc-9b06-129fa1429b3f","IsOptedIn":true,"ProcessStartTime":636547414814510507,"UserId":"fb8b532e-57d3-44ec-bd8e-14cbde629ab2"}"
+/WinMD:"C:\Users\Adam\Desktop\SmartHomeAppliation\SmartHomeApplication\lightcontroller\AzureRemoteLight\AzureRemoteLight\obj\ARM\Release\ilc\in\WinMetadata\Windows.winmd"
+/VSTelemetrySessionSettings:"{"AppId":1001,"AppInsightsInstrumentationKey":"f144292e-e3b2-4011-ac90-20e5c03fbce5","AsimovInstrumentationKey":"AIF-312cbd79-9dbb-4c48-a7da-3cc2a931cb70","HostName":"Dev14","Id":"2c56e653-337b-4c50-8a1c-d6fa958dfb1c","IsOptedIn":true,"ProcessStartTime":636549823126526436,"UserId":"fb8b532e-57d3-44ec-bd8e-14cbde629ab2"}"
 /RdXmlPath:"C:\Program Files (x86)\Microsoft SDKs\NuGetPackagesFallback\microsoft.net.native.compiler\1.7.3\tools\LibraryXML"
 /RunOnlyPreDR

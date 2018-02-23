@@ -18,11 +18,11 @@ using Windows.UI.Xaml.Navigation;
 
 namespace AzureRemoteLight
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
     public sealed partial class MainPage : Page
     {
+		/// <summary>
+		/// Data member of ViewModel.MainViewModel
+		/// </summary>
 		private MainViewModel _vm;
 		public MainPage()
 		{
@@ -30,7 +30,7 @@ namespace AzureRemoteLight
 			_vm = new MainViewModel();
 			Loaded += async (sender, args) =>
 			{
-				// send device connected message
+				//
 				await _vm.SendDeviceToCloudMessagesAsync();
 
 				// receive remote light control events
