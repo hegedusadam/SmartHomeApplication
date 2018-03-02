@@ -12,10 +12,10 @@ namespace SmartHomeApplicationService.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Teszt
+    public partial class User
     {
         public int Id { get; set; }
-        public string name { get; set; }
-        public Nullable<bool> szeretiatejet { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
     }
 }

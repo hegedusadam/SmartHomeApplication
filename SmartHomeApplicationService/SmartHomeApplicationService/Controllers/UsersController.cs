@@ -10,107 +10,122 @@ using SmartHomeApplicationService.Models;
 
 namespace SmartHomeApplicationService.Controllers
 {
-    public class TesztsController : Controller
+    public class UsersController : Controller
     {
-        private SmartHomeApplicationDatabaseEntities db = new SmartHomeApplicationDatabaseEntities();
+        private SmartHomeApplicationDatabaseUserTable db = new SmartHomeApplicationDatabaseUserTable();
 
-        // GET: Teszts
+        // GET: Users
         public ActionResult Index()
         {
-            return View(db.Teszts.ToList());
+            return this.Json(db.Users.ToList(), JsonRequestBehavior.AllowGet);
         }
 
-        // GET: Teszts/Details/5
+        // GET: Users/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Teszt teszt = db.Teszts.Find(id);
-            if (teszt == null)
+            User user = db.Users.Find(id);
+            if (user == null)
             {
                 return HttpNotFound();
             }
-            return View(teszt);
+            return View(user);
         }
 
-        // GET: Teszts/Create
+        // GET: Users/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Teszts/Create
+        // POST: Users/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,name,szeretiatejet")] Teszt teszt)
+        public ActionResult Create([Bind(Include = "Id,FirstName,LastName")] User user)
         {
             if (ModelState.IsValid)
             {
-                db.Teszts.Add(teszt);
+                db.Users.Add(user);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(teszt);
+            return View(user);
         }
 
-        // GET: Teszts/Edit/5
+        // GET: Users/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Teszt teszt = db.Teszts.Find(id);
-            if (teszt == null)
+            User user = db.Users.Find(id);
+            if (user == null)
             {
                 return HttpNotFound();
             }
-            return View(teszt);
+            return View(user);
         }
 
-        // POST: Teszts/Edit/5
+        // POST: Users/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,name,szeretiatejet")] Teszt teszt)
+        public ActionResult Edit([Bind(Include = "Id,FirstName,LastName")] User user)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(teszt).State = EntityState.Modified;
+                db.Entry(user).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(teszt);
+            return View(user);
         }
 
-        // GET: Teszts/Delete/5
-        public ActionResult Delete(int? id)
+		[HttpDelete, ActionName("DeleteById")]
+		public ActionResult DeleteById(int? id)
+		{
+			if (id == null)
+			{
+				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+			}
+			User user = db.Users.Find(id);
+			if (user == null)
+			{
+				return HttpNotFound();
+			}
+
+			db.Users.Remove(user);
+			db.SaveChanges();
+			return new HttpStatusCodeResult(HttpStatusCode.Accepted);
+		}
+
+		// GET: Users/Delete/5
+		public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Teszt teszt = db.Teszts.Find(id);
-            if (teszt == null)
+            User user = db.Users.Find(id);
+            if (user == null)
             {
                 return HttpNotFound();
             }
-            return View(teszt);
+            return View(user);
         }
 
-        // POST: Teszts/Delete/5
+        // POST: Users/Delete/5
         [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Teszt teszt = db.Teszts.Find(id);
-            db.Teszts.Remove(teszt);
+            User user = db.Users.Find(id);
+            db.Users.Remove(user);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
