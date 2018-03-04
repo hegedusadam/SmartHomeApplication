@@ -39,3 +39,16 @@ C:\Users\Adam\Desktop\SmartHomeAppliation\SmartHomeApplication\SmartHomeApplicat
 C:\Users\Adam\Desktop\SmartHomeAppliation\SmartHomeApplication\SmartHomeApplicationService\SmartHomeApplicationService.Tests\obj\Debug\SmartHomeApplicationService.Tests.csproj.CoreCompileInputs.cache
 C:\Users\Adam\Desktop\SmartHomeAppliation\SmartHomeApplication\SmartHomeApplicationService\SmartHomeApplicationService.Tests\obj\Debug\SmartHomeApplicationService.Tests.dll
 C:\Users\Adam\Desktop\SmartHomeAppliation\SmartHomeApplication\SmartHomeApplicationService\SmartHomeApplicationService.Tests\obj\Debug\SmartHomeApplicationService.Tests.pdb
+C:\Users\Adam\Desktop\SmartHomeAppliation\SmartHomeApplication\SmartHomeApplicationService\SmartHomeApplicationService.Tests\bin\Debug\Microsoft.AspNet.SignalR.Core.dll
+C:\Users\Adam\Desktop\SmartHomeAppliation\SmartHomeApplication\SmartHomeApplicationService\SmartHomeApplicationService.Tests\bin\Debug\Microsoft.AspNet.SignalR.SystemWeb.dll
+C:\Users\Adam\Desktop\SmartHomeAppliation\SmartHomeApplication\SmartHomeApplicationService\SmartHomeApplicationService.Tests\bin\Debug\Microsoft.Owin.dll
+C:\Users\Adam\Desktop\SmartHomeAppliation\SmartHomeApplication\SmartHomeApplicationService\SmartHomeApplicationService.Tests\bin\Debug\Microsoft.Owin.Host.SystemWeb.dll
+C:\Users\Adam\Desktop\SmartHomeAppliation\SmartHomeApplication\SmartHomeApplicationService\SmartHomeApplicationService.Tests\bin\Debug\Microsoft.Owin.Security.dll
+C:\Users\Adam\Desktop\SmartHomeAppliation\SmartHomeApplication\SmartHomeApplicationService\SmartHomeApplicationService.Tests\bin\Debug\Owin.dll
+C:\Users\Adam\Desktop\SmartHomeAppliation\SmartHomeApplication\SmartHomeApplicationService\SmartHomeApplicationService.Tests\bin\Debug\EntityFramework.dll
+C:\Users\Adam\Desktop\SmartHomeAppliation\SmartHomeApplication\SmartHomeApplicationService\SmartHomeApplicationService.Tests\bin\Debug\Microsoft.AspNet.SignalR.Core.xml
+C:\Users\Adam\Desktop\SmartHomeAppliation\SmartHomeApplication\SmartHomeApplicationService\SmartHomeApplicationService.Tests\bin\Debug\Microsoft.AspNet.SignalR.SystemWeb.xml
+C:\Users\Adam\Desktop\SmartHomeAppliation\SmartHomeApplication\SmartHomeApplicationService\SmartHomeApplicationService.Tests\bin\Debug\Microsoft.Owin.xml
+C:\Users\Adam\Desktop\SmartHomeAppliation\SmartHomeApplication\SmartHomeApplicationService\SmartHomeApplicationService.Tests\bin\Debug\Microsoft.Owin.Host.SystemWeb.xml
+C:\Users\Adam\Desktop\SmartHomeAppliation\SmartHomeApplication\SmartHomeApplicationService\SmartHomeApplicationService.Tests\bin\Debug\Microsoft.Owin.Security.xml
+C:\Users\Adam\Desktop\SmartHomeAppliation\SmartHomeApplication\SmartHomeApplicationService\SmartHomeApplicationService.Tests\bin\Debug\EntityFramework.xml

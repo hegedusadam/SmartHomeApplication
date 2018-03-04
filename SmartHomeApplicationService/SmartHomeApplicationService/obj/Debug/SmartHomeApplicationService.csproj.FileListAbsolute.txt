@@ -49,3 +49,15 @@ C:\Users\Adam\Desktop\SmartHomeAppliation\SmartHomeApplication\SmartHomeApplicat
 C:\Users\Adam\Desktop\SmartHomeAppliation\SmartHomeApplication\SmartHomeApplicationService\SmartHomeApplicationService\bin\EntityFramework.SqlServer.dll
 C:\Users\Adam\Desktop\SmartHomeAppliation\SmartHomeApplication\SmartHomeApplicationService\SmartHomeApplicationService\bin\EntityFramework.xml
 C:\Users\Adam\Desktop\SmartHomeAppliation\SmartHomeApplication\SmartHomeApplicationService\SmartHomeApplicationService\bin\EntityFramework.SqlServer.xml
+C:\Users\Adam\Desktop\SmartHomeAppliation\SmartHomeApplication\SmartHomeApplicationService\SmartHomeApplicationService\bin\Microsoft.AspNet.SignalR.Core.dll
+C:\Users\Adam\Desktop\SmartHomeAppliation\SmartHomeApplication\SmartHomeApplicationService\SmartHomeApplicationService\bin\Microsoft.AspNet.SignalR.SystemWeb.dll
+C:\Users\Adam\Desktop\SmartHomeAppliation\SmartHomeApplication\SmartHomeApplicationService\SmartHomeApplicationService\bin\Microsoft.Owin.dll
+C:\Users\Adam\Desktop\SmartHomeAppliation\SmartHomeApplication\SmartHomeApplicationService\SmartHomeApplicationService\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Users\Adam\Desktop\SmartHomeAppliation\SmartHomeApplication\SmartHomeApplicationService\SmartHomeApplicationService\bin\Microsoft.Owin.Security.dll
+C:\Users\Adam\Desktop\SmartHomeAppliation\SmartHomeApplication\SmartHomeApplicationService\SmartHomeApplicationService\bin\Owin.dll
+C:\Users\Adam\Desktop\SmartHomeAppliation\SmartHomeApplication\SmartHomeApplicationService\SmartHomeApplicationService\bin\Microsoft.AspNet.SignalR.Core.xml
+C:\Users\Adam\Desktop\SmartHomeAppliation\SmartHomeApplication\SmartHomeApplicationService\SmartHomeApplicationService\bin\Microsoft.AspNet.SignalR.SystemWeb.xml
+C:\Users\Adam\Desktop\SmartHomeAppliation\SmartHomeApplication\SmartHomeApplicationService\SmartHomeApplicationService\bin\Microsoft.Owin.xml
+C:\Users\Adam\Desktop\SmartHomeAppliation\SmartHomeApplication\SmartHomeApplicationService\SmartHomeApplicationService\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Users\Adam\Desktop\SmartHomeAppliation\SmartHomeApplication\SmartHomeApplicationService\SmartHomeApplicationService\bin\Microsoft.Owin.Security.xml
+C:\Users\Adam\Desktop\SmartHomeAppliation\SmartHomeApplication\SmartHomeApplicationService\SmartHomeApplicationService\obj\Debug\SmartHomeApplicationService.csprojResolveAssemblyReference.cache
