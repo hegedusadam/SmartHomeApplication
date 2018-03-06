@@ -180,12 +180,30 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\HelloWorldController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\LampController.cs" />
+    <Compile Include="Controllers\LampsController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Hubs\LampHub.cs" />
+    <Compile Include="Models\Lamp.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Lamp.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Lamp.cs">
+      <DependentUpon>Lamp.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Lamp.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Lamp.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Lamp1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Lamp.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\User.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -214,6 +232,16 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Models\Lamp.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Lamp.edmx</DependentUpon>
+      <LastGenOutput>Lamp.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\Lamp.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Lamp.edmx</DependentUpon>
+      <LastGenOutput>Lamp1.cs</LastGenOutput>
+    </Content>
     <Content Include="Models\User.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>User.edmx</DependentUpon>
@@ -235,6 +263,13 @@
     </EntityDeploy>
     <Content Include="Models\User.edmx.diagram">
       <DependentUpon>User.edmx</DependentUpon>
+    </Content>
+    <EntityDeploy Include="Models\Lamp.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Lamp.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Lamp.edmx.diagram">
+      <DependentUpon>Lamp.edmx</DependentUpon>
     </Content>
     <None Include="Properties\PublishProfiles\SmartHomeApplicationService - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -269,6 +304,11 @@
     <Content Include="Views\Users\Details.cshtml" />
     <Content Include="Views\Users\Edit.cshtml" />
     <Content Include="Views\Users\Index.cshtml" />
+    <Content Include="Views\Lamps\Create.cshtml" />
+    <Content Include="Views\Lamps\Delete.cshtml" />
+    <Content Include="Views\Lamps\Details.cshtml" />
+    <Content Include="Views\Lamps\Edit.cshtml" />
+    <Content Include="Views\Lamps\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

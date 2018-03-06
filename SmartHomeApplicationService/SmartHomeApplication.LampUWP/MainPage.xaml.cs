@@ -23,22 +23,15 @@ namespace SmartHomeApplication.LampUWP
     /// </summary>
     public sealed partial class MainPage : Page
     {
-		private MainViewModel _vm;
+		private MainViewModel ViewModel;
 		public MainPage()
 		{
 			this.InitializeComponent();
-			_vm = new MainViewModel();
+			ViewModel = new MainViewModel();
 			Loaded += async (sender, args) =>
 			{
-				await _vm.SetupHub();
+				await ViewModel.SetupHub();
 			};
-		}
-
-		protected override void OnNavigatedTo(NavigationEventArgs e)
-		{
-			base.OnNavigatedTo(e);
-
-
 		}
 	}
 }
