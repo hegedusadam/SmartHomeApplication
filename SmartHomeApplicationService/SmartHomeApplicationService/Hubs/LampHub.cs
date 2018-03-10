@@ -8,6 +8,7 @@ namespace SmartHomeApplicationService.Hubs
 {
 	public class LampHub : Hub
 	{
+		public static int LampId { get; set; }
 		public static bool TurnOn { get; set; }
 	}
 }

@@ -10,7 +10,7 @@ using SmartHomeApplicationService.Models;
 
 namespace SmartHomeApplicationService.Controllers
 {
-    public class UsersController : Controller
+    public class UserController : Controller
     {
         private SmartHomeApplicationDatabaseUserTable db = new SmartHomeApplicationDatabaseUserTable();
 

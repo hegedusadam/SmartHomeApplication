@@ -12,15 +12,15 @@ using SmartHomeApplicationService.Models;
 
 namespace SmartHomeApplicationService.Controllers
 {
-    public class LampsController : Controller
+    public class LampController : Controller
     {
         private SmartHomeApplicationDatabaseLamps db = new SmartHomeApplicationDatabaseLamps();
 
         // GET: Lamps
         public ActionResult Index()
         {
-            return View(db.Lamps.ToList());
-        }
+            return this.Json(db.Lamps.ToList(), JsonRequestBehavior.AllowGet);
+		}
 
         // GET: Lamps/Details/5
         public ActionResult Details(int? id)
@@ -110,15 +110,29 @@ namespace SmartHomeApplicationService.Controllers
             return RedirectToAction("Index");
         }
 
+		[HttpGet, ActionName("GetLampId")]
+		public void GetActualLampId()
+		{
+			var lampId = 1;
+			var lampContext = GlobalHost.ConnectionManager.GetHubContext<LampHub>();
+
+			LampHub.LampId = lampId;
+			lampContext.Clients.All.SendLampId(lampId);
+		}
+
 		[HttpPost, ActionName("TurnLamp")]
-		public void TurnLampOnOrOff(int id, bool TurnOn)
+		public void TurnLampOnOrOff(bool TurnOn)
 		{
 			var lampContext = GlobalHost.ConnectionManager.GetHubContext<LampHub>();
 
 			LampHub.TurnOn = TurnOn;
 			lampContext.Clients.All.OnSwitch(TurnOn);
+		}
 
-			db.Lamps.Find(id).ison = TurnOn;
+		[HttpPut, ActionName("UpdateLamp")]
+		public void ChangeLampCondition(int Id, bool IsOn)
+		{
+			db.Lamps.Find(Id).ison = IsOn;
 			db.SaveChanges();
 		}
 
