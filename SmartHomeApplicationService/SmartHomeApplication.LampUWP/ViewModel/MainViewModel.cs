@@ -80,16 +80,19 @@ namespace SmartHomeApplication.LampUWP.ViewModel
 			LampStateDTO response = new LampStateDTO
 			{
 				Id = LampId,
-				IsOn = LampIsOn
+				IsOn = LampIsOn,
+				date = DateTime.Now
 			};
 
 			try
 			{
 				using (HttpClient client = new HttpClient())
 				{
-					string address = "http://smarthomeapplicationservice.azurewebsites.net/Lamp/UpdateLamp";
+					string LampAddress = "http://smarthomeapplicationservice.azurewebsites.net/Lamp/UpdateLamp";
+					string ChangeAddress = "http://smarthomeapplicationservice.azurewebsites.net/Change/AddChange";
 					var content = new StringContent(JsonConvert.SerializeObject(response), Encoding.UTF8, "application/json");
-					HttpResponseMessage message = await client.PutAsync(address, content);
+					HttpResponseMessage LampMessage = await client.PutAsync(LampAddress, content);
+					HttpResponseMessage ChangeMessage = await client.PostAsync(ChangeAddress, content);
 				}
 			} catch (WebException exception)
 			{

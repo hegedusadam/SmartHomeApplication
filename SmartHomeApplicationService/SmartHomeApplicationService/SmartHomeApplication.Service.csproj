@@ -178,6 +178,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\ChangeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LampController.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -185,6 +186,24 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Hubs\LampHub.cs" />
+    <Compile Include="Models\Change.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Change.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Change.cs">
+      <DependentUpon>Change.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Change.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Change.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Change1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Change.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Lamp.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -203,6 +222,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Lamp.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\LampState.cs" />
     <Compile Include="Models\User.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -231,6 +251,16 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Models\Change.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Change.edmx</DependentUpon>
+      <LastGenOutput>Change.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\Change.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Change.edmx</DependentUpon>
+      <LastGenOutput>Change1.cs</LastGenOutput>
+    </Content>
     <Content Include="Models\Lamp.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Lamp.edmx</DependentUpon>
@@ -270,6 +300,14 @@
     <Content Include="Models\Lamp.edmx.diagram">
       <DependentUpon>Lamp.edmx</DependentUpon>
     </Content>
+    <Content Include="ClassDiagram1.cd" />
+    <EntityDeploy Include="Models\Change.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Change.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Change.edmx.diagram">
+      <DependentUpon>Change.edmx</DependentUpon>
+    </Content>
     <None Include="Properties\PublishProfiles\SmartHomeApplicationService - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -308,6 +346,11 @@
     <Content Include="Views\Lamps\Details.cshtml" />
     <Content Include="Views\Lamps\Edit.cshtml" />
     <Content Include="Views\Lamps\Index.cshtml" />
+    <Content Include="Views\Change\Create.cshtml" />
+    <Content Include="Views\Change\Delete.cshtml" />
+    <Content Include="Views\Change\Details.cshtml" />
+    <Content Include="Views\Change\Edit.cshtml" />
+    <Content Include="Views\Change\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -13,10 +13,10 @@ namespace SmartHomeApplicationService.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class SmartHomeApplicationDatabaseLamps : DbContext
+    public partial class SmartHomeApplicationDatabaseChanges : DbContext
     {
-        public SmartHomeApplicationDatabaseLamps()
-            : base("name=SmartHomeApplicationDatabaseLamps")
+        public SmartHomeApplicationDatabaseChanges()
+            : base("name=SmartHomeApplicationDatabaseChanges")
         {
         }
     
@@ -25,8 +25,6 @@ namespace SmartHomeApplicationService.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Lamp> Lamps { get; set; }
-
-		public System.Data.Entity.DbSet<SmartHomeApplicationService.Models.Change> Changes { get; set; }
-	}
+        public virtual DbSet<Change> Changes { get; set; }
+    }
 }

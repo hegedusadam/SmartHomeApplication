@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Web;
 
-namespace SmartHomeApplication.LampUWP.Model
+namespace SmartHomeApplicationService.Models
 {
-	class LampStateDTO
+	public class LampState
 	{
 		public int Id { get; set; }
 		public bool IsOn { get; set; }

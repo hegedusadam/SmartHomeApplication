@@ -130,9 +130,9 @@ namespace SmartHomeApplicationService.Controllers
 		}
 
 		[HttpPut, ActionName("UpdateLamp")]
-		public void ChangeLampCondition(int Id, bool IsOn)
+		public void ChangeLampCondition([Bind(Include = "Id, IsOn")] LampState LampState)
 		{
-			db.Lamps.Find(Id).ison = IsOn;
+			db.Lamps.Find(LampState.Id).ison = LampState.IsOn;
 			db.SaveChanges();
 		}
 
