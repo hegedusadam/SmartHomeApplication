@@ -1,4 +1,7 @@
-﻿using System;
+﻿using GalaSoft.MvvmLight;
+using Microsoft.WindowsAzure.MobileServices;
+using SmartHomeApplication.ClientUWP.View;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -22,11 +25,12 @@ namespace SmartHomeApplication.ClientUWP
     /// </summary>
     sealed partial class App : Application
     {
-        /// <summary>
-        /// Initializes the singleton application object.  This is the first line of authored code
-        /// executed, and as such is the logical equivalent of main() or WinMain().
-        /// </summary>
-        public App()
+		public static MobileServiceClient MobileService = new MobileServiceClient("https://smarthomeapplicationservice.azurewebsites.net");
+		/// <summary>
+		/// Initializes the singleton application object.  This is the first line of authored code
+		/// executed, and as such is the logical equivalent of main() or WinMain().
+		/// </summary>
+		public App()
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
@@ -66,7 +70,7 @@ namespace SmartHomeApplication.ClientUWP
                     // When the navigation stack isn't restored navigate to the first page,
                     // configuring the new page by passing required information as a navigation
                     // parameter
-                    rootFrame.Navigate(typeof(MainPage), e.Arguments);
+                    rootFrame.Navigate(typeof(LoginView), e.Arguments);
                 }
                 // Ensure the current window is active
                 Window.Current.Activate();
@@ -96,5 +100,20 @@ namespace SmartHomeApplication.ClientUWP
             //TODO: Save application state and stop any background activity
             deferral.Complete();
         }
-    }
+
+		protected override void OnActivated(IActivatedEventArgs args)
+		{
+			if (args.Kind == ActivationKind.Protocol)
+			{
+				ProtocolActivatedEventArgs protocolArgs = args as ProtocolActivatedEventArgs;
+				Frame content = Window.Current.Content as Frame;
+				if (content.Content.GetType() == typeof(LoginView))
+				{
+					content.Navigate(typeof(LoginView), protocolArgs.Uri);
+				}
+			}
+			Window.Current.Activate();
+			base.OnActivated(args);
+		}
+	}
 }

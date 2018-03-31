@@ -1,4 +1,5 @@
-﻿using SmartHomeApplication.ClientUWP.ViewModel;
+﻿using Microsoft.WindowsAzure.MobileServices;
+using SmartHomeApplication.ClientUWP.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -18,17 +19,25 @@ using Windows.UI.Xaml.Navigation;
 
 namespace SmartHomeApplication.ClientUWP.View
 {
-	/// <summary>
-	/// An empty page that can be used on its own or navigated to within a Frame.
-	/// </summary>
-	public sealed partial class LampSwitchView : Page
-	{
-		private LampSwitchViewModel ViewModel;
-		public LampSwitchView()
-		{
-			ViewModel = new LampSwitchViewModel();
-			this.InitializeComponent();
+    /// <summary>
+    /// An empty page that can be used on its own or navigated to within a Frame.
+    /// </summary>
+    public sealed partial class LoginView : Page
+    {
+		private LoginViewModel ViewModel;
+        public LoginView()
+        {
+			ViewModel = new LoginViewModel();
+            this.InitializeComponent();
 			this.DataContext = ViewModel;
+        }
+
+		protected override async void OnNavigatedTo(NavigationEventArgs e)
+		{
+			if (e.Parameter is Uri)
+			{
+				App.MobileService.ResumeWithURL(e.Parameter as Uri);
+			}
 		}
 	}
 }

@@ -58,19 +58,19 @@ namespace SmartHomeApplication.LampUWP.ViewModel
 
 		private async void handleCallback(bool TurnOn)
 		{
-			//if (LedPin == null)
-			//{
-			//	return;
-			//}
+			if (LedPin == null)
+			{
+				return;
+			}
 
-			//if (TurnOn)
-			//{
-			//	LedPin.Write(GpioPinValue.Low);
-			//}
-			//else if (!TurnOn)
-			//{
-			//	LedPin.Write(GpioPinValue.High);
-			//}
+			if (TurnOn)
+			{
+				LedPin.Write(GpioPinValue.Low);
+			}
+			else if (!TurnOn)
+			{
+				LedPin.Write(GpioPinValue.High);
+			}
 
 			await SendLampState(LampId, TurnOn);
 		}
@@ -96,7 +96,7 @@ namespace SmartHomeApplication.LampUWP.ViewModel
 				}
 			} catch (WebException exception)
 			{
-				throw new WebException("Error uccored during the request.", exception);
+				throw new WebException("Error occured during the request.", exception);
 			}
 		}
 	}
