@@ -15,18 +15,12 @@ namespace SmartHomeApplicationService.Controllers
     public class LampController : Controller
     {
         private SmartHomeApplicationDatabaseLamps db = new SmartHomeApplicationDatabaseLamps();
+		private IHubContext lampContext = GlobalHost.ConnectionManager.GetHubContext<LampHub>();
 
-        // GET: Lamps
-        public ActionResult Index()
+		// GET: Lamps
+		public ActionResult Index()
         {
             return this.Json(db.Lamps.ToList(), JsonRequestBehavior.AllowGet);
-		}
-
-		[System.Web.Mvc.Authorize]
-		[HttpGet, ActionName("GetValami")]
-		public String GetValami()
-		{
-			return "{Hello}";
 		}
 
 		// GET: Lamps/Details/5
@@ -36,7 +30,9 @@ namespace SmartHomeApplicationService.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             Lamp lamp = db.Lamps.Find(id);
+
             if (lamp == null)
             {
                 return HttpNotFound();
@@ -126,30 +122,40 @@ namespace SmartHomeApplicationService.Controllers
 		public ActionResult GetActualLampId()
 		{
 			var lampId = 1;
-			var lampContext = GlobalHost.ConnectionManager.GetHubContext<LampHub>();
 
 			LampHub.LampId = lampId;
 			lampContext.Clients.All.SendLampId(lampId);
 			return new HttpStatusCodeResult(HttpStatusCode.OK);
 		}
 
+		[HttpGet, ActionName("GetLampState")]
+		public ActionResult GetActualLampState()
+		{
+			var lampId = 1;
+
+			LampHub.LampId = lampId;
+			lampContext.Clients.All.SendLampId(lampId);
+			return this.Json(db.Lamps.Find(lampId).ison, JsonRequestBehavior.AllowGet);
+		}
+
 		[System.Web.Mvc.Authorize]
 		[HttpPost, ActionName("TurnLamp")]
 		public ActionResult TurnLampOnOrOff(bool TurnOn)
 		{
-			var lampContext = GlobalHost.ConnectionManager.GetHubContext<LampHub>();
-
 			LampHub.TurnOn = TurnOn;
 			lampContext.Clients.All.OnSwitch(TurnOn);
 
-			return new HttpStatusCodeResult(HttpStatusCode.Accepted);
+			return new HttpStatusCodeResult(HttpStatusCode.OK);
 		}
 
 		[HttpPut, ActionName("UpdateLamp")]
-		public void ChangeLampCondition([Bind(Include = "Id, IsOn")] LampState LampState)
+		public ActionResult ChangeLampCondition([Bind(Include = "Id, IsOn")] LampState LampState)
 		{
 			db.Lamps.Find(LampState.Id).ison = LampState.IsOn;
 			db.SaveChanges();
+
+			lampContext.Clients.All.SwitchClient(LampState.IsOn);
+			return new HttpStatusCodeResult(HttpStatusCode.OK);
 		}
 
 		protected override void Dispose(bool disposing)

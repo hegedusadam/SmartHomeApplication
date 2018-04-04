@@ -10,5 +10,6 @@ namespace SmartHomeApplicationService.Hubs
 	{
 		public static int LampId { get; set; }
 		public static bool TurnOn { get; set; }
+		public static bool ClientSwitch { get; set; }
 	}
 }

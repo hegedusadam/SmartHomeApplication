@@ -58,19 +58,19 @@ namespace SmartHomeApplication.LampUWP.ViewModel
 
 		private async void handleCallback(bool TurnOn)
 		{
-			if (LedPin == null)
-			{
-				return;
-			}
+			//if (LedPin == null)
+			//{
+			//	return;
+			//}
 
-			if (TurnOn)
-			{
-				LedPin.Write(GpioPinValue.Low);
-			}
-			else if (!TurnOn)
-			{
-				LedPin.Write(GpioPinValue.High);
-			}
+			//if (TurnOn)
+			//{
+			//	LedPin.Write(GpioPinValue.Low);
+			//}
+			//else if (!TurnOn)
+			//{
+			//	LedPin.Write(GpioPinValue.High);
+			//}
 
 			await SendLampState(LampId, TurnOn);
 		}
@@ -88,11 +88,13 @@ namespace SmartHomeApplication.LampUWP.ViewModel
 			{
 				using (HttpClient client = new HttpClient())
 				{
-					string LampAddress = "http://smarthomeapplicationservice.azurewebsites.net/Lamp/UpdateLamp";
-					string ChangeAddress = "http://smarthomeapplicationservice.azurewebsites.net/Change/AddChange";
+					string LampAddress = "https://smarthomeapplicationservice.azurewebsites.net/Lamp/UpdateLamp";
+					string ChangeAddress = "https://smarthomeapplicationservice.azurewebsites.net/Change/AddChange";
 					var content = new StringContent(JsonConvert.SerializeObject(response), Encoding.UTF8, "application/json");
 					HttpResponseMessage LampMessage = await client.PutAsync(LampAddress, content);
 					HttpResponseMessage ChangeMessage = await client.PostAsync(ChangeAddress, content);
+
+					string valami = content.ToString();
 				}
 			} catch (WebException exception)
 			{

@@ -12,13 +12,8 @@
             <Button
                 Content="ASSADASD">
             </Button>
-        <TextBox Text="{Binding MyString, Mode=TwoWay}">
-           
-        </TextBox>
 
-        <ToggleSwitch IsOn="{Binding IsOn, Mode=TwoWay}"></ToggleSwitch>
-
-        <TextBlock Text="{Binding MyString}"></TextBlock>
+            <ToggleSwitch IsOn="{Binding IsOn, Mode=TwoWay}"></ToggleSwitch>
         </StackPanel>
     </Grid>
 </Page>

@@ -29,6 +29,10 @@ namespace SmartHomeApplication.ClientUWP.View
 			ViewModel = new LampSwitchViewModel();
 			this.InitializeComponent();
 			this.DataContext = ViewModel;
+			Loaded += async (sender, args) =>
+			{
+				await ViewModel.SetupHub();
+			};
 		}
 	}
 }
