@@ -7,12 +7,19 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <StackPanel>
-            <Button Name="ButtonSave" Margin="0,8,8,0" Command="{Binding LoginCommand}" >
-                <StackPanel Orientation="Horizontal">
-                    <SymbolIcon Symbol="Add"/>
-                    <TextBlock Margin="5">Save</TextBlock>
+    <Grid Background="#A8A8A8">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="1" Margin="50,0,50,0">
+            <Button Name="FaceBookButtonLogin" Margin="0,8,8,0" Command="{Binding LoginCommand}"  Height="40" MaxWidth="300" Background="#000099">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="20,0,0,0">
+                    <SymbolIcon Symbol="Contact2" Margin="0,0,20,0"/>
+                    <TextBlock Text="Login with Facebook"/>
                 </StackPanel>
             </Button>
         </StackPanel>

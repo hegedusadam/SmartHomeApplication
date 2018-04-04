@@ -1,4 +1,5 @@
-﻿using Microsoft.WindowsAzure.MobileServices;
+﻿using GalaSoft.MvvmLight.Views;
+using Microsoft.WindowsAzure.MobileServices;
 using SmartHomeApplication.ClientUWP.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -34,10 +35,26 @@ namespace SmartHomeApplication.ClientUWP.View
 
 		protected override async void OnNavigatedTo(NavigationEventArgs e)
 		{
+			base.OnNavigatedTo(e);
+			ViewModel.PropertyChanged += ViewModel_PropertyChanged;
+
 			if (e.Parameter is Uri)
 			{
 				App.MobileService.ResumeWithURL(e.Parameter as Uri);
 			}
 		}
+
+		private void ViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+		{
+			switch (e.PropertyName)
+			{
+				case nameof(ViewModel.IsLoggedIn):
+					//When the first screen of the app is launched after user has logged in, initialize the processor that manages connection to OBD Device and to the IOT Hub
+
+					Frame.Navigate(typeof(LampSwitchView));
+					break;
+			}
+		}
+
 	}
 }

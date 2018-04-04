@@ -22,8 +22,15 @@ namespace SmartHomeApplicationService.Controllers
             return this.Json(db.Lamps.ToList(), JsonRequestBehavior.AllowGet);
 		}
 
-        // GET: Lamps/Details/5
-        public ActionResult Details(int? id)
+		[System.Web.Mvc.Authorize]
+		[HttpGet, ActionName("GetValami")]
+		public String GetValami()
+		{
+			return "{Hello}";
+		}
+
+		// GET: Lamps/Details/5
+		public ActionResult Details(int? id)
         {
             if (id == null)
             {
@@ -43,8 +50,9 @@ namespace SmartHomeApplicationService.Controllers
             return View();
         }
 
-        // POST: Lamps/Create
-        [HttpPost]
+		// POST: Lamps/Create
+		[System.Web.Mvc.Authorize]
+		[HttpPost]
         public ActionResult Create([Bind(Include = "Id,name,ison")] Lamp lamp)
         {
             if (ModelState.IsValid)
@@ -57,8 +65,9 @@ namespace SmartHomeApplicationService.Controllers
             return View(lamp);
         }
 
-        // GET: Lamps/Edit/5
-        public ActionResult Edit(int? id)
+		// GET: Lamps/Edit/5
+		[System.Web.Mvc.Authorize]
+		public ActionResult Edit(int? id)
         {
             if (id == null)
             {
@@ -72,8 +81,9 @@ namespace SmartHomeApplicationService.Controllers
             return View(lamp);
         }
 
-        // POST: Lamps/Edit/5
-        [HttpPost]
+		// POST: Lamps/Edit/5
+		[System.Web.Mvc.Authorize]
+		[HttpPost]
         public ActionResult Edit([Bind(Include = "Id,name,ison")] Lamp lamp)
         {
             if (ModelState.IsValid)
@@ -85,8 +95,9 @@ namespace SmartHomeApplicationService.Controllers
             return View(lamp);
         }
 
-        // GET: Lamps/Delete/5
-        public ActionResult Delete(int? id)
+		// GET: Lamps/Delete/5
+		[System.Web.Mvc.Authorize]
+		public ActionResult Delete(int? id)
         {
             if (id == null)
             {
@@ -100,33 +111,38 @@ namespace SmartHomeApplicationService.Controllers
             return View(lamp);
         }
 
-        // POST: Lamps/Delete/5
-        [HttpPost, ActionName("Delete")]
+		// POST: Lamps/Delete/5
+		[System.Web.Mvc.Authorize]
+		[HttpPost, ActionName("Delete")]
         public ActionResult DeleteConfirmed(int id)
         {
             Lamp lamp = db.Lamps.Find(id);
             db.Lamps.Remove(lamp);
             db.SaveChanges();
-            return RedirectToAction("Index");
-        }
+			return new HttpStatusCodeResult(HttpStatusCode.OK);
+		}
 
 		[HttpGet, ActionName("GetLampId")]
-		public void GetActualLampId()
+		public ActionResult GetActualLampId()
 		{
 			var lampId = 1;
 			var lampContext = GlobalHost.ConnectionManager.GetHubContext<LampHub>();
 
 			LampHub.LampId = lampId;
 			lampContext.Clients.All.SendLampId(lampId);
+			return new HttpStatusCodeResult(HttpStatusCode.OK);
 		}
 
+		[System.Web.Mvc.Authorize]
 		[HttpPost, ActionName("TurnLamp")]
-		public void TurnLampOnOrOff(bool TurnOn)
+		public ActionResult TurnLampOnOrOff(bool TurnOn)
 		{
 			var lampContext = GlobalHost.ConnectionManager.GetHubContext<LampHub>();
 
 			LampHub.TurnOn = TurnOn;
 			lampContext.Clients.All.OnSwitch(TurnOn);
+
+			return new HttpStatusCodeResult(HttpStatusCode.Accepted);
 		}
 
 		[HttpPut, ActionName("UpdateLamp")]

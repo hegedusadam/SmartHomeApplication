@@ -1,11 +1,14 @@
 ﻿using GalaSoft.MvvmLight;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using SmartHomeApplication.ClientUWP.Model;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -20,7 +23,7 @@ namespace SmartHomeApplication.ClientUWP.ViewModel
 			get { return isOn; }
 			set
 			{
-				isOn = !isOn;
+				isOn = value;
 				Task.Run(async () =>
 				{
 					await SwitchLamp();
@@ -32,23 +35,15 @@ namespace SmartHomeApplication.ClientUWP.ViewModel
 
 		public async Task SwitchLamp()
 		{
-			SwitchLampDTO respone = new SwitchLampDTO
-			{
-				TurnOn = IsOn
-			};
-
 			try
 			{
-				using (HttpClient client = new HttpClient())
-				{
-					string LampAddress = "http://smarthomeapplicationservice.azurewebsites.net/Lamp/TurnLamp";
-					var content = new StringContent(JsonConvert.SerializeObject(respone), Encoding.UTF8, "application/json");
-					HttpResponseMessage LampMessage = await client.PostAsync(LampAddress, content);
-				}
+				var token = new JObject();
+				token.Add("TurnOn", IsOn.ToString().ToLower());
+				var result = await App.MobileService.InvokeApiAsync("/Lamp/TurnLamp", token); // This is the line that fails
 			}
-			catch (WebException exception)
+			catch (Exception exception)
 			{
-				throw new WebException("Error occured during the request.", exception);
+				Debug.WriteLine(exception.Message);
 			}
 		}
 	}

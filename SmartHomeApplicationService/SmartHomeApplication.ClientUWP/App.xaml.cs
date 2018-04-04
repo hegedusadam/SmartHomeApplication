@@ -25,6 +25,7 @@ namespace SmartHomeApplication.ClientUWP
     /// </summary>
     sealed partial class App : Application
     {
+		public static MobileServiceUser User;
 		public static MobileServiceClient MobileService = new MobileServiceClient("https://smarthomeapplicationservice.azurewebsites.net");
 		/// <summary>
 		/// Initializes the singleton application object.  This is the first line of authored code

@@ -14,9 +14,15 @@ namespace SmartHomeApplication.ClientUWP.ViewModel
 {
     public class LoginViewModel : ViewModelBase
     {
-		private MobileServiceUser user;
-
 		private ICommand loginCommand;
+
+		private bool isLoggedIn;
+
+		public bool IsLoggedIn
+		{
+			get { return isLoggedIn; }
+			set { Set(ref isLoggedIn, value); }
+		}
 
 		public ICommand LoginCommand =>
 			loginCommand ??
@@ -28,17 +34,17 @@ namespace SmartHomeApplication.ClientUWP.ViewModel
 		public async System.Threading.Tasks.Task<bool> AuthenticateAsync()
 		{
 			string message;
-			bool success = false;
+			IsLoggedIn = false;
 			try
 			{
 				// Change 'MobileService' to the name of your MobileServiceClient instance.
 				// Sign-in using Facebook authentication.
-				user = await App.MobileService
-					.LoginAsync(MobileServiceAuthenticationProvider.Google, "smarthomeapplicationservice");
+				App.User = await App.MobileService
+					.LoginAsync(MobileServiceAuthenticationProvider.Facebook, "smarthomeapplicationservice");
 				message =
-					string.Format("You are now signed in - {0}", user.UserId);
+					string.Format("You are now signed in - {0}", App.User.MobileServiceAuthenticationToken);
 
-				success = true;
+				IsLoggedIn = true;
 			}
 			catch (InvalidOperationException)
 			{
@@ -48,7 +54,7 @@ namespace SmartHomeApplication.ClientUWP.ViewModel
 			var dialog = new MessageDialog(message);
 			dialog.Commands.Add(new UICommand("OK"));
 			await dialog.ShowAsync();
-			return success;
+			return IsLoggedIn;
 		}
 	}
 }
