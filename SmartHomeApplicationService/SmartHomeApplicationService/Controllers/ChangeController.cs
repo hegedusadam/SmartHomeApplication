@@ -38,7 +38,12 @@ namespace SmartHomeApplicationService.Controllers
 		[HttpPost, ActionName("AddChange")]
 		public void AddNewStateChange([Bind(Include = "Id, IsOn, date")] LampState LampState)
 		{
-			db.Changes.Add(new Change { state = LampState.IsOn, date = LampState.date, lampid = LampState.Id });
+			db.Changes.Add(new Change
+			{
+				state = LampState.IsOn,
+				date = LampState.date,
+				lampid = LampState.Id
+			});
 			db.SaveChanges();
 		}
 

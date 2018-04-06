@@ -4,8 +4,12 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
+using System.Security.Claims;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using Newtonsoft.Json.Linq;
 using SmartHomeApplicationService.Models;
 
 namespace SmartHomeApplicationService.Controllers
@@ -20,6 +24,26 @@ namespace SmartHomeApplicationService.Controllers
             return this.Json(db.Users.ToList(), JsonRequestBehavior.AllowGet);
         }
 
+		[HttpPost, ActionName("RegisterOrLogin")]
+		public ActionResult RegisterOrLogin(string userId)
+		{
+			User user = db.Users.Where(u => u.UserProfileId == userId).FirstOrDefault();
+
+			if (user == null)
+			{
+				db.Users.Add(new User
+				{
+					FirstName = "Elek",
+					LastName = "Mekk",
+					UserProfileId = userId
+				});
+
+				db.SaveChanges();
+			}
+
+			return new HttpStatusCodeResult(HttpStatusCode.OK);
+		}
+
         // GET: Users/Details/5
         public ActionResult Details(int? id)
         {
@@ -27,18 +51,13 @@ namespace SmartHomeApplicationService.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             User user = db.Users.Find(id);
             if (user == null)
             {
                 return HttpNotFound();
             }
             return View(user);
-        }
-
-        // GET: Users/Create
-        public ActionResult Create()
-        {
-            return View();
         }
 
         // POST: Users/Create
@@ -130,7 +149,56 @@ namespace SmartHomeApplicationService.Controllers
             return RedirectToAction("Index");
         }
 
-        protected override void Dispose(bool disposing)
+		[HttpGet, ActionName("GetUserInfo")]
+		public async Task<JsonResult> GetUserInfo()
+		{
+
+			string provider = "";
+			string secret;
+			string accessToken = GetAccessToken(out provider, out secret);
+
+			UserInfo info = new UserInfo();
+
+			using (HttpClient client = new HttpClient())
+			{
+				using (
+					HttpResponseMessage response =
+						await
+							client.GetAsync("https://graph.facebook.com/me" + "?access_token=" +
+											accessToken))
+				{
+					var o = JObject.Parse(await response.Content.ReadAsStringAsync());
+					info.Name = o["name"].ToString();
+				}
+				using (
+					HttpResponseMessage response =
+						await
+							client.GetAsync("https://graph.facebook.com/me" +
+											"/picture?redirect=false&access_token=" + accessToken))
+				{
+					var x = JObject.Parse(await response.Content.ReadAsStringAsync());
+					info.ImageUri = (x["data"]["url"].ToString());
+				}
+			}
+
+			return this.Json(info, JsonRequestBehavior.AllowGet);
+		}
+
+		private string GetAccessToken(out string provider, out string secret)
+		{
+			var serviceUser = this.User as ClaimsPrincipal;
+			var ident = serviceUser.FindFirst("http://schemas.microsoft.com/identity/claims/identityprovider").Value;
+			string token = "";
+			secret = "";
+			provider = ident;
+
+			token = Request.Headers.GetValues("X-MS-TOKEN-FACEBOOK-ACCESS-TOKEN").FirstOrDefault();
+			
+			return token;
+		}
+
+
+		protected override void Dispose(bool disposing)
         {
             if (disposing)
             {

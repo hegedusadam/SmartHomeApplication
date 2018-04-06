@@ -1,20 +1,28 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using Microsoft.WindowsAzure.MobileServices;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using SmartHomeApplication.ClientUWP.Model;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Media.Imaging;
 
 namespace SmartHomeApplication.ClientUWP.ViewModel
 {
     public class LoginViewModel : ViewModelBase
     {
 		private ICommand loginCommand;
+
+		public UserInfo userInfo;
 
 		private bool isLoggedIn;
 
@@ -24,27 +32,32 @@ namespace SmartHomeApplication.ClientUWP.ViewModel
 			set { Set(ref isLoggedIn, value); }
 		}
 
+		public UserInfo UserInformation
+		{
+			get { return userInfo; }
+			set { Set(ref userInfo, value); }
+		}
+
 		public ICommand LoginCommand =>
 			loginCommand ??
 			(loginCommand = new RelayCommand(async () => await AuthenticateAsync()));
 
-
-		// Define a method that performs the authentication process
-		// using a Facebook sign-in. 
 		public async System.Threading.Tasks.Task<bool> AuthenticateAsync()
 		{
 			string message;
 			IsLoggedIn = false;
+
 			try
 			{
-				// Change 'MobileService' to the name of your MobileServiceClient instance.
-				// Sign-in using Facebook authentication.
 				App.User = await App.MobileService
 					.LoginAsync(MobileServiceAuthenticationProvider.Facebook, "smarthomeapplicationservice");
 				message =
-					string.Format("You are now signed in - {0}", App.User.MobileServiceAuthenticationToken);
+					string.Format("You are now signed in - {0}", App.User.UserId);
 
 				IsLoggedIn = true;
+
+				await getUserInfo();
+
 			}
 			catch (InvalidOperationException)
 			{
@@ -54,7 +67,21 @@ namespace SmartHomeApplication.ClientUWP.ViewModel
 			var dialog = new MessageDialog(message);
 			dialog.Commands.Add(new UICommand("OK"));
 			await dialog.ShowAsync();
+
 			return IsLoggedIn;
+		}
+
+		private async Task getUserInfo()
+		{
+			var result = await App.MobileService.InvokeApiAsync("/User/GetUserInfo", HttpMethod.Get, null);
+
+			UserInformation = result.ToObject<UserInfo>();
+			//var httpclient = new HttpClient();
+			//var bytes = await httpclient.GetByteArrayAsync(userInfo.ImageUri);
+			//var pi = new BitmapImage();
+			//await
+			//	pi.SetSourceAsync(
+			//		new MemoryStream(bytes).AsRandomAccessStream());
 		}
 	}
 }

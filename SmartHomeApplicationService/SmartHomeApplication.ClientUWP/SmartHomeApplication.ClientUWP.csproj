@@ -99,6 +99,7 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\SwitchLampDTO.cs" />
+    <Compile Include="Model\UserInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\LampSwitchViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />

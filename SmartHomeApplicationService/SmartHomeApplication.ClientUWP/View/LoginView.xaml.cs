@@ -49,8 +49,6 @@ namespace SmartHomeApplication.ClientUWP.View
 			switch (e.PropertyName)
 			{
 				case nameof(ViewModel.IsLoggedIn):
-					//When the first screen of the app is launched after user has logged in, initialize the processor that manages connection to OBD Device and to the IOT Hub
-
 					Frame.Navigate(typeof(LampSwitchView));
 					break;
 			}
