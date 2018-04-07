@@ -54,10 +54,9 @@ namespace SmartHomeApplication.ClientUWP.ViewModel
 				message =
 					string.Format("You are now signed in - {0}", App.User.UserId);
 
+				await GetUserInfo();
+
 				IsLoggedIn = true;
-
-				await getUserInfo();
-
 			}
 			catch (InvalidOperationException)
 			{
@@ -71,7 +70,7 @@ namespace SmartHomeApplication.ClientUWP.ViewModel
 			return IsLoggedIn;
 		}
 
-		private async Task getUserInfo()
+		private async Task GetUserInfo()
 		{
 			var result = await App.MobileService.InvokeApiAsync("/User/GetUserInfo", HttpMethod.Get, null);
 
@@ -82,6 +81,15 @@ namespace SmartHomeApplication.ClientUWP.ViewModel
 			//await
 			//	pi.SetSourceAsync(
 			//		new MemoryStream(bytes).AsRandomAccessStream());
+			await RegisterToDatabase();
+		}
+
+		private async Task RegisterToDatabase()
+		{
+				var token = new JObject();
+				token.Add("Name", UserInformation.Name);
+				token.Add("userId", App.User.UserId);
+				var result = await App.MobileService.InvokeApiAsync("/User/Register", token);
 		}
 	}
 }

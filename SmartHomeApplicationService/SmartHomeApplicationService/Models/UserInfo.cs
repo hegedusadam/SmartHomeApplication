@@ -9,5 +9,6 @@ namespace SmartHomeApplicationService.Models
 	{
 		public string Name { get; set; }
 		public string ImageUri { get; set; }
+		public string userId { get; set; }
 	}
 }

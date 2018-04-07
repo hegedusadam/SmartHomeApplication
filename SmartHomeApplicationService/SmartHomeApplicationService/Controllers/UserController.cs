@@ -18,24 +18,25 @@ namespace SmartHomeApplicationService.Controllers
     {
         private SmartHomeApplicationDatabaseUserTable db = new SmartHomeApplicationDatabaseUserTable();
 
-        // GET: Users
-        public ActionResult Index()
+		// GET: Users
+		public ActionResult Index()
         {
             return this.Json(db.Users.ToList(), JsonRequestBehavior.AllowGet);
         }
 
-		[HttpPost, ActionName("RegisterOrLogin")]
-		public ActionResult RegisterOrLogin(string userId)
+		[HttpPost, ActionName("Register")]
+		public ActionResult RegisterToDatabase(UserInfo userInfo)
 		{
-			User user = db.Users.Where(u => u.UserProfileId == userId).FirstOrDefault();
+			User user = db.Users.Where(u => u.UserProfileId == userInfo.userId).FirstOrDefault();
 
 			if (user == null)
 			{
+				string[] names = userInfo.Name.Split(' ');
 				db.Users.Add(new User
 				{
-					FirstName = "Elek",
-					LastName = "Mekk",
-					UserProfileId = userId
+					FirstName = names[0],
+					LastName = names[1],
+					UserProfileId = userInfo.userId
 				});
 
 				db.SaveChanges();
@@ -44,119 +45,11 @@ namespace SmartHomeApplicationService.Controllers
 			return new HttpStatusCodeResult(HttpStatusCode.OK);
 		}
 
-        // GET: Users/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-
-            User user = db.Users.Find(id);
-            if (user == null)
-            {
-                return HttpNotFound();
-            }
-            return View(user);
-        }
-
-        // POST: Users/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        public ActionResult Create([Bind(Include = "Id,FirstName,LastName")] User user)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Users.Add(user);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            return View(user);
-        }
-
-        // GET: Users/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            User user = db.Users.Find(id);
-            if (user == null)
-            {
-                return HttpNotFound();
-            }
-            return View(user);
-        }
-
-        // POST: Users/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        public ActionResult Edit([Bind(Include = "Id,FirstName,LastName")] User user)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(user).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(user);
-        }
-
-		[HttpDelete, ActionName("DeleteById")]
-		public ActionResult DeleteById(int? id)
-		{
-			if (id == null)
-			{
-				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-			}
-			User user = db.Users.Find(id);
-			if (user == null)
-			{
-				return HttpNotFound();
-			}
-
-			db.Users.Remove(user);
-			db.SaveChanges();
-			return new HttpStatusCodeResult(HttpStatusCode.Accepted);
-		}
-
-		// GET: Users/Delete/5
-		public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            User user = db.Users.Find(id);
-            if (user == null)
-            {
-                return HttpNotFound();
-            }
-            return View(user);
-        }
-
-        // POST: Users/Delete/5
-        [HttpPost, ActionName("Delete")]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            User user = db.Users.Find(id);
-            db.Users.Remove(user);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
 
 		[HttpGet, ActionName("GetUserInfo")]
 		public async Task<JsonResult> GetUserInfo()
 		{
-
-			string provider = "";
-			string secret;
-			string accessToken = GetAccessToken(out provider, out secret);
-
+			string accessToken = GetAccessToken();
 			UserInfo info = new UserInfo();
 
 			using (HttpClient client = new HttpClient())
@@ -184,13 +77,9 @@ namespace SmartHomeApplicationService.Controllers
 			return this.Json(info, JsonRequestBehavior.AllowGet);
 		}
 
-		private string GetAccessToken(out string provider, out string secret)
+		private string GetAccessToken()
 		{
-			var serviceUser = this.User as ClaimsPrincipal;
-			var ident = serviceUser.FindFirst("http://schemas.microsoft.com/identity/claims/identityprovider").Value;
 			string token = "";
-			secret = "";
-			provider = ident;
 
 			token = Request.Headers.GetValues("X-MS-TOKEN-FACEBOOK-ACCESS-TOKEN").FirstOrDefault();
 			
