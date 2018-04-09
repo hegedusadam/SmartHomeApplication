@@ -18,5 +18,7 @@ namespace SmartHomeApplicationService.Models
         public System.DateTime date { get; set; }
         public bool state { get; set; }
         public int lampid { get; set; }
+    
+        public virtual Lamp Lamp { get; set; }
     }
 }

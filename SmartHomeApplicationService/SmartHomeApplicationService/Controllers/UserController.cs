@@ -25,14 +25,14 @@ namespace SmartHomeApplicationService.Controllers
         }
 
 		[HttpPost, ActionName("Register")]
-		public ActionResult RegisterToDatabase(UserInfo userInfo)
+		public int RegisterToDatabase(UserInfo userInfo)
 		{
 			User user = db.Users.Where(u => u.UserProfileId == userInfo.userId).FirstOrDefault();
 
 			if (user == null)
 			{
 				string[] names = userInfo.Name.Split(' ');
-				db.Users.Add(new User
+				User newUser = db.Users.Add(new User
 				{
 					FirstName = names[0],
 					LastName = names[1],
@@ -40,9 +40,11 @@ namespace SmartHomeApplicationService.Controllers
 				});
 
 				db.SaveChanges();
+
+				return newUser.Id;
 			}
 
-			return new HttpStatusCodeResult(HttpStatusCode.OK);
+			return user.Id;
 		}
 
 

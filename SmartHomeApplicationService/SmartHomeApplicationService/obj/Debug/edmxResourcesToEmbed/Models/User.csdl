@@ -8,6 +8,7 @@
     <Property Name="FirstName" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
     <Property Name="LastName" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
     <Property Name="UserProfileId" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Lamps" Relationship="SmartHomeApplicationDatabaseModel.FK_Lamps_ToUser" FromRole="User" ToRole="Lamp" />
   </EntityType>
   <EntityContainer Name="SmartHomeApplicationDatabaseUserTable" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Users" EntityType="Self.User" />
@@ -16,6 +17,10 @@
     <AssociationSet Name="FK__StateChan__lampi__534D60F1" Association="SmartHomeApplicationDatabaseModel.FK__StateChan__lampi__534D60F1">
       <End Role="Lamp" EntitySet="Lamps" />
       <End Role="Change" EntitySet="Changes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Lamps_ToUser" Association="SmartHomeApplicationDatabaseModel.FK_Lamps_ToUser">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Lamp" EntitySet="Lamps" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="Change">
@@ -36,6 +41,8 @@
     <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="ison" Type="Boolean" Nullable="false" />
     <NavigationProperty Name="Changes" Relationship="SmartHomeApplicationDatabaseModel.FK__StateChan__lampi__534D60F1" FromRole="Lamp" ToRole="Change" />
+    <Property Name="userid" Type="Int32" />
+    <NavigationProperty Name="User" Relationship="SmartHomeApplicationDatabaseModel.FK_Lamps_ToUser" FromRole="Lamp" ToRole="User" />
   </EntityType>
   <Association Name="FK__StateChan__lampi__534D60F1">
     <End Type="SmartHomeApplicationDatabaseModel.Lamp" Role="Lamp" Multiplicity="1" />
@@ -46,6 +53,18 @@
       </Principal>
       <Dependent Role="Change">
         <PropertyRef Name="lampid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Lamps_ToUser">
+    <End Type="SmartHomeApplicationDatabaseModel.User" Role="User" Multiplicity="0..1" />
+    <End Type="SmartHomeApplicationDatabaseModel.Lamp" Role="Lamp" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Lamp">
+        <PropertyRef Name="userid" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

@@ -9,6 +9,7 @@
         <EntityTypeShape EntityType="SmartHomeApplicationDatabaseModel.Change" Width="1.5" PointX="5.625" PointY="0.875" />
         <EntityTypeShape EntityType="SmartHomeApplicationDatabaseModel.Lamp" Width="1.5" PointX="3.375" PointY="1" />
         <AssociationConnector Association="SmartHomeApplicationDatabaseModel.FK__StateChan__lampi__534D60F1" />
+        <AssociationConnector Association="SmartHomeApplicationDatabaseModel.FK_Lamps_ToUser" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

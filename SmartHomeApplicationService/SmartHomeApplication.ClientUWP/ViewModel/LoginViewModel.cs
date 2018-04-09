@@ -22,20 +22,12 @@ namespace SmartHomeApplication.ClientUWP.ViewModel
     {
 		private ICommand loginCommand;
 
-		public UserInfo userInfo;
-
 		private bool isLoggedIn;
 
 		public bool IsLoggedIn
 		{
 			get { return isLoggedIn; }
 			set { Set(ref isLoggedIn, value); }
-		}
-
-		public UserInfo UserInformation
-		{
-			get { return userInfo; }
-			set { Set(ref userInfo, value); }
 		}
 
 		public ICommand LoginCommand =>
@@ -74,7 +66,7 @@ namespace SmartHomeApplication.ClientUWP.ViewModel
 		{
 			var result = await App.MobileService.InvokeApiAsync("/User/GetUserInfo", HttpMethod.Get, null);
 
-			UserInformation = result.ToObject<UserInfo>();
+			App.UserInformation = result.ToObject<UserInfo>();
 			//var httpclient = new HttpClient();
 			//var bytes = await httpclient.GetByteArrayAsync(userInfo.ImageUri);
 			//var pi = new BitmapImage();
@@ -86,10 +78,11 @@ namespace SmartHomeApplication.ClientUWP.ViewModel
 
 		private async Task RegisterToDatabase()
 		{
-				var token = new JObject();
-				token.Add("Name", UserInformation.Name);
-				token.Add("userId", App.User.UserId);
-				var result = await App.MobileService.InvokeApiAsync("/User/Register", token);
+			var token = new JObject();
+			token.Add("Name", App.UserInformation.Name);
+			token.Add("userId", App.User.UserId);
+			var result = await App.MobileService.InvokeApiAsync("/User/Register", token);
+			App.UserInformation.Id = result.ToObject<int>();
 		}
 	}
 }

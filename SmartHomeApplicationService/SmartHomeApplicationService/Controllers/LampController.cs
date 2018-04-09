@@ -23,7 +23,22 @@ namespace SmartHomeApplicationService.Controllers
             return this.Json(db.Lamps.ToList(), JsonRequestBehavior.AllowGet);
 		}
 
-		// POST: Lamps/Delete/5
+		[System.Web.Mvc.Authorize]
+		[HttpPost, ActionName("AddLamp")]
+		public ActionResult AddLamp(NewLamp lamp)
+		{
+			db.Lamps.Add(new Lamp
+			{
+				name = lamp.LampName,
+				userid = lamp.UserId,
+				ison = false
+			});
+
+			db.SaveChanges();
+
+			return new HttpStatusCodeResult(HttpStatusCode.OK);
+		}
+
 		[System.Web.Mvc.Authorize]
 		[HttpPost, ActionName("Delete")]
         public ActionResult DeleteConfirmed(int id)

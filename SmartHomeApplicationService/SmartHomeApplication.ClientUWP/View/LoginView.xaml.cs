@@ -33,7 +33,7 @@ namespace SmartHomeApplication.ClientUWP.View
 			this.DataContext = ViewModel;
         }
 
-		protected override async void OnNavigatedTo(NavigationEventArgs e)
+		protected override void OnNavigatedTo(NavigationEventArgs e)
 		{
 			base.OnNavigatedTo(e);
 			ViewModel.PropertyChanged += ViewModel_PropertyChanged;
@@ -49,7 +49,9 @@ namespace SmartHomeApplication.ClientUWP.View
 			switch (e.PropertyName)
 			{
 				case nameof(ViewModel.IsLoggedIn):
-					Frame.Navigate(typeof(LampSwitchView));
+					SplitViewShell shell = new SplitViewShell(this.Frame);
+					Window.Current.Content = shell;
+					Frame.Navigate(typeof(AddLampView));
 					break;
 			}
 		}

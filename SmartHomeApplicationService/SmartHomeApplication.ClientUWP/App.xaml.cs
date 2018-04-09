@@ -1,5 +1,6 @@
 ﻿using GalaSoft.MvvmLight;
 using Microsoft.WindowsAzure.MobileServices;
+using SmartHomeApplication.ClientUWP.Model;
 using SmartHomeApplication.ClientUWP.View;
 using System;
 using System.Collections.Generic;
@@ -27,6 +28,7 @@ namespace SmartHomeApplication.ClientUWP
     {
 		public static MobileServiceUser User;
 		public static MobileServiceClient MobileService = new MobileServiceClient("https://smarthomeapplicationservice.azurewebsites.net");
+		public static UserInfo UserInformation;
 		/// <summary>
 		/// Initializes the singleton application object.  This is the first line of authored code
 		/// executed, and as such is the logical equivalent of main() or WinMain().

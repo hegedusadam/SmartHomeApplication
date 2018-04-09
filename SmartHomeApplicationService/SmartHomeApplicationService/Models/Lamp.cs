@@ -14,8 +14,19 @@ namespace SmartHomeApplicationService.Models
     
     public partial class Lamp
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Lamp()
+        {
+            this.Changes = new HashSet<Change>();
+        }
+    
         public int Id { get; set; }
         public string name { get; set; }
         public bool ison { get; set; }
+        public Nullable<int> userid { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Change> Changes { get; set; }
+        public virtual User User { get; set; }
     }
 }

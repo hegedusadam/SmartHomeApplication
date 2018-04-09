@@ -192,7 +192,7 @@
       <DependentUpon>Change.Context.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Change.cs">
-      <DependentUpon>Change.tt</DependentUpon>
+      <DependentUpon>User.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Change.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -210,7 +210,7 @@
       <DependentUpon>Lamp.Context.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Lamp.cs">
-      <DependentUpon>Lamp.tt</DependentUpon>
+      <DependentUpon>User.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Lamp.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -223,6 +223,7 @@
       <DependentUpon>Lamp.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\LampState.cs" />
+    <Compile Include="Models\NewLamp.cs" />
     <Compile Include="Models\User.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
