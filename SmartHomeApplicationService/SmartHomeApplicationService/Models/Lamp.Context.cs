@@ -26,7 +26,7 @@ namespace SmartHomeApplicationService.Models
         }
     
         public virtual DbSet<Lamp> Lamps { get; set; }
-
-		public System.Data.Entity.DbSet<SmartHomeApplicationService.Models.Change> Changes { get; set; }
-	}
+        public virtual DbSet<Change> Changes { get; set; }
+        public virtual DbSet<User> Users { get; set; }
+    }
 }

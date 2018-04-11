@@ -32,6 +32,7 @@ namespace SmartHomeApplication.LampUWP
 			{
 				await ViewModel.SetupHub();
 			};
+			this.DataContext = ViewModel;
 		}
 	}
 }

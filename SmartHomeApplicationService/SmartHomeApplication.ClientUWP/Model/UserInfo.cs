@@ -8,8 +8,9 @@ namespace SmartHomeApplication.ClientUWP.Model
 {
 	public class UserInfo
 	{
-		public int Id;
+		public int userId;
 		public string Name { get; set; }
 		public string ImageUri { get; set; }
+		public string lampGuid { get; set; }
 	}
 }

@@ -7,7 +7,8 @@ namespace SmartHomeApplicationService.Models
 {
 	public class NewLamp
 	{
-		public int UserId { get; set; }
 		public string LampName { get; set; }
+		public string LampGuid { get; set; }
+		public int UserId { get; set; }
 	}
 }

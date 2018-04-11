@@ -9,7 +9,11 @@
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="1" Margin="50,0,50,0">
+            <TextBlock>Name of your lamp:</TextBlock>
             <TextBox MinWidth="100" Text="{Binding LampName, Mode=TwoWay}" ></TextBox>
+
+            <TextBlock Margin="0,15,0,0">GUID of your lamp:</TextBlock>
+            <TextBox Margin="0,0,0,15" MinWidth="100" Text="{Binding LampGuid, Mode=TwoWay}" ></TextBox>
             <Button Command="{Binding AddLampCommand}">Add lamp</Button>
         </StackPanel>
     </Grid>

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="SmartHomeApplicationDatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="SmartHomeApplicationDatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Changes">
           <Key>
             <PropertyRef Name="Id" />
@@ -14,11 +14,80 @@
           <Property Name="state" Type="bit" Nullable="false" />
           <Property Name="lampid" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="Lamps">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ison" Type="bit" Nullable="false" />
+          <Property Name="userid" Type="int" />
+          <Property Name="lampguid" Type="nchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="nchar" MaxLength="100" Nullable="false" />
+          <Property Name="LastName" Type="nchar" MaxLength="100" Nullable="false" />
+          <Property Name="UserProfileId" Type="varchar" MaxLength="150" />
+          <Property Name="lampid" Type="int" />
+        </EntityType>
+        <Association Name="FK__StateChan__lampi__534D60F1">
+          <End Role="Lamps" Type="Self.Lamps" Multiplicity="1" />
+          <End Role="Changes" Type="Self.Changes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lamps">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Changes">
+              <PropertyRef Name="lampid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Lamps_ToUser">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Lamps" Type="Self.Lamps" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Lamps">
+              <PropertyRef Name="userid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_ToLamps">
+          <End Role="Lamps" Type="Self.Lamps" Multiplicity="0..1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lamps">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="lampid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="SmartHomeApplicationDatabaseModelStoreContainer">
           <EntitySet Name="Changes" EntityType="Self.Changes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Lamps" EntityType="Self.Lamps" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__StateChan__lampi__534D60F1" Association="Self.FK__StateChan__lampi__534D60F1">
+            <End Role="Lamps" EntitySet="Lamps" />
+            <End Role="Changes" EntitySet="Changes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Lamps_ToUser" Association="Self.FK_Lamps_ToUser">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Lamps" EntitySet="Lamps" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_ToLamps" Association="Self.FK_User_ToLamps">
+            <End Role="Lamps" EntitySet="Lamps" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="SmartHomeApplicationDatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -30,10 +99,84 @@
           <Property Name="date" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="state" Type="Boolean" Nullable="false" />
           <Property Name="lampid" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Lamp" Relationship="SmartHomeApplicationDatabaseModel.FK__StateChan__lampi__534D60F1" FromRole="Change" ToRole="Lamp" />
         </EntityType>
         <EntityContainer Name="SmartHomeApplicationDatabaseChanges" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Changes" EntityType="Self.Change" />
+          <EntitySet Name="Lamps" EntityType="SmartHomeApplicationDatabaseModel.Lamp" />
+          <EntitySet Name="Users" EntityType="SmartHomeApplicationDatabaseModel.User" />
+          <AssociationSet Name="FK__StateChan__lampi__534D60F1" Association="SmartHomeApplicationDatabaseModel.FK__StateChan__lampi__534D60F1">
+            <End Role="Lamp" EntitySet="Lamps" />
+            <End Role="Change" EntitySet="Changes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Lamps_ToUser" Association="SmartHomeApplicationDatabaseModel.FK_Lamps_ToUser">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Lamp" EntitySet="Lamps" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_ToLamps" Association="SmartHomeApplicationDatabaseModel.FK_User_ToLamps">
+            <End Role="Lamp" EntitySet="Lamps" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Lamp">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ison" Type="Boolean" Nullable="false" />
+          <Property Name="userid" Type="Int32" />
+          <Property Name="lampguid" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Changes" Relationship="SmartHomeApplicationDatabaseModel.FK__StateChan__lampi__534D60F1" FromRole="Lamp" ToRole="Change" />
+          <NavigationProperty Name="User" Relationship="SmartHomeApplicationDatabaseModel.FK_Lamps_ToUser" FromRole="Lamp" ToRole="User" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="UserProfileId" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="lampid" Type="Int32" />
+          <NavigationProperty Name="Lamp" Relationship="SmartHomeApplicationDatabaseModel.FK_User_ToLamps" FromRole="User" ToRole="Lamp" />
+        </EntityType>
+        <Association Name="FK__StateChan__lampi__534D60F1">
+          <End Type="SmartHomeApplicationDatabaseModel.Lamp" Role="Lamp" Multiplicity="1" />
+          <End Type="SmartHomeApplicationDatabaseModel.Change" Role="Change" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lamp">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Change">
+              <PropertyRef Name="lampid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Lamps_ToUser">
+          <End Type="SmartHomeApplicationDatabaseModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="SmartHomeApplicationDatabaseModel.Lamp" Role="Lamp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Lamp">
+              <PropertyRef Name="userid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_ToLamps">
+          <End Type="SmartHomeApplicationDatabaseModel.Lamp" Role="Lamp" Multiplicity="0..1" />
+          <End Type="SmartHomeApplicationDatabaseModel.User" Role="User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lamp">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="lampid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -47,6 +190,28 @@
                 <ScalarProperty Name="date" ColumnName="date" />
                 <ScalarProperty Name="state" ColumnName="state" />
                 <ScalarProperty Name="lampid" ColumnName="lampid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Lamps">
+            <EntityTypeMapping TypeName="SmartHomeApplicationDatabaseModel.Lamp">
+              <MappingFragment StoreEntitySet="Lamps">
+                <ScalarProperty Name="lampguid" ColumnName="lampguid" />
+                <ScalarProperty Name="userid" ColumnName="userid" />
+                <ScalarProperty Name="ison" ColumnName="ison" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="SmartHomeApplicationDatabaseModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="lampid" ColumnName="lampid" />
+                <ScalarProperty Name="UserProfileId" ColumnName="UserProfileId" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

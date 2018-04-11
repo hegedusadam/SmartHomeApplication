@@ -14,6 +14,7 @@ namespace SmartHomeApplication.ClientUWP.ViewModel
 	public class AddLampViewModel : ViewModelBase
 	{
 		private string lampName;
+		private string lampGuid;
 
 		public string LampName
 		{
@@ -21,6 +22,15 @@ namespace SmartHomeApplication.ClientUWP.ViewModel
 			set
 			{
 				Set(ref lampName, value);
+			}
+		}
+
+		public string LampGuid
+		{
+			get { return lampGuid; }
+			set
+			{
+				Set(ref lampGuid, value);
 			}
 		}
 
@@ -35,7 +45,8 @@ namespace SmartHomeApplication.ClientUWP.ViewModel
 			{
 				var token = new JObject();
 				token.Add("LampName", LampName);
-				token.Add("UserID", App.UserInformation.Id);
+				token.Add("LampGuid", LampGuid);
+				token.Add("UserID", App.UserInformation.userId);
 				var result = await App.MobileService.InvokeApiAsync("/Lamp/AddLamp", token);
 			} catch (Exception e)
 			{

@@ -5,26 +5,37 @@ using Newtonsoft.Json;
 using SmartHomeApplication.LampUWP.Model;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.Devices.Gpio;
+using Windows.Storage;
 using Windows.UI.Xaml.Navigation;
 
 namespace SmartHomeApplication.LampUWP.ViewModel
 {
 	class MainViewModel : ViewModelBase
 	{
+		private string lampGuid;
+
 		public int LampId { get; set; }
-		
+
+		public string LampGuid
+		{
+			get { return lampGuid; }
+			set { Set(ref lampGuid, value); }
+		}
+
 		/// <summary>
 		///	GPIO settings
 		/// </summary>
 		public GpioController GpioController { get; }
 		public GpioPin LedPin { get; }
-
+		
 		private readonly int OpenedPin = 4;
 
 		/// <summary>
@@ -38,6 +49,49 @@ namespace SmartHomeApplication.LampUWP.ViewModel
 				LedPin = GpioController.OpenPin(OpenedPin);
 				LedPin.SetDriveMode(GpioPinDriveMode.Output);
 			}
+
+			CreateOrReadGuid();
+		}
+
+		public void CreateOrReadGuid()
+		{
+
+			if (ApplicationData.Current.LocalSettings.Values.ContainsKey("guid"))
+			{
+				LampGuid = (string)ApplicationData.Current.LocalSettings.Values["guid"];
+			}
+			else
+			{
+				Guid createGuid = Guid.NewGuid();
+				string guidString = createGuid.ToString().Substring(0, 5);
+
+				this.LampGuid = guidString;
+				ApplicationData.Current.LocalSettings.Values["guid"] = guidString;
+			}
+
+			//try
+			//{
+			//	string destPath = Path.Combine(@"C:\Users\Adam\Downloads", "guid.txt");
+
+			//	if (!File.Exists(destPath))
+			//	{
+			//		Guid guid = Guid.NewGuid();
+
+			//		string guidString = guid.ToString().Substring(0, 5);
+
+			//		this.guid = guidString;
+			//		//File.WriteAllText(destPath, guidString);
+			//		//DownloadsFolder.CreateFileAsync("file.txt");
+			//	}
+			//	else
+			//	{
+			//		this.guid = File.ReadAllText(destPath);
+			//	}
+			//}
+			//catch (Exception e)
+			//{
+			//	Debug.WriteLine(e.Message);
+			//}
 		}
 
 		public async Task SetupHub()

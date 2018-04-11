@@ -27,24 +27,24 @@ namespace SmartHomeApplicationService.Controllers
 		[HttpPost, ActionName("Register")]
 		public int RegisterToDatabase(UserInfo userInfo)
 		{
-			User user = db.Users.Where(u => u.UserProfileId == userInfo.userId).FirstOrDefault();
+				User user = db.Users.Where(u => u.UserProfileId == userInfo.UserProfileId).FirstOrDefault();
 
-			if (user == null)
-			{
-				string[] names = userInfo.Name.Split(' ');
-				User newUser = db.Users.Add(new User
+				if (user == null)
 				{
-					FirstName = names[0],
-					LastName = names[1],
-					UserProfileId = userInfo.userId
-				});
+					string[] names = userInfo.Name.Split(' ');
+					User newUser = db.Users.Add(new User
+					{
+						FirstName = names[0],
+						LastName = names[1],
+						UserProfileId = userInfo.UserProfileId
+					});
 
-				db.SaveChanges();
+					db.SaveChanges();
 
-				return newUser.Id;
-			}
+					return newUser.Id;
+				}
 
-			return user.Id;
+				return user.Id;
 		}
 
 

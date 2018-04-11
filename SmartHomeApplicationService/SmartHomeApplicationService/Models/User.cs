@@ -14,18 +14,12 @@ namespace SmartHomeApplicationService.Models
     
     public partial class User
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public User()
-        {
-            this.Lamps = new HashSet<Lamp>();
-        }
-    
         public int Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string UserProfileId { get; set; }
+        public Nullable<int> lampid { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Lamp> Lamps { get; set; }
+        public virtual Lamp Lamp { get; set; }
     }
 }

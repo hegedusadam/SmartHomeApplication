@@ -310,6 +310,7 @@
     <Content Include="Models\Change.edmx.diagram">
       <DependentUpon>Change.edmx</DependentUpon>
     </Content>
+    <Content Include="ClassDiagram2.cd" />
     <None Include="Properties\PublishProfiles\SmartHomeApplicationService - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />

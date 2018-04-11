@@ -6,6 +6,7 @@ using Newtonsoft.Json.Linq;
 using SmartHomeApplication.ClientUWP.Model;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
@@ -78,11 +79,34 @@ namespace SmartHomeApplication.ClientUWP.ViewModel
 
 		private async Task RegisterToDatabase()
 		{
-			var token = new JObject();
-			token.Add("Name", App.UserInformation.Name);
-			token.Add("userId", App.User.UserId);
-			var result = await App.MobileService.InvokeApiAsync("/User/Register", token);
-			App.UserInformation.Id = result.ToObject<int>();
+			try
+			{
+				var token = new JObject();
+				token.Add("Name", App.UserInformation.Name);
+				token.Add("UserProfileId", App.User.UserId);
+				var result = await App.MobileService.InvokeApiAsync("/User/Register", token);
+				App.UserInformation.userId = result.ToObject<int>();
+				//App.UserInformation.lampGuid = userInfo.lampGuid;
+			} catch (Exception e)
+			{
+				Debug.WriteLine(e.Message);
+			}
+		}
+
+		private async Task GetLampGuid()
+		{
+			try
+			{
+				var token = new JObject();
+				token.Add("Name", App.UserInformation.Name);
+				token.Add("UserProfileId", App.User.UserId);
+				var result = await App.MobileService.InvokeApiAsync("/User/Register", token);
+				App.UserInformation.userId = result.ToObject<int>();
+			}
+			catch (Exception e)
+			{
+				Debug.WriteLine(e.Message);
+			}
 		}
 	}
 }

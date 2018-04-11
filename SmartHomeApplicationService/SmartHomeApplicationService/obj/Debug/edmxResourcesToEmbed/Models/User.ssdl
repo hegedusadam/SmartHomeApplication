@@ -17,6 +17,7 @@
     <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="ison" Type="bit" Nullable="false" />
     <Property Name="userid" Type="int" />
+    <Property Name="lampguid" Type="nchar" MaxLength="100" />
   </EntityType>
   <EntityType Name="Users">
     <Key>
@@ -26,6 +27,7 @@
     <Property Name="FirstName" Type="nchar" MaxLength="100" Nullable="false" />
     <Property Name="LastName" Type="nchar" MaxLength="100" Nullable="false" />
     <Property Name="UserProfileId" Type="varchar" MaxLength="150" />
+    <Property Name="lampid" Type="int" />
   </EntityType>
   <Association Name="FK__StateChan__lampi__534D60F1">
     <End Role="Lamps" Type="Self.Lamps" Multiplicity="1" />
@@ -51,6 +53,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_User_ToLamps">
+    <End Role="Lamps" Type="Self.Lamps" Multiplicity="0..1" />
+    <End Role="Users" Type="Self.Users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Lamps">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="lampid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="SmartHomeApplicationDatabaseModelStoreContainer">
     <EntitySet Name="Changes" EntityType="Self.Changes" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Lamps" EntityType="Self.Lamps" Schema="dbo" store:Type="Tables" />
@@ -62,6 +76,10 @@
     <AssociationSet Name="FK_Lamps_ToUser" Association="Self.FK_Lamps_ToUser">
       <End Role="Users" EntitySet="Users" />
       <End Role="Lamps" EntitySet="Lamps" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_ToLamps" Association="Self.FK_User_ToLamps">
+      <End Role="Lamps" EntitySet="Lamps" />
+      <End Role="Users" EntitySet="Users" />
     </AssociationSet>
   </EntityContainer>
 </Schema>
