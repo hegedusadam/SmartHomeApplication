@@ -15,7 +15,6 @@ namespace SmartHomeApplicationService.Controllers
     public class LampController : Controller
     {
         private SmartHomeApplicationDatabaseLamps db = new SmartHomeApplicationDatabaseLamps();
-		private SmartHomeApplicationDatabaseUserTable userDb = new SmartHomeApplicationDatabaseUserTable();
 		private IHubContext lampContext = GlobalHost.ConnectionManager.GetHubContext<LampHub>();
 
 		// GET: Lamps
@@ -38,12 +37,12 @@ namespace SmartHomeApplicationService.Controllers
 					ison = false
 				});
 
-				User user = userDb.Users.Find(lamp.UserId);
-				user.lampid = newLamp.Id;
+				//db.SaveChanges();
+
+				User user = db.Users.Find(lamp.UserId);
 				user.Lamp = newLamp;
 
 				db.SaveChanges();
-				userDb.SaveChanges();
 			} catch(Exception e)
 			{
 				return new HttpStatusCodeResult(HttpStatusCode.InternalServerError);
@@ -62,43 +61,40 @@ namespace SmartHomeApplicationService.Controllers
 			return new HttpStatusCodeResult(HttpStatusCode.OK);
 		}
 
-		[HttpGet, ActionName("GetLampId")]
-		public ActionResult GetActualLampId()
+		[HttpPost, ActionName("GetLampState")]
+		public ActionResult GetActualLampState(string guid)
 		{
-			var lampId = 1;
-
-			LampHub.LampId = lampId;
-			lampContext.Clients.All.SendLampId(lampId);
-			return new HttpStatusCodeResult(HttpStatusCode.OK);
-		}
-
-		[HttpGet, ActionName("GetLampState")]
-		public ActionResult GetActualLampState()
-		{
-			var lampId = 1;
-
-			LampHub.LampId = lampId;
-			lampContext.Clients.All.SendLampId(lampId);
-			return this.Json(db.Lamps.Find(lampId).ison, JsonRequestBehavior.AllowGet);
+			try
+			{
+				Lamp lamp = db.Lamps.Where(l => l.lampguid == guid).FirstOrDefault();
+				lampContext.Clients.All.SendLampId(lamp.ison);
+				return this.Json(lamp.ison, JsonRequestBehavior.AllowGet);
+			}
+			catch (Exception e)
+			{
+				return null;
+			}
 		}
 
 		[System.Web.Mvc.Authorize]
 		[HttpPost, ActionName("TurnLamp")]
-		public ActionResult TurnLampOnOrOff(bool TurnOn)
+		public ActionResult TurnLampOnOrOff(bool TurnOn, string LampGuid)
 		{
 			LampHub.TurnOn = TurnOn;
-			lampContext.Clients.All.OnSwitch(TurnOn);
+			lampContext.Clients.All.OnSwitch(TurnOn, LampGuid);
 
 			return new HttpStatusCodeResult(HttpStatusCode.OK);
 		}
 
 		[HttpPut, ActionName("UpdateLamp")]
-		public ActionResult ChangeLampCondition([Bind(Include = "Id, IsOn")] LampState LampState)
+		public ActionResult ChangeLampCondition([Bind(Include = "Guid, IsOn")] LampState LampState)
 		{
-			db.Lamps.Find(LampState.Id).ison = LampState.IsOn;
+			Lamp lamp = db.Lamps.Where(l => l.name == LampState.Guid).FirstOrDefault();
+			lamp.ison = LampState.IsOn;
+
 			db.SaveChanges();
 
-			lampContext.Clients.All.SwitchClient(LampState.IsOn);
+			lampContext.Clients.All.SwitchClient(LampState.IsOn, LampState.Guid);
 			return new HttpStatusCodeResult(HttpStatusCode.OK);
 		}
 

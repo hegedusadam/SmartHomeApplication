@@ -75,6 +75,7 @@ namespace SmartHomeApplication.ClientUWP.ViewModel
 			//	pi.SetSourceAsync(
 			//		new MemoryStream(bytes).AsRandomAccessStream());
 			await RegisterToDatabase();
+			await GetLampGuid();
 		}
 
 		private async Task RegisterToDatabase()
@@ -86,8 +87,8 @@ namespace SmartHomeApplication.ClientUWP.ViewModel
 				token.Add("UserProfileId", App.User.UserId);
 				var result = await App.MobileService.InvokeApiAsync("/User/Register", token);
 				App.UserInformation.userId = result.ToObject<int>();
-				//App.UserInformation.lampGuid = userInfo.lampGuid;
-			} catch (Exception e)
+			}
+			catch (Exception e)
 			{
 				Debug.WriteLine(e.Message);
 			}
@@ -98,10 +99,10 @@ namespace SmartHomeApplication.ClientUWP.ViewModel
 			try
 			{
 				var token = new JObject();
-				token.Add("Name", App.UserInformation.Name);
 				token.Add("UserProfileId", App.User.UserId);
-				var result = await App.MobileService.InvokeApiAsync("/User/Register", token);
-				App.UserInformation.userId = result.ToObject<int>();
+				var result = await App.MobileService.InvokeApiAsync("/User/GetGuid", token);
+				//trim to be deleted
+				App.UserInformation.lampGuid = result.ToObject<string>().Trim();
 			}
 			catch (Exception e)
 			{

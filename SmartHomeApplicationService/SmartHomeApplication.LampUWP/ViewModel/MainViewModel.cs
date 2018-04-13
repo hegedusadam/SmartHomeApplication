@@ -22,8 +22,6 @@ namespace SmartHomeApplication.LampUWP.ViewModel
 	{
 		private string lampGuid;
 
-		public int LampId { get; set; }
-
 		public string LampGuid
 		{
 			get { return lampGuid; }
@@ -68,30 +66,6 @@ namespace SmartHomeApplication.LampUWP.ViewModel
 				this.LampGuid = guidString;
 				ApplicationData.Current.LocalSettings.Values["guid"] = guidString;
 			}
-
-			//try
-			//{
-			//	string destPath = Path.Combine(@"C:\Users\Adam\Downloads", "guid.txt");
-
-			//	if (!File.Exists(destPath))
-			//	{
-			//		Guid guid = Guid.NewGuid();
-
-			//		string guidString = guid.ToString().Substring(0, 5);
-
-			//		this.guid = guidString;
-			//		//File.WriteAllText(destPath, guidString);
-			//		//DownloadsFolder.CreateFileAsync("file.txt");
-			//	}
-			//	else
-			//	{
-			//		this.guid = File.ReadAllText(destPath);
-			//	}
-			//}
-			//catch (Exception e)
-			//{
-			//	Debug.WriteLine(e.Message);
-			//}
 		}
 
 		public async Task SetupHub()
@@ -99,19 +73,18 @@ namespace SmartHomeApplication.LampUWP.ViewModel
 			var hubConnection = new HubConnection("http://smarthomeapplicationservice.azurewebsites.net/");
 			var lampHub = hubConnection.CreateHubProxy("LampHub");
 
-			lampHub.On<int>("SendLampId", setLampId); 
-			lampHub.On<bool>("OnSwitch", handleCallback);
+			lampHub.On<bool, string>("OnSwitch", handleCallback);
 
 			await hubConnection.Start(new LongPollingTransport());
 		}
 
-		private void setLampId(int Id)
+		private async void handleCallback(bool TurnOn, string guid)
 		{
-			LampId = Id;
-		}
+			if (!guid.Equals(this.LampGuid))
+			{
+				return;
+			}
 
-		private async void handleCallback(bool TurnOn)
-		{
 			//if (LedPin == null)
 			//{
 			//	return;
@@ -133,7 +106,7 @@ namespace SmartHomeApplication.LampUWP.ViewModel
 		{
 			LampStateDTO response = new LampStateDTO
 			{
-				Id = LampId,
+				Guid = LampGuid,
 				IsOn = LampIsOn,
 				date = DateTime.Now
 			};
@@ -147,8 +120,6 @@ namespace SmartHomeApplication.LampUWP.ViewModel
 					var content = new StringContent(JsonConvert.SerializeObject(response), Encoding.UTF8, "application/json");
 					HttpResponseMessage LampMessage = await client.PutAsync(LampAddress, content);
 					HttpResponseMessage ChangeMessage = await client.PostAsync(ChangeAddress, content);
-
-					string valami = content.ToString();
 				}
 			} catch (WebException exception)
 			{

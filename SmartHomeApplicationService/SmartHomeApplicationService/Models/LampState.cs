@@ -7,7 +7,7 @@ namespace SmartHomeApplicationService.Models
 {
 	public class LampState
 	{
-		public int Id { get; set; }
+		public string Guid { get; set; }
 		public bool IsOn { get; set; }
 		public DateTime date { get; set; }
 	}

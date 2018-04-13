@@ -30,7 +30,7 @@ namespace SmartHomeApplication.ClientUWP.ViewModel
 			get { return lampGuid; }
 			set
 			{
-				Set(ref lampGuid, value);
+				Set(ref lampGuid, value.Trim());
 			}
 		}
 

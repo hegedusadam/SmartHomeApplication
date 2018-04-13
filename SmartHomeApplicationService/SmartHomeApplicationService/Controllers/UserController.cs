@@ -47,6 +47,14 @@ namespace SmartHomeApplicationService.Controllers
 				return user.Id;
 		}
 
+		[HttpPost, ActionName("GetGuid")]
+		public JsonResult GetLampGuid(UserInfo userInfo)
+		{
+			User user = db.Users.Where(u => u.UserProfileId == userInfo.UserProfileId).FirstOrDefault();
+
+			return this.Json(user.Lamp.lampguid, JsonRequestBehavior.AllowGet);
+		}
+
 
 		[HttpGet, ActionName("GetUserInfo")]
 		public async Task<JsonResult> GetUserInfo()

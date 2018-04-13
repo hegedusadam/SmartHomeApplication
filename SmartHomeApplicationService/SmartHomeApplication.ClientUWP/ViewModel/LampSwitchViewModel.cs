@@ -59,7 +59,10 @@ namespace SmartHomeApplication.ClientUWP.ViewModel
 		{
 			try
 			{
-				IsOn = await App.MobileService.InvokeApiAsync<bool>("/Lamp/GetLampState", HttpMethod.Get, null);
+				var token = new JObject();
+				token.Add("guid", App.UserInformation.lampGuid);
+				var result = await App.MobileService.InvokeApiAsync("/Lamp/GetLampState", token);
+				IsOn = result.ToObject<bool>();
 			}
 			catch (Exception exception)
 			{
@@ -72,13 +75,18 @@ namespace SmartHomeApplication.ClientUWP.ViewModel
 			var hubConnection = new HubConnection("http://smarthomeapplicationservice.azurewebsites.net/");
 			var lampHub = hubConnection.CreateHubProxy("LampHub");
 
-			lampHub.On<bool>("SwitchClient", SwitchUponChange);
+			lampHub.On<bool, string>("SwitchClient", SwitchUponChange);
 
 			await hubConnection.Start(new LongPollingTransport());
 		}
 
-		private async void SwitchUponChange(bool SwitchClient)
+		private async void SwitchUponChange(bool SwitchClient, string guid)
 		{
+			if (!guid.Equals(App.UserInformation.lampGuid))
+			{
+				return;
+			}
+
 			isLocalChange = false;
 			await Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal,  () =>
 			{
