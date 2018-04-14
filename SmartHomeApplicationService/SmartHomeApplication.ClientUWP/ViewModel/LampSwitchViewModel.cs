@@ -100,6 +100,7 @@ namespace SmartHomeApplication.ClientUWP.ViewModel
 			{
 				var token = new JObject();
 				token.Add("TurnOn", IsOn.ToString().ToLower());
+				token.Add("LampGuid", App.UserInformation.lampGuid);
 				var result = await App.MobileService.InvokeApiAsync("/Lamp/TurnLamp", token);
 			}
 			catch (Exception exception)

@@ -80,29 +80,36 @@ namespace SmartHomeApplication.LampUWP.ViewModel
 
 		private async void handleCallback(bool TurnOn, string guid)
 		{
-			if (!guid.Equals(this.LampGuid))
+			try
 			{
-				return;
+				if (!guid.Equals(this.LampGuid))
+				{
+					return;
+				}
+
+				if (LedPin == null)
+				{
+					return;
+				}
+
+				if (TurnOn)
+				{
+					LedPin.Write(GpioPinValue.Low);
+				}
+				else if (!TurnOn)
+				{
+					LedPin.Write(GpioPinValue.High);
+				}
+
+				await SendLampState(TurnOn);
 			}
-
-			//if (LedPin == null)
-			//{
-			//	return;
-			//}
-
-			//if (TurnOn)
-			//{
-			//	LedPin.Write(GpioPinValue.Low);
-			//}
-			//else if (!TurnOn)
-			//{
-			//	LedPin.Write(GpioPinValue.High);
-			//}
-
-			await SendLampState(LampId, TurnOn);
+			catch (Exception e)
+			{
+				Debug.Write(e.Message);
+			}
 		}
 
-		public async Task SendLampState(int LampId, bool LampIsOn)
+		public async Task SendLampState(bool LampIsOn)
 		{
 			LampStateDTO response = new LampStateDTO
 			{

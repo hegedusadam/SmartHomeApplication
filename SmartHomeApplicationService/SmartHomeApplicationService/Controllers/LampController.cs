@@ -37,8 +37,6 @@ namespace SmartHomeApplicationService.Controllers
 					ison = false
 				});
 
-				//db.SaveChanges();
-
 				User user = db.Users.Find(lamp.UserId);
 				user.Lamp = newLamp;
 
@@ -80,16 +78,23 @@ namespace SmartHomeApplicationService.Controllers
 		[HttpPost, ActionName("TurnLamp")]
 		public ActionResult TurnLampOnOrOff(bool TurnOn, string LampGuid)
 		{
-			LampHub.TurnOn = TurnOn;
-			lampContext.Clients.All.OnSwitch(TurnOn, LampGuid);
+			try
+			{
+				LampHub.TurnOn = TurnOn;
+				lampContext.Clients.All.OnSwitch(TurnOn, LampGuid);
 
-			return new HttpStatusCodeResult(HttpStatusCode.OK);
+				return new HttpStatusCodeResult(HttpStatusCode.OK);
+			}
+			catch (Exception e)
+			{
+				return null;
+			}
 		}
 
 		[HttpPut, ActionName("UpdateLamp")]
 		public ActionResult ChangeLampCondition([Bind(Include = "Guid, IsOn")] LampState LampState)
 		{
-			Lamp lamp = db.Lamps.Where(l => l.name == LampState.Guid).FirstOrDefault();
+			Lamp lamp = db.Lamps.Where(l => l.lampguid.Trim() == LampState.Guid).FirstOrDefault();
 			lamp.ison = LampState.IsOn;
 
 			db.SaveChanges();

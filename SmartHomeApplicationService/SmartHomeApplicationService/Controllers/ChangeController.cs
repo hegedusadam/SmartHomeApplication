@@ -24,13 +24,20 @@ namespace SmartHomeApplicationService.Controllers
 		[HttpPost, ActionName("AddChange")]
 		public void AddNewStateChange([Bind(Include = "Guid, IsOn, date")] LampState LampState)
 		{
-			db.Changes.Add(new Change
+			try
 			{
-				state = LampState.IsOn,
-				date = LampState.date,
-				lampid = db.Lamps.Find(LampState.Guid).Id
-			});
-			db.SaveChanges();
+				db.Changes.Add(new Change
+				{
+					state = LampState.IsOn,
+					date = LampState.date,
+					lampid = db.Lamps.Where(l => l.lampguid.Trim() == LampState.Guid).FirstOrDefault().Id
+				});
+				db.SaveChanges();
+			}
+			catch (Exception e)
+			{
+				
+			}
 		}
 
         protected override void Dispose(bool disposing)
