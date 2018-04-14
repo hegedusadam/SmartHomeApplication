@@ -16,7 +16,7 @@ namespace SmartHomeApplicationService.Controllers
 {
     public class UserController : Controller
     {
-        private SmartHomeApplicationDatabaseUserTable db = new SmartHomeApplicationDatabaseUserTable();
+        private SmartHomeApplicationDatabase db = new SmartHomeApplicationDatabase();
 
 		// GET: Users
 		public ActionResult Index()
@@ -50,9 +50,27 @@ namespace SmartHomeApplicationService.Controllers
 		[HttpPost, ActionName("GetGuid")]
 		public JsonResult GetLampGuid(UserInfo userInfo)
 		{
-			User user = db.Users.Where(u => u.UserProfileId == userInfo.UserProfileId).FirstOrDefault();
+			try
+			{
+				User user = db.Users.Where(u => u.UserProfileId == userInfo.UserProfileId).FirstOrDefault();
 
-			return this.Json(user.Lamp.lampguid, JsonRequestBehavior.AllowGet);
+				string guid;
+
+				if (user.Lamp == null)
+				{
+					guid = "NOGUID";
+				}
+				else
+				{
+					guid = user.Lamp.lampguid;
+				}
+
+				return this.Json(guid, JsonRequestBehavior.AllowGet);
+			}
+			catch (Exception e)
+			{
+				return null;
+			}
 		}
 
 

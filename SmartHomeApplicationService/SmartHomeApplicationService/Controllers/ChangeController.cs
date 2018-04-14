@@ -12,10 +12,10 @@ namespace SmartHomeApplicationService.Controllers
 {
     public class ChangeController : Controller
     {
-        private SmartHomeApplicationDatabaseChanges db = new SmartHomeApplicationDatabaseChanges();
+		private SmartHomeApplicationDatabase db = new SmartHomeApplicationDatabase();
 
-        // GET: Change
-        public ActionResult Index()
+		// GET: Change
+		public ActionResult Index()
         {
             return this.Json(db.Changes.ToList(), JsonRequestBehavior.AllowGet);
 		}

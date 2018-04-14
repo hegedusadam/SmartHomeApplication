@@ -29,8 +29,10 @@
     <Property Name="UserProfileId" Type="varchar" MaxLength="150" />
     <Property Name="lampid" Type="int" />
   </EntityType>
-  <Association Name="FK__StateChan__lampi__534D60F1">
-    <End Role="Lamps" Type="Self.Lamps" Multiplicity="1" />
+  <Association Name="FK__Changes__lampid__66603565">
+    <End Role="Lamps" Type="Self.Lamps" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="Changes" Type="Self.Changes" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Lamps">
@@ -41,20 +43,10 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Lamps_ToUser">
-    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
-    <End Role="Lamps" Type="Self.Lamps" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Users">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Lamps">
-        <PropertyRef Name="userid" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_User_ToLamps">
-    <End Role="Lamps" Type="Self.Lamps" Multiplicity="0..1" />
+    <End Role="Lamps" Type="Self.Lamps" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="Users" Type="Self.Users" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Lamps">
@@ -69,13 +61,9 @@
     <EntitySet Name="Changes" EntityType="Self.Changes" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Lamps" EntityType="Self.Lamps" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
-    <AssociationSet Name="FK__StateChan__lampi__534D60F1" Association="Self.FK__StateChan__lampi__534D60F1">
+    <AssociationSet Name="FK__Changes__lampid__66603565" Association="Self.FK__Changes__lampid__66603565">
       <End Role="Lamps" EntitySet="Lamps" />
       <End Role="Changes" EntitySet="Changes" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Lamps_ToUser" Association="Self.FK_Lamps_ToUser">
-      <End Role="Users" EntitySet="Users" />
-      <End Role="Lamps" EntitySet="Lamps" />
     </AssociationSet>
     <AssociationSet Name="FK_User_ToLamps" Association="Self.FK_User_ToLamps">
       <End Role="Lamps" EntitySet="Lamps" />

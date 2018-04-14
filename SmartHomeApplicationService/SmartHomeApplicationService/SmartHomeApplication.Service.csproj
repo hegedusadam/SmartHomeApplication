@@ -186,61 +186,31 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Hubs\LampHub.cs" />
-    <Compile Include="Models\Change.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Change.Context.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Change.cs">
-      <DependentUpon>User.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Change.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Change.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Change1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Change.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Lamp.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Lamp.Context.tt</DependentUpon>
+      <DependentUpon>SmartHomeApplicationDataBase.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Lamp.cs">
-      <DependentUpon>User.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Lamp.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Lamp.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Lamp1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Lamp.tt</DependentUpon>
+      <DependentUpon>SmartHomeApplicationDataBase.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\LampState.cs" />
     <Compile Include="Models\NewLamp.cs" />
-    <Compile Include="Models\User.Context.cs">
+    <Compile Include="Models\SmartHomeApplicationDataBase.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>User.Context.tt</DependentUpon>
+      <DependentUpon>SmartHomeApplicationDataBase.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SmartHomeApplicationDataBase.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SmartHomeApplicationDataBase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SmartHomeApplicationDataBase.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SmartHomeApplicationDataBase.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\User.cs">
-      <DependentUpon>User.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\User.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>User.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Models\User1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>User.tt</DependentUpon>
+      <DependentUpon>SmartHomeApplicationDataBase.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UserInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -253,64 +223,30 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Models\Change.Context.tt">
+    <Content Include="Models\SmartHomeApplicationDataBase.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Change.edmx</DependentUpon>
-      <LastGenOutput>Change.Context.cs</LastGenOutput>
+      <DependentUpon>SmartHomeApplicationDataBase.edmx</DependentUpon>
+      <LastGenOutput>SmartHomeApplicationDataBase.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\Change.tt">
+    <Content Include="Models\SmartHomeApplicationDataBase.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Change.edmx</DependentUpon>
-      <LastGenOutput>Change1.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\Lamp.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Lamp.edmx</DependentUpon>
-      <LastGenOutput>Lamp.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\Lamp.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Lamp.edmx</DependentUpon>
-      <LastGenOutput>Lamp1.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\User.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>User.edmx</DependentUpon>
-      <LastGenOutput>User.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\User.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>User.edmx</DependentUpon>
-      <LastGenOutput>User1.cs</LastGenOutput>
+      <DependentUpon>SmartHomeApplicationDataBase.edmx</DependentUpon>
+      <LastGenOutput>SmartHomeApplicationDataBase.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <EntityDeploy Include="Models\User.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>User.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\User.edmx.diagram">
-      <DependentUpon>User.edmx</DependentUpon>
-    </Content>
-    <EntityDeploy Include="Models\Lamp.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Lamp.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\Lamp.edmx.diagram">
-      <DependentUpon>Lamp.edmx</DependentUpon>
-    </Content>
     <Content Include="ClassDiagram1.cd" />
-    <EntityDeploy Include="Models\Change.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Change.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\Change.edmx.diagram">
-      <DependentUpon>Change.edmx</DependentUpon>
-    </Content>
     <Content Include="ClassDiagram2.cd" />
+    <EntityDeploy Include="Models\SmartHomeApplicationDataBase.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>SmartHomeApplicationDataBase.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\SmartHomeApplicationDataBase.edmx.diagram">
+      <DependentUpon>SmartHomeApplicationDataBase.edmx</DependentUpon>
+    </Content>
     <None Include="Properties\PublishProfiles\SmartHomeApplicationService - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />

@@ -14,7 +14,7 @@ namespace SmartHomeApplicationService.Controllers
 {
     public class LampController : Controller
     {
-        private SmartHomeApplicationDatabaseLamps db = new SmartHomeApplicationDatabaseLamps();
+		private SmartHomeApplicationDatabase db = new SmartHomeApplicationDatabase();
 		private IHubContext lampContext = GlobalHost.ConnectionManager.GetHubContext<LampHub>();
 
 		// GET: Lamps
@@ -32,7 +32,6 @@ namespace SmartHomeApplicationService.Controllers
 				Lamp newLamp = db.Lamps.Add(new Lamp
 				{
 					name = lamp.LampName,
-					userid = lamp.UserId,
 					lampguid = lamp.LampGuid,
 					ison = false
 				});
@@ -40,8 +39,12 @@ namespace SmartHomeApplicationService.Controllers
 				User user = db.Users.Find(lamp.UserId);
 				user.Lamp = newLamp;
 
+				Lamp tesztLamp = db.Lamps.Where(l => l.lampguid == "teszt").FirstOrDefault();
+
 				db.SaveChanges();
-			} catch(Exception e)
+
+			}
+			catch (Exception e)
 			{
 				return new HttpStatusCodeResult(HttpStatusCode.InternalServerError);
 			}
