@@ -189,6 +189,7 @@
     <Compile Include="Models\Change.cs">
       <DependentUpon>SmartHomeApplicationDataBase.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\GuidDTO.cs" />
     <Compile Include="Models\Lamp.cs">
       <DependentUpon>SmartHomeApplicationDataBase.tt</DependentUpon>
     </Compile>

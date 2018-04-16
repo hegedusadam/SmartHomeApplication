@@ -24,25 +24,49 @@ namespace SmartHomeApplicationService.Controllers
 		}
 
 		[System.Web.Mvc.Authorize]
-		[HttpPost, ActionName("AddLamp")]
-		public ActionResult AddLamp(NewLamp lamp)
+		[HttpPost, ActionName("AddUserToLamp")]
+		public ActionResult AddUserLamp(NewLamp newLamp)
+		{
+			try
+			{
+				//Lamp newLamp = db.Lamps.Add(new Lamp
+				//{
+				//	name = lamp.LampName,
+				//	lampguid = lamp.LampGuid,
+				//	ison = false
+				//});
+
+				Lamp lamp = db.Lamps.Where(l => l.lampguid.Trim() == newLamp.LampGuid).FirstOrDefault();
+
+				lamp.name = newLamp.LampName;
+
+				User user = db.Users.Find(newLamp.UserId);
+				lamp.Users.Add(user);
+
+				db.SaveChanges();
+
+			}
+			catch (Exception e)
+			{
+				return new HttpStatusCodeResult(HttpStatusCode.InternalServerError);
+			}
+
+			return new HttpStatusCodeResult(HttpStatusCode.OK);
+		}
+
+		[HttpPost, ActionName("RegisterDevice")]
+		public ActionResult RegisterDevice(GuidDTO guidDTO)
 		{
 			try
 			{
 				Lamp newLamp = db.Lamps.Add(new Lamp
 				{
-					name = lamp.LampName,
-					lampguid = lamp.LampGuid,
+					name = "DefaultLampName",
+					lampguid = guidDTO.Guid,
 					ison = false
 				});
 
-				User user = db.Users.Find(lamp.UserId);
-				user.Lamp = newLamp;
-
-				Lamp tesztLamp = db.Lamps.Where(l => l.lampguid == "teszt").FirstOrDefault();
-
 				db.SaveChanges();
-
 			}
 			catch (Exception e)
 			{
@@ -62,6 +86,7 @@ namespace SmartHomeApplicationService.Controllers
 			return new HttpStatusCodeResult(HttpStatusCode.OK);
 		}
 
+		[System.Web.Mvc.Authorize]
 		[HttpPost, ActionName("GetLampState")]
 		public ActionResult GetActualLampState(string guid)
 		{

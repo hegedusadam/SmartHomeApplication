@@ -31,6 +31,7 @@ namespace SmartHomeApplication.LampUWP
 			Loaded += async (sender, args) =>
 			{
 				await ViewModel.SetupHub();
+				await ViewModel.CreateOrReadGuid();
 			};
 			this.DataContext = ViewModel;
 		}

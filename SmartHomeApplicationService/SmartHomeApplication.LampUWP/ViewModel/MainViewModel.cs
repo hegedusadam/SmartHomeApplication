@@ -2,6 +2,7 @@
 using Microsoft.AspNet.SignalR.Client;
 using Microsoft.AspNet.SignalR.Client.Transports;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using SmartHomeApplication.LampUWP.Model;
 using System;
 using System.Collections.Generic;
@@ -47,16 +48,14 @@ namespace SmartHomeApplication.LampUWP.ViewModel
 				LedPin = GpioController.OpenPin(OpenedPin);
 				LedPin.SetDriveMode(GpioPinDriveMode.Output);
 			}
-
-			CreateOrReadGuid();
 		}
 
-		public void CreateOrReadGuid()
+		public async Task CreateOrReadGuid()
 		{
 
-			if (ApplicationData.Current.LocalSettings.Values.ContainsKey("guid"))
+			if (ApplicationData.Current.LocalSettings.Values.ContainsKey("lampguid4"))
 			{
-				LampGuid = (string)ApplicationData.Current.LocalSettings.Values["guid"];
+				LampGuid = (string)ApplicationData.Current.LocalSettings.Values["lampguid4"];
 			}
 			else
 			{
@@ -64,7 +63,31 @@ namespace SmartHomeApplication.LampUWP.ViewModel
 				string guidString = createGuid.ToString().Substring(0, 5);
 
 				this.LampGuid = guidString;
-				ApplicationData.Current.LocalSettings.Values["guid"] = guidString;
+				ApplicationData.Current.LocalSettings.Values["lampguid4"] = guidString;
+
+				await RegisterDevice(guidString);
+			}
+		}
+
+		public async Task RegisterDevice(string guidString)
+		{
+			try
+			{
+				GuidDTO response = new GuidDTO
+				{
+					Guid = guidString
+				};
+
+				using (HttpClient client = new HttpClient())
+				{
+					string RegisterLampAddress = "https://smarthomeapplicationservice.azurewebsites.net/Lamp/RegisterDevice";
+					var content = new StringContent(JsonConvert.SerializeObject(response), Encoding.UTF8, "application/json");
+					HttpResponseMessage LampMessage = await client.PostAsync(RegisterLampAddress, content);
+				}
+			}
+			catch (Exception e)
+			{
+				Debug.WriteLine(e.Message);
 			}
 		}
 

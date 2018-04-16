@@ -47,7 +47,9 @@ namespace SmartHomeApplication.ClientUWP.ViewModel
 				token.Add("LampName", LampName);
 				token.Add("LampGuid", LampGuid);
 				token.Add("UserID", App.UserInformation.userId);
-				var result = await App.MobileService.InvokeApiAsync("/Lamp/AddLamp", token);
+				var result = await App.MobileService.InvokeApiAsync("/Lamp/AddUserToLamp", token);
+
+				App.UserInformation.lampGuid = LampGuid;
 			} catch (Exception e)
 			{
 				Debug.WriteLine(e.Message);
