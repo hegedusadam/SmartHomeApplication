@@ -3,17 +3,43 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:SmartHomeApplication.ClientUWP.View"
+    xmlns:controls="using:SmartHomeApplication.ClientUWP.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <SplitView x:Name="SmartHomeSplitView" Background="Black" OpenPaneLength="240" CompactPaneLength="150"  
-        DisplayMode="CompactOverlay" IsPaneOpen="False" PaneBackground="#606060" Content="{Binding}">
+    <Grid x:Name="MainGrid" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="48"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="48"/>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <Grid Background="{StaticResource SplitViewColor}" x:Name="HamburgerGrid">
+            <Button x:Name="HamburgerButton" Height="48" Width="48" FontFamily="Segoe MDL2 Assets" Content="&#xE700;" Background="Transparent" Click="HamburgerButton_Click" VerticalAlignment="Center" 
+                    Foreground="White" FontSize="20" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+        </Grid>
+        
+        <Grid Grid.Column="1" Background="{StaticResource SplitViewColor}"  x:Name="TitleGrid">
+            <TextBlock x:Name="PageTitle" Margin="10,0,0,0" Foreground="White" 
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Left"/>
+        </Grid>
+        
+        <SplitView x:Name="SmartHomeSplitView" OpenPaneLength="200" CompactPaneLength="48"  
+        DisplayMode="Overlay" IsPaneOpen="False" Grid.Row="1" Grid.ColumnSpan="2" BorderThickness="0">
             <SplitView.Pane>
-                <StackPanel x:Name="SplitViewPanePanel">
-                    <RadioButton x:Name="AddLampRadioButton" Click="AddLampRadioButton_Click" Content="Add Lamp"/>
-                    <RadioButton x:Name="SwitchLampRadioButton" Click="SwitchLampRadioButton_Click" Content="Switch Lamp"/>
+                <StackPanel x:Name="SplitViewPanePanel" Background="Gray">
+                    <Button x:Name="AddLampButton"  Click="AddLampButton_Click" Style="{StaticResource SplitViewButtonStyle}">
+                        <controls:SplitViewButtonContent x:Name="AddLamp"/>
+                    </Button>
+                    
+                    <Button x:Name="SwitchLampButton" Click="SwitchLampButton_Click" Style="{StaticResource SplitViewButtonStyle}">
+                        <controls:SplitViewButtonContent x:Name="SwitchLamp"/>
+                    </Button>
                 </StackPanel>
             </SplitView.Pane>
         </SplitView>
