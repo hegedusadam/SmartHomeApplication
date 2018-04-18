@@ -22,8 +22,7 @@ namespace SmartHomeApplication.ClientUWP.Controls
     public sealed partial class SplitViewButtonContent : UserControl
     {
 		readonly SolidColorBrush defaultTextColor = new SolidColorBrush(Colors.White);
-
-		readonly SolidColorBrush selectedTextColor = new SolidColorBrush(Color.FromArgb(0xFF, 0x1b, 0xa0, 0xe1));
+		readonly SolidColorBrush selectedTextColor = new SolidColorBrush(Color.FromArgb(0xFF, 0, 109, 240));
 		public BitmapImage DefaultImageSource;
 		public string LabelText;
 		public BitmapImage SelectedImageSource;

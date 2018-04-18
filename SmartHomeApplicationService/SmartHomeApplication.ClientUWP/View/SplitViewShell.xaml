@@ -33,6 +33,15 @@
         DisplayMode="Overlay" IsPaneOpen="False" Grid.Row="1" Grid.ColumnSpan="2" BorderThickness="0">
             <SplitView.Pane>
                 <StackPanel x:Name="SplitViewPanePanel" Background="Gray">
+
+                    <Ellipse Width="50" Height="50">
+                        <Ellipse.Fill>
+                            <ImageBrush x:Name="ProfileImage"/>
+                        </Ellipse.Fill>
+                    </Ellipse>
+
+                    <TextBlock Name="ProfileName" HorizontalAlignment="Center" Style="{StaticResource SplitViewText}" Margin="0,0,0,5"/>
+
                     <Button x:Name="AddLampButton"  Click="AddLampButton_Click" Style="{StaticResource SplitViewButtonStyle}">
                         <controls:SplitViewButtonContent x:Name="AddLamp"/>
                     </Button>

@@ -34,15 +34,18 @@ namespace SmartHomeApplication.ClientUWP.View
 
 			AddLamp.LabelText = "Add Lamp";
 			AddLamp.DefaultImageSource =
-				new BitmapImage(new Uri("ms-appx:///Assets/SplitView/profile.png", UriKind.Absolute));
+				new BitmapImage(new Uri("ms-appx:///Assets/SplitView/add.png", UriKind.Absolute));
 			AddLamp.SelectedImageSource =
-				new BitmapImage(new Uri("ms-appx:///Assets/SplitView/selected_profile.png", UriKind.Absolute));
+				new BitmapImage(new Uri("ms-appx:///Assets/SplitView/selected_add.png", UriKind.Absolute));
 
 			SwitchLamp.LabelText = "Switch Lamp";
 			SwitchLamp.DefaultImageSource =
-				new BitmapImage(new Uri("ms-appx:///Assets/SplitView/logout.png", UriKind.Absolute));
+				new BitmapImage(new Uri("ms-appx:///Assets/SplitView/switch.png", UriKind.Absolute));
 			SwitchLamp.SelectedImageSource =
-				new BitmapImage(new Uri("ms-appx:///Assets/SplitView/selected_logout.png", UriKind.Absolute));
+				new BitmapImage(new Uri("ms-appx:///Assets/SplitView/selected_switch.png", UriKind.Absolute));
+
+			ProfileImage.ImageSource = new BitmapImage(new Uri(App.UserInformation.ImageUri, UriKind.Absolute));
+			ProfileName.Text = App.UserInformation.Name;
 		}
 
 		private void Frame_Navigated(object sender, NavigationEventArgs e)

@@ -68,12 +68,7 @@ namespace SmartHomeApplication.ClientUWP.ViewModel
 			var result = await App.MobileService.InvokeApiAsync("/User/GetUserInfo", HttpMethod.Get, null);
 
 			App.UserInformation = result.ToObject<UserInfo>();
-			//var httpclient = new HttpClient();
-			//var bytes = await httpclient.GetByteArrayAsync(userInfo.ImageUri);
-			//var pi = new BitmapImage();
-			//await
-			//	pi.SetSourceAsync(
-			//		new MemoryStream(bytes).AsRandomAccessStream());
+
 			await RegisterToDatabase();
 			await GetLampGuid();
 		}

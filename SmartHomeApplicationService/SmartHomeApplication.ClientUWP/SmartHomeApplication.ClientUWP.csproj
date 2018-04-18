@@ -128,10 +128,14 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\Login\facebook.png" />
+    <Content Include="Assets\SplitView\add.png" />
     <Content Include="Assets\SplitView\logout.png" />
     <Content Include="Assets\SplitView\profile.png" />
+    <Content Include="Assets\SplitView\selected_add.png" />
     <Content Include="Assets\SplitView\selected_logout.png" />
     <Content Include="Assets\SplitView\selected_profile.png" />
+    <Content Include="Assets\SplitView\selected_switch.png" />
+    <Content Include="Assets\SplitView\switch.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
