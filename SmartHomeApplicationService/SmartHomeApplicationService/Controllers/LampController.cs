@@ -29,13 +29,6 @@ namespace SmartHomeApplicationService.Controllers
 		{
 			try
 			{
-				//Lamp newLamp = db.Lamps.Add(new Lamp
-				//{
-				//	name = lamp.LampName,
-				//	lampguid = lamp.LampGuid,
-				//	ison = false
-				//});
-
 				Lamp lamp = db.Lamps.Where(l => l.lampguid.Trim() == newLamp.LampGuid).FirstOrDefault();
 
 				lamp.name = newLamp.LampName;
@@ -45,6 +38,28 @@ namespace SmartHomeApplicationService.Controllers
 
 				db.SaveChanges();
 
+			}
+			catch (Exception e)
+			{
+				return new HttpStatusCodeResult(HttpStatusCode.InternalServerError);
+			}
+
+			return new HttpStatusCodeResult(HttpStatusCode.OK);
+		}
+
+		[System.Web.Mvc.Authorize]
+		[HttpPost, ActionName("DeleteUserFromLamp")]
+		public ActionResult DeleteUserFromLamp(UserInfo userInfo)
+		{
+			try
+			{
+				Lamp lamp = db.Lamps.Where(l => l.lampguid.Trim() == userInfo.lampGuid).FirstOrDefault();
+
+
+				User user = db.Users.Find(userInfo.userId);
+				lamp.Users.Remove(user);
+
+				db.SaveChanges();
 			}
 			catch (Exception e)
 			{

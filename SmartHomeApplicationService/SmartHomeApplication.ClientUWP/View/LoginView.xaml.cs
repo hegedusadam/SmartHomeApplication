@@ -31,7 +31,7 @@ namespace SmartHomeApplication.ClientUWP.View
 			ViewModel = new LoginViewModel();
             this.InitializeComponent();
 			this.DataContext = ViewModel;
-        }
+		}
 
 		protected override void OnNavigatedTo(NavigationEventArgs e)
 		{

@@ -51,7 +51,7 @@ namespace SmartHomeApplication.ClientUWP.ViewModel
 
 				IsLoggedIn = true;
 			}
-			catch (InvalidOperationException)
+			catch (Exception e)
 			{
 				message = "You must log in. Login Required";
 			}
@@ -60,6 +60,7 @@ namespace SmartHomeApplication.ClientUWP.ViewModel
 			dialog.Commands.Add(new UICommand("OK"));
 			await dialog.ShowAsync();
 
+			App.IsLoggedIn = IsLoggedIn;
 			return IsLoggedIn;
 		}
 

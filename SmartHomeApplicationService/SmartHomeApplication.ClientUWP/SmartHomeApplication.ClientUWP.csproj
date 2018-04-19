@@ -98,6 +98,7 @@
     <Compile Include="Controls\SplitViewButtonContent.xaml.cs">
       <DependentUpon>SplitViewButtonContent.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converters\NoGuidToCollapsedVisibilityConverter.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>

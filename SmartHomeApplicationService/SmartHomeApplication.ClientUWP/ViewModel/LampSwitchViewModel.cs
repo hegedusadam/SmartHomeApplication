@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
 using Microsoft.AspNet.SignalR.Client;
 using Microsoft.AspNet.SignalR.Client.Transports;
 using Newtonsoft.Json;
@@ -13,6 +14,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 
@@ -23,16 +25,32 @@ namespace SmartHomeApplication.ClientUWP.ViewModel
 		private bool isOn;
 		private bool isInit = true;
 		private bool isLocalChange = true;
+		private string lampGuid = "NOGUID";
+		private ICommand deleteLampCommand;
+
+		public ICommand DeleteLampCommand =>
+			deleteLampCommand ??
+			(deleteLampCommand = new RelayCommand(async () => await DeleteLamp()));
+
+		public string LampGuid
+		{
+			get { return lampGuid; }
+			set
+			{
+				Set(ref lampGuid, value);
+				App.UserInformation.lampGuid = value;
+			}
+		}
 
 		public LampSwitchViewModel()
 		{
-			Task.Run(async () =>
-			{
-				await Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
+				Task.Run(async () =>
 				{
-					await Initialize();
+					await Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
+					{
+						await Initialize();
+					});
 				});
-			});
 		}
 
 		public bool IsOn
@@ -102,6 +120,23 @@ namespace SmartHomeApplication.ClientUWP.ViewModel
 				token.Add("TurnOn", IsOn.ToString().ToLower());
 				token.Add("LampGuid", App.UserInformation.lampGuid);
 				var result = await App.MobileService.InvokeApiAsync("/Lamp/TurnLamp", token);
+			}
+			catch (Exception exception)
+			{
+				Debug.WriteLine(exception.Message);
+			}
+		}
+
+		public async Task DeleteLamp()
+		{
+			try
+			{
+				var token = new JObject();
+				token.Add("userId", App.UserInformation.userId);
+				token.Add("lampGuid", App.UserInformation.lampGuid);
+				var result = await App.MobileService.InvokeApiAsync("/Lamp/DeleteUserFromLamp", token);
+
+				LampGuid = "NOGUID";
 			}
 			catch (Exception exception)
 			{

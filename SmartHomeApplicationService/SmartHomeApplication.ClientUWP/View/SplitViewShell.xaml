@@ -32,24 +32,34 @@
         <SplitView x:Name="SmartHomeSplitView" OpenPaneLength="200" CompactPaneLength="48"  
         DisplayMode="Overlay" IsPaneOpen="False" Grid.Row="1" Grid.ColumnSpan="2" BorderThickness="0">
             <SplitView.Pane>
-                <StackPanel x:Name="SplitViewPanePanel" Background="Gray">
+                <Grid x:Name="SplitGrid" Background="{StaticResource SplitViewColor}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
 
-                    <Ellipse Width="50" Height="50">
-                        <Ellipse.Fill>
-                            <ImageBrush x:Name="ProfileImage"/>
-                        </Ellipse.Fill>
-                    </Ellipse>
+                    <StackPanel Grid.Row="0">
+                        <Ellipse Width="50" Height="50">
+                            <Ellipse.Fill>
+                                <ImageBrush x:Name="ProfileImage"/>
+                            </Ellipse.Fill>
+                        </Ellipse>
 
-                    <TextBlock Name="ProfileName" HorizontalAlignment="Center" Style="{StaticResource SplitViewText}" Margin="0,0,0,5"/>
+                        <TextBlock Name="ProfileName" HorizontalAlignment="Center" Style="{StaticResource SplitViewText}" Margin="0,0,0,5"/>
 
-                    <Button x:Name="AddLampButton"  Click="AddLampButton_Click" Style="{StaticResource SplitViewButtonStyle}">
-                        <controls:SplitViewButtonContent x:Name="AddLamp"/>
-                    </Button>
-                    
-                    <Button x:Name="SwitchLampButton" Click="SwitchLampButton_Click" Style="{StaticResource SplitViewButtonStyle}">
-                        <controls:SplitViewButtonContent x:Name="SwitchLamp"/>
-                    </Button>
-                </StackPanel>
+                        <Button x:Name="AddLampButton"  Click="AddLampButton_Click" Style="{StaticResource SplitViewButtonStyle}">
+                            <controls:SplitViewButtonContent x:Name="AddLamp"/>
+                        </Button>
+
+                        <Button x:Name="SwitchLampButton" Click="SwitchLampButton_Click" Style="{StaticResource SplitViewButtonStyle}">
+                            <controls:SplitViewButtonContent x:Name="SwitchLamp"/>
+                        </Button>
+                    </StackPanel>
+
+                    <Button Grid.Row="1" x:Name="LogoutButton" Click="LogoutButton_Click" Style="{StaticResource SplitViewButtonStyle}" VerticalAlignment="Bottom">
+                        <controls:SplitViewButtonContent x:Name="Logout"/>
+                    </Button>                   
+                </Grid>
             </SplitView.Pane>
         </SplitView>
     </Grid>

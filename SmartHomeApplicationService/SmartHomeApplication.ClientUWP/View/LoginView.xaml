@@ -23,6 +23,5 @@
                 </StackPanel>
             </Button>
         </StackPanel>
-        <Image Width="100" Height="100" Name="userImage" Source="{Binding Bi}" Grid.Row="3"></Image>
     </Grid>
 </Page>

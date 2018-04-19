@@ -1,4 +1,5 @@
-﻿using SmartHomeApplication.ClientUWP.Controls;
+﻿using Microsoft.WindowsAzure.MobileServices;
+using SmartHomeApplication.ClientUWP.Controls;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -46,6 +47,12 @@ namespace SmartHomeApplication.ClientUWP.View
 
 			ProfileImage.ImageSource = new BitmapImage(new Uri(App.UserInformation.ImageUri, UriKind.Absolute));
 			ProfileName.Text = App.UserInformation.Name;
+
+			Logout.LabelText = "Log Out";
+			Logout.DefaultImageSource = 
+				new BitmapImage(new Uri("ms-appx:///Assets/SplitView/logout.png", UriKind.Absolute));
+			Logout.SelectedImageSource =
+				new BitmapImage(new Uri("ms-appx:///Assets/SplitView/selected_logout.png", UriKind.Absolute));
 		}
 
 		private void Frame_Navigated(object sender, NavigationEventArgs e)
@@ -67,6 +74,16 @@ namespace SmartHomeApplication.ClientUWP.View
 			SmartHomeSplitView.IsPaneOpen = false;
 			PageTitle.Text = "SWITCH LAMP";
 			((Frame)SmartHomeSplitView.Content).Navigate(typeof(LampSwitchView));
+		}
+
+		private async void LogoutButton_Click(object sender, RoutedEventArgs e)
+		{
+			App.UserInformation = null;
+			App.User = null;
+			App.IsLoggedIn = false;
+			await App.MobileService.LogoutAsync();
+
+			((Frame)SmartHomeSplitView.Content).Navigate(typeof(LoginView));
 		}
 
 		private void HamburgerButton_Click(object sender, RoutedEventArgs e)
