@@ -16,6 +16,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Windows.UI.Core;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 
 namespace SmartHomeApplication.ClientUWP.ViewModel
@@ -138,12 +139,27 @@ namespace SmartHomeApplication.ClientUWP.ViewModel
 		{
 			try
 			{
-				var token = new JObject();
-				token.Add("userId", App.UserInformation.userId);
-				token.Add("lampGuid", LampGuid);
-				var result = await App.MobileService.InvokeApiAsync("/Lamp/DeleteUserFromLamp", token);
+				var confirmationDialog = new MessageDialog("Are you sure you want to delete this lamp?");
+				confirmationDialog.Commands.Add(new UICommand("Yes") { Id = 0 });
+				confirmationDialog.Commands.Add(new UICommand("Cancel") { Id = 1 });
+				var choice = await confirmationDialog.ShowAsync();
 
-				LampGuid = "NOGUID";
+				if ((int)choice.Id == 0)
+				{
+					var token = new JObject();
+					token.Add("userId", App.UserInformation.userId);
+					token.Add("lampGuid", LampGuid);
+					var result = await App.MobileService.InvokeApiAsync("/Lamp/DeleteUserFromLamp", token);
+
+					LampGuid = "NOGUID";
+
+					var deletedDialog = new MessageDialog("Lamp successfully deleted!");
+					deletedDialog.Commands.Add(new UICommand("Ok"));
+					await deletedDialog.ShowAsync();
+				} else
+				{
+					return;
+				}
 			}
 			catch (Exception exception)
 			{
