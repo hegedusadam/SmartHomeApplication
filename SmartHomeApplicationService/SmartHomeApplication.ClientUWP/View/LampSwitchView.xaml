@@ -10,8 +10,9 @@
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="1" Margin="50,0,50,0">
-            <ToggleSwitch IsOn="{Binding IsOn, Mode=TwoWay}"></ToggleSwitch>
-            <Button Command="{Binding DeleteLampCommand}">Delete Lamp</Button>
+            <TextBlock x:Name="NoLampTextBlock" Visibility="{Binding LampGuid, Converter={StaticResource NoGuidToVisibleVisibilityConverter}}"></TextBlock>
+            <ToggleSwitch IsOn="{Binding IsOn, Mode=TwoWay}" Visibility="{Binding LampGuid, Converter={StaticResource NoGuidToCollapsedVisibilityConverter}}"></ToggleSwitch>
+            <Button x:Name="DeleteLamp" Command="{Binding DeleteLampCommand}" Visibility="{Binding LampGuid, Converter={StaticResource NoGuidToCollapsedVisibilityConverter}}"></Button>
          </StackPanel>
     </Grid>
 </Page>

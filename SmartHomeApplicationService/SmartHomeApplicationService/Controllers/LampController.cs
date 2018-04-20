@@ -31,8 +31,6 @@ namespace SmartHomeApplicationService.Controllers
 			{
 				Lamp lamp = db.Lamps.Where(l => l.lampguid.Trim() == newLamp.LampGuid).FirstOrDefault();
 
-				lamp.name = newLamp.LampName;
-
 				User user = db.Users.Find(newLamp.UserId);
 				lamp.Users.Add(user);
 

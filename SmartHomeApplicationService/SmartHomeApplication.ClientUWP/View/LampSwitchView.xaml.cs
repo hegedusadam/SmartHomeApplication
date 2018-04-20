@@ -28,6 +28,10 @@ namespace SmartHomeApplication.ClientUWP.View
 		{
 			ViewModel = new LampSwitchViewModel();
 			this.InitializeComponent();
+
+			DeleteLamp.Content = "Delete Lamp";
+			NoLampTextBlock.Text = "You do not have a Lamp added. Go to the Add Lamp page and create a lamp!";
+
 			this.DataContext = ViewModel;
 			Loaded += async (sender, args) =>
 			{

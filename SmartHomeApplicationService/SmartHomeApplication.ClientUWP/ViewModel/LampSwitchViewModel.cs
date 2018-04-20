@@ -25,7 +25,7 @@ namespace SmartHomeApplication.ClientUWP.ViewModel
 		private bool isOn;
 		private bool isInit = true;
 		private bool isLocalChange = true;
-		private string lampGuid = "NOGUID";
+		private string lampGuid;
 		private ICommand deleteLampCommand;
 
 		public ICommand DeleteLampCommand =>
@@ -44,6 +44,8 @@ namespace SmartHomeApplication.ClientUWP.ViewModel
 
 		public LampSwitchViewModel()
 		{
+				LampGuid = App.UserInformation.lampGuid;
+
 				Task.Run(async () =>
 				{
 					await Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
@@ -77,8 +79,13 @@ namespace SmartHomeApplication.ClientUWP.ViewModel
 		{
 			try
 			{
+				if (LampGuid.Equals("NOGUID"))
+				{
+					return;
+				}
+
 				var token = new JObject();
-				token.Add("guid", App.UserInformation.lampGuid);
+				token.Add("guid", LampGuid);
 				var result = await App.MobileService.InvokeApiAsync("/Lamp/GetLampState", token);
 				IsOn = result.ToObject<bool>();
 			}
@@ -118,7 +125,7 @@ namespace SmartHomeApplication.ClientUWP.ViewModel
 			{
 				var token = new JObject();
 				token.Add("TurnOn", IsOn.ToString().ToLower());
-				token.Add("LampGuid", App.UserInformation.lampGuid);
+				token.Add("LampGuid", LampGuid);
 				var result = await App.MobileService.InvokeApiAsync("/Lamp/TurnLamp", token);
 			}
 			catch (Exception exception)
@@ -133,7 +140,7 @@ namespace SmartHomeApplication.ClientUWP.ViewModel
 			{
 				var token = new JObject();
 				token.Add("userId", App.UserInformation.userId);
-				token.Add("lampGuid", App.UserInformation.lampGuid);
+				token.Add("lampGuid", LampGuid);
 				var result = await App.MobileService.InvokeApiAsync("/Lamp/DeleteUserFromLamp", token);
 
 				LampGuid = "NOGUID";

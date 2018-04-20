@@ -2,6 +2,7 @@
     x:Class="SmartHomeApplication.ClientUWP.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:converters="using:SmartHomeApplication.ClientUWP.Converters"
     xmlns:local="using:SmartHomeApplication.ClientUWP"
     RequestedTheme="Light">
 
@@ -13,6 +14,9 @@
                 <ResourceDictionary Source="/Resources/Resources.xaml"/>
                 <ResourceDictionary Source="/Resources/Colors.xaml"/>
             </ResourceDictionary.MergedDictionaries>
+
+            <converters:NoGuidToCollapsedVisibilityConverter x:Key="NoGuidToCollapsedVisibilityConverter"/>
+            <converters:NoGuidToVisibleVisibilityConverter x:Key="NoGuidToVisibleVisibilityConverter"/>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

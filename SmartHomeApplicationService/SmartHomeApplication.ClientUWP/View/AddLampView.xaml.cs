@@ -28,6 +28,10 @@ namespace SmartHomeApplication.ClientUWP.View
 		{
 			ViewModel = new AddLampViewModel();
 			this.InitializeComponent();
+
+			AlreadyHasLampTextBlock.Text = "You have already added a lamp. Visit the Switch Lamp Page to control it.";
+			GuidTextBlock.Text = "GUID of Your Lamp:";
+			AddLampButton.Content = "Add Lamp";
 			this.DataContext = ViewModel;
 		}
 	}
