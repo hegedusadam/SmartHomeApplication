@@ -8,7 +8,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid x:Name="MainGrid" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid x:Name="MainGrid" Background="{StaticResource ViewColor}">
         <Grid.RowDefinitions>
             <RowDefinition Height="48"/>
             <RowDefinition />
@@ -53,6 +53,10 @@
 
                         <Button x:Name="SwitchLampButton" Click="SwitchLampButton_Click" Style="{StaticResource SplitViewButtonStyle}">
                             <controls:SplitViewButtonContent x:Name="SwitchLamp"/>
+                        </Button>
+
+                        <Button x:Name="StatisticButton" Click="StatisticButton_Click" Style="{StaticResource SplitViewButtonStyle}">
+                            <controls:SplitViewButtonContent x:Name="Statistic"/>
                         </Button>
                     </StackPanel>
 

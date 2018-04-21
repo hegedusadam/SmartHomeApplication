@@ -9,7 +9,8 @@
 
 namespace SmartHomeApplicationService.Models
 {
-    using System;
+	using Newtonsoft.Json;
+	using System;
     using System.Collections.Generic;
     
     public partial class Change
@@ -19,6 +20,7 @@ namespace SmartHomeApplicationService.Models
         public bool state { get; set; }
         public int lampid { get; set; }
     
+		[JsonIgnore]
         public virtual Lamp Lamp { get; set; }
     }
 }

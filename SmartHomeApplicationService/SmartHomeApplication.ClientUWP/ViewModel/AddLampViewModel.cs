@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Windows.UI.Popups;
 
 namespace SmartHomeApplication.ClientUWP.ViewModel
 {
@@ -55,6 +56,10 @@ namespace SmartHomeApplication.ClientUWP.ViewModel
 
 				App.UserInformation.lampGuid = NewLampGuid;
 				LampGuid = NewLampGuid;
+
+				var deletedDialog = new MessageDialog("Lamp successfully added!");
+				deletedDialog.Commands.Add(new UICommand("Ok"));
+				await deletedDialog.ShowAsync();
 			} catch (Exception e)
 			{
 				Debug.WriteLine(e.Message);

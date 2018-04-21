@@ -45,6 +45,12 @@ namespace SmartHomeApplication.ClientUWP.View
 			SwitchLamp.SelectedImageSource =
 				new BitmapImage(new Uri("ms-appx:///Assets/SplitView/selected_switch.png", UriKind.Absolute));
 
+			Statistic.LabelText = "Statistic";
+			Statistic.DefaultImageSource =
+				new BitmapImage(new Uri("ms-appx:///Assets/SplitView/statistic.png", UriKind.Absolute));
+			Statistic.SelectedImageSource =
+				new BitmapImage(new Uri("ms-appx:///Assets/SplitView/selected_statistic.png", UriKind.Absolute));
+
 			ProfileImage.ImageSource = new BitmapImage(new Uri(App.UserInformation.ImageUri, UriKind.Absolute));
 			ProfileName.Text = App.UserInformation.Name;
 
@@ -74,6 +80,14 @@ namespace SmartHomeApplication.ClientUWP.View
 			SmartHomeSplitView.IsPaneOpen = false;
 			PageTitle.Text = "SWITCH LAMP";
 			((Frame)SmartHomeSplitView.Content).Navigate(typeof(LampSwitchView));
+		}
+
+		private void StatisticButton_Click(object sender, RoutedEventArgs e)
+		{
+			SelectControl(Statistic);
+			SmartHomeSplitView.IsPaneOpen = false;
+			PageTitle.Text = "STATISTIC";
+			((Frame)SmartHomeSplitView.Content).Navigate(typeof(StatisticView));
 		}
 
 		private async void LogoutButton_Click(object sender, RoutedEventArgs e)
@@ -119,6 +133,9 @@ namespace SmartHomeApplication.ClientUWP.View
 			{
 				case "SWITCH LAMP":
 					SelectControl(SwitchLamp);
+					break;
+				case "STATISTIC":
+					SelectControl(Statistic);
 					break;
 				default:
 					SelectControl(AddLamp);

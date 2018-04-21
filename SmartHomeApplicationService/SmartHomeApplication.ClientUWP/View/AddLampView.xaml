@@ -7,7 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid Background="{StaticResource ViewColor}">
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="1" Margin="50,0,50,0">
             <TextBlock x:Name="AlreadyHasLampTextBlock" Visibility="{Binding LampGuid, Converter={StaticResource NoGuidToCollapsedVisibilityConverter}}"></TextBlock>
             <TextBlock x:Name="GuidTextBlock" Margin="0,15,0,0" Visibility="{Binding LampGuid, Converter={StaticResource NoGuidToVisibleVisibilityConverter}}"></TextBlock>

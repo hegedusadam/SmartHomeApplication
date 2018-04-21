@@ -98,17 +98,20 @@
     <Compile Include="Controls\SplitViewButtonContent.xaml.cs">
       <DependentUpon>SplitViewButtonContent.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converters\BooleanToOnOrOffStringConverter.cs" />
     <Compile Include="Converters\NoGuidToCollapsedVisibilityConverter.cs" />
     <Compile Include="Converters\NoGuidToVisibleVisibilityConverter.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Model\Change.cs" />
     <Compile Include="Model\SwitchLampDTO.cs" />
     <Compile Include="Model\UserInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\AddLampViewModel.cs" />
     <Compile Include="ViewModel\LampSwitchViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
+    <Compile Include="ViewModel\StatisticViewModel.cs" />
     <Compile Include="View\AddLampView.xaml.cs">
       <DependentUpon>AddLampView.xaml</DependentUpon>
     </Compile>
@@ -120,6 +123,9 @@
     </Compile>
     <Compile Include="View\SplitViewShell.xaml.cs">
       <DependentUpon>SplitViewShell.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\StatisticView.xaml.cs">
+      <DependentUpon>StatisticView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -136,7 +142,9 @@
     <Content Include="Assets\SplitView\selected_add.png" />
     <Content Include="Assets\SplitView\selected_logout.png" />
     <Content Include="Assets\SplitView\selected_profile.png" />
+    <Content Include="Assets\SplitView\selected_statistic.png" />
     <Content Include="Assets\SplitView\selected_switch.png" />
+    <Content Include="Assets\SplitView\statistic.png" />
     <Content Include="Assets\SplitView\switch.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
@@ -185,6 +193,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\SplitViewShell.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\StatisticView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

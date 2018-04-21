@@ -110,19 +110,19 @@ namespace SmartHomeApplication.LampUWP.ViewModel
 					return;
 				}
 
-				if (LedPin == null)
-				{
-					return;
-				}
+				//if (LedPin == null)
+				//{
+				//	return;
+				//}
 
-				if (TurnOn)
-				{
-					LedPin.Write(GpioPinValue.Low);
-				}
-				else if (!TurnOn)
-				{
-					LedPin.Write(GpioPinValue.High);
-				}
+				//if (TurnOn)
+				//{
+				//	LedPin.Write(GpioPinValue.Low);
+				//}
+				//else if (!TurnOn)
+				//{
+				//	LedPin.Write(GpioPinValue.High);
+				//}
 
 				await SendLampState(TurnOn);
 			}

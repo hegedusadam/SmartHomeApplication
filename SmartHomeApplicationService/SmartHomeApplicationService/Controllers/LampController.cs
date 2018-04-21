@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.SignalR;
+using Newtonsoft.Json;
 using SmartHomeApplicationService.Hubs;
 using SmartHomeApplicationService.Models;
 
@@ -125,6 +126,23 @@ namespace SmartHomeApplicationService.Controllers
 				lampContext.Clients.All.OnSwitch(TurnOn, LampGuid);
 
 				return new HttpStatusCodeResult(HttpStatusCode.OK);
+			}
+			catch (Exception e)
+			{
+				return null;
+			}
+		}
+
+		[System.Web.Mvc.Authorize]
+		[HttpPost, ActionName("GetChanges")]
+		public string GetChangesByGuid(string guid)
+		{
+			try
+			{
+				Lamp lamp = db.Lamps.Where(l => l.lampguid.Trim() == guid).FirstOrDefault();
+
+				//return this.Json(lamp.Changes, JsonRequestBehavior.AllowGet);
+				return JsonConvert.SerializeObject(lamp.Changes);
 			}
 			catch (Exception e)
 			{

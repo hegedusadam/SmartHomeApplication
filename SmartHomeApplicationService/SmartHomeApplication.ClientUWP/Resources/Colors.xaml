@@ -20,6 +20,7 @@
     <SolidColorBrush x:Key="PastTripsBorderColor" Color="#162129" />
     <!--<SolidColorBrush x:Key="SplitViewColor" Color="#0087d2" />-->
     <SolidColorBrush x:Key="SplitViewColor" Color="Gray" />
+    <SolidColorBrush x:Key="ViewColor" Color="#A9A9A9" />
     <SolidColorBrush x:Key="SummaryTextColor" Color="#8ab0cc" />
     <SolidColorBrush x:Key="TripCompletionCircleColor" Color="#FF11597C"/>
 </ResourceDictionary>

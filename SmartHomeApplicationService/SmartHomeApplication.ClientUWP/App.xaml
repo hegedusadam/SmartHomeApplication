@@ -17,6 +17,7 @@
 
             <converters:NoGuidToCollapsedVisibilityConverter x:Key="NoGuidToCollapsedVisibilityConverter"/>
             <converters:NoGuidToVisibleVisibilityConverter x:Key="NoGuidToVisibleVisibilityConverter"/>
+            <converters:BooleanToOnOrOffStringConverter x:Key="BooleanToOnOrOffStringConverter"/>
         </ResourceDictionary>
     </Application.Resources>
 </Application>
