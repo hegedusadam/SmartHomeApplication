@@ -97,7 +97,11 @@ namespace SmartHomeApplication.ClientUWP.View
 			App.IsLoggedIn = false;
 			await App.MobileService.LogoutAsync();
 
-			((Frame)SmartHomeSplitView.Content).Navigate(typeof(LoginView));
+			Frame frame = new Frame();
+			frame.Navigate(typeof(LoginView));
+			Window.Current.Content = frame;
+			Window.Current.Activate();
+			//((Frame)SmartHomeSplitView.Content).Navigate(typeof(LoginView));
 		}
 
 		private void HamburgerButton_Click(object sender, RoutedEventArgs e)

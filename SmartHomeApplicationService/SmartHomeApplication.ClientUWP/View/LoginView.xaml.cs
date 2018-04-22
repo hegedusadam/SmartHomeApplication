@@ -51,6 +51,7 @@ namespace SmartHomeApplication.ClientUWP.View
 				case nameof(ViewModel.IsLoggedIn):
 					SplitViewShell shell = new SplitViewShell(this.Frame);
 					Window.Current.Content = shell;
+					shell.SetTitle("ADD LAMP");
 					Frame.Navigate(typeof(AddLampView));
 					break;
 			}
