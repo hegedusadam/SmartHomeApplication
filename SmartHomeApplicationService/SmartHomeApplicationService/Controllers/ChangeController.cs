@@ -6,6 +6,8 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.SignalR;
+using SmartHomeApplicationService.Hubs;
 using SmartHomeApplicationService.Models;
 
 namespace SmartHomeApplicationService.Controllers
@@ -13,6 +15,7 @@ namespace SmartHomeApplicationService.Controllers
     public class ChangeController : Controller
     {
 		private SmartHomeApplicationDatabase db = new SmartHomeApplicationDatabase();
+		private IHubContext lampContext = GlobalHost.ConnectionManager.GetHubContext<LampHub>();
 
 		// GET: Change
 		public ActionResult Index()
@@ -33,6 +36,8 @@ namespace SmartHomeApplicationService.Controllers
 					lampid = db.Lamps.Where(l => l.lampguid.Trim() == LampState.Guid).FirstOrDefault().Id
 				});
 				db.SaveChanges();
+
+				lampContext.Clients.All.ChangeAdded(LampState.Guid);
 			}
 			catch (Exception e)
 			{

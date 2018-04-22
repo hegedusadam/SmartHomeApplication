@@ -101,6 +101,7 @@
     <Compile Include="Converters\BooleanToOnOrOffStringConverter.cs" />
     <Compile Include="Converters\NoGuidToCollapsedVisibilityConverter.cs" />
     <Compile Include="Converters\NoGuidToVisibleVisibilityConverter.cs" />
+    <Compile Include="Converters\TimeSpanToStringConverter.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>

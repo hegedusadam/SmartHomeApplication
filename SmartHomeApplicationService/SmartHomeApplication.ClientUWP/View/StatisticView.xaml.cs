@@ -29,6 +29,13 @@ namespace SmartHomeApplication.ClientUWP.View
 			this.InitializeComponent();
 			ViewModel = new StatisticViewModel();
 			this.DataContext = ViewModel;
+
+			TotaltTimeText.Text = "Total Time Switched On:";
+
+			Loaded += async (sender, args) =>
+			{
+				await ViewModel.SetupHub();
+			};
 		}
 	}
 }

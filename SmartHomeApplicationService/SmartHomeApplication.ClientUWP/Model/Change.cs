@@ -12,5 +12,6 @@ namespace SmartHomeApplication.ClientUWP.Model
 		public System.DateTime date { get; set; }
 		public bool state { get; set; }
 		public int lampid { get; set; }
+		public TimeSpan timeOn { get; set; }
 	}
 }

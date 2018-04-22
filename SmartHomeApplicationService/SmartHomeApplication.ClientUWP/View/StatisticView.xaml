@@ -8,34 +8,46 @@
     mc:Ignorable="d">
 
     <Grid Background="{StaticResource ViewColor}">
-        <GridView ItemsSource="{Binding ObservableCollection}"
-                  IsItemClickEnabled="True"
-                  IsSwipeEnabled="true"
-                  SelectionMode="Single"
-                  HorizontalAlignment="Center"
-                  VerticalAlignment="Center"
-                  Visibility="{Binding LampGuid, Converter={StaticResource NoGuidToCollapsedVisibilityConverter}}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
 
-            <GridView.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <WrapGrid Orientation="Vertical"/>
-                </ItemsPanelTemplate>
-            </GridView.ItemsPanel>
+        <StackPanel Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <TextBlock x:Name="TotaltTimeText"></TextBlock>
+            <TextBlock Text="{Binding TotalTimeOn, Converter={StaticResource TimeSpanToStringConverter}}"></TextBlock>
+        </StackPanel>
+        
+        <ScrollViewer Grid.Row="1">
+            <GridView ItemsSource="{Binding ChangesCollection}"
+                      IsItemClickEnabled="True"
+                      IsSwipeEnabled="true"
+                      SelectionMode="Single"
+                      HorizontalAlignment="Center"
+                      Visibility="{Binding LampGuid, Converter={StaticResource NoGuidToCollapsedVisibilityConverter}}">
 
-            <GridView.ItemTemplate>
-                <DataTemplate>
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="200"/>
-                            <ColumnDefinition Width="200"/>
-                        </Grid.ColumnDefinitions>
+                <GridView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapGrid Orientation="Vertical"/>
+                    </ItemsPanelTemplate>
+                </GridView.ItemsPanel>
 
-                        <TextBlock Grid.Column="0" Text="{Binding date}"/>
-                        <TextBlock Grid.Column="1" Text="{Binding state, Converter={StaticResource BooleanToOnOrOffStringConverter}}"/>
-                    </Grid>
-                </DataTemplate>
-            </GridView.ItemTemplate>
-        </GridView>
+                <GridView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="200"/>
+                                <ColumnDefinition Width="100"/>
+                                <ColumnDefinition Width="200"/>
+                            </Grid.ColumnDefinitions>
 
+                            <TextBlock Grid.Column="0" Text="{Binding date}"/>
+                            <TextBlock Grid.Column="1" Text="{Binding state, Converter={StaticResource BooleanToOnOrOffStringConverter}}"/>
+                            <TextBlock Grid.Column="2" Text="{Binding timeOn, Converter={StaticResource TimeSpanToStringConverter}}"/>
+                        </Grid>
+                    </DataTemplate>
+                </GridView.ItemTemplate>
+            </GridView>
+        </ScrollViewer>
     </Grid>
 </Page>
