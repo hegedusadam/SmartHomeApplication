@@ -32,6 +32,7 @@ namespace SmartHomeApplication.ClientUWP.View
 			this.DataContext = ViewModel;
 
 			TotaltTimeText.Text = "Total Time Switched On:";
+			NoLampTextBlock.Text = "No lamp added! Please visit the Add Lamp view to add a new lamp!";
 
 			DeleteChanges.LabelText = "Clear History";
 			DeleteChanges.DefaultImageSource =

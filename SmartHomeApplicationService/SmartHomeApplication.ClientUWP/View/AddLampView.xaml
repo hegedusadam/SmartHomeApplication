@@ -3,16 +3,25 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:SmartHomeApplication.ClientUWP.View"
+    xmlns:controls="using:SmartHomeApplication.ClientUWP.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
     <Grid Background="{StaticResource ViewColor}">
-        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="1" Margin="50,0,50,0">
-            <TextBlock x:Name="AlreadyHasLampTextBlock" Visibility="{Binding LampGuid, Converter={StaticResource NoGuidToCollapsedVisibilityConverter}}"></TextBlock>
-            <TextBlock x:Name="GuidTextBlock" Margin="0,15,0,0" Visibility="{Binding LampGuid, Converter={StaticResource NoGuidToVisibleVisibilityConverter}}"></TextBlock>
+        <StackPanel VerticalAlignment="Center"
+                    HorizontalAlignment="Center">
+            <TextBlock x:Name="AlreadyHasLampTextBlock" 
+                       Style="{StaticResource ViewText}" 
+                       Visibility="{Binding LampGuid, Converter={StaticResource NoGuidToCollapsedVisibilityConverter}}">
+                
+            </TextBlock>
+            
+            <TextBlock x:Name="GuidTextBlock" Style="{StaticResource ViewText}" Visibility="{Binding LampGuid, Converter={StaticResource NoGuidToVisibleVisibilityConverter}}"></TextBlock>
             <TextBox Margin="0,0,0,15" MinWidth="100" Text="{Binding NewLampGuid, Mode=TwoWay}" Visibility="{Binding LampGuid, Converter={StaticResource NoGuidToVisibleVisibilityConverter}}" ></TextBox>
-            <Button x:Name="AddLampButton"  Command="{Binding AddLampCommand}" Visibility="{Binding LampGuid, Converter={StaticResource NoGuidToVisibleVisibilityConverter}}"></Button>
+            <Button Command="{Binding AddLampCommand}" Visibility="{Binding LampGuid, Converter={StaticResource NoGuidToVisibleVisibilityConverter}}">
+                <controls:ViewButtonContent x:Name="AddLampButton"/>
+            </Button>
         </StackPanel>
     </Grid>
 </Page>

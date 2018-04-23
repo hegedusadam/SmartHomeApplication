@@ -98,6 +98,9 @@
     <Compile Include="Controls\SplitViewButtonContent.xaml.cs">
       <DependentUpon>SplitViewButtonContent.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\ViewButtonContent.xaml.cs">
+      <DependentUpon>ViewButtonContent.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Converters\BooleanToOnOrOffStringConverter.cs" />
     <Compile Include="Converters\NoGuidToCollapsedVisibilityConverter.cs" />
     <Compile Include="Converters\NoGuidToVisibleVisibilityConverter.cs" />
@@ -163,6 +166,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Page Include="Controls\SplitViewButtonContent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ViewButtonContent.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

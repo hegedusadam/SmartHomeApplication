@@ -12,6 +12,7 @@ using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
@@ -29,8 +30,11 @@ namespace SmartHomeApplication.ClientUWP.View
 			ViewModel = new LampSwitchViewModel();
 			this.InitializeComponent();
 
-			DeleteLamp.Content = "Delete Lamp";
+			DeleteLamp.LabelText = "Delete Lamp";
 			NoLampTextBlock.Text = "You do not have a Lamp added. Go to the Add Lamp page and create a lamp!";
+
+			DeleteLamp.DefaultImageSource =
+				new BitmapImage(new Uri("ms-appx:///Assets/Common/delete.png", UriKind.Absolute));
 
 			this.DataContext = ViewModel;
 			Loaded += async (sender, args) =>

@@ -25,9 +25,13 @@ namespace SmartHomeApplication.ClientUWP.ViewModel
 		private string lampGuid;
 		private ICommand deleteChangesCommand;
 
+		/// <summary>
+		/// Command of Clear History Button, calls DeleteChanges
+		/// </summary>
 		public ICommand DeleteChangesCommand =>
 			deleteChangesCommand ??
 			(deleteChangesCommand = new RelayCommand(async () => await DeleteChanges()));
+
 		/// <summary>
 		/// Guid of the lamp added by the user
 		/// </summary>

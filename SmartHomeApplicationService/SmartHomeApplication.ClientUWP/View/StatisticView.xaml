@@ -14,15 +14,22 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <StackPanel Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center">
-            <TextBlock x:Name="TotaltTimeText"></TextBlock>
+        <StackPanel Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="{Binding LampGuid, Converter={StaticResource NoGuidToCollapsedVisibilityConverter}}">
+            <TextBlock x:Name="TotaltTimeText" Style="{StaticResource ViewText}"></TextBlock>
             <TextBlock Text="{Binding TotalTimeOn, Converter={StaticResource TimeSpanToStringConverter}}"></TextBlock>
-            <Button Command="{Binding DeleteChangesCommand}" Visibility="{Binding LampGuid, Converter={StaticResource NoGuidToCollapsedVisibilityConverter}}">
-                <controls:SplitViewButtonContent x:Name="DeleteChanges"/>
+            <Button Command="{Binding DeleteChangesCommand}">
+                <controls:ViewButtonContent x:Name="DeleteChanges"/>
             </Button>
         </StackPanel>
-        
-        <ScrollViewer Grid.Row="1">
+
+        <TextBlock x:Name="NoLampTextBlock"
+                   HorizontalAlignment="Center" 
+                   VerticalAlignment="Bottom"
+                   Grid.Row="0"
+                   Visibility="{Binding LampGuid, Converter={StaticResource NoGuidToVisibleVisibilityConverter}}"
+                   Style="{StaticResource ViewText}"/>
+
+        <ScrollViewer Grid.Row="1" Visibility="{Binding LampGuid, Converter={StaticResource NoGuidToCollapsedVisibilityConverter}}">
             <GridView ItemsSource="{Binding ChangesCollection}"
                       IsItemClickEnabled="True"
                       IsSwipeEnabled="true"

@@ -33,38 +33,21 @@
         <Setter Property="HorizontalAlignment" Value="Left" />
     </Style>
 
-
-    <Style x:Key="SettingsSeparatorLine" TargetType="Border">
-        <Setter  Property="BorderBrush" Value="Gray" />
-        <Setter Property="BorderThickness" Value="0,0.5,0,0" />
-        <Setter Property="Margin" Value="0,10,0,10"/>
-    </Style>
-
-    <Style x:Key="SettingsLabelStyle" TargetType="TextBlock">
-        <Setter Property="Margin" Value="0,5,0,5" />
-        <Setter Property="FontFamily" Value="Segoe UI Light"/>
-        <Setter Property="FontSize" Value="20" />
-    </Style>
-
-    <Style x:Key="ProfileTabStyle" TargetType="TextBlock">
-        <Setter Property="HorizontalAlignment" Value="Center" />
-        <Setter Property="VerticalAlignment" Value="Center" />
-        <Setter Property="FontFamily" Value="SegoeUI" />
-        <Setter Property="FontSize" Value="20" />
-        <Setter Property="Margin" Value="10,0,0,0" />
-    </Style>
-
-    <Style x:Key="SettingsAboutButtonStyle" TargetType="Button">
-        <Setter Property="Background" Value="Transparent" />
-        <Setter Property="HorizontalAlignment" Value="Left" />
-        <Setter Property="HorizontalContentAlignment" Value="Left" />
-    </Style>
-
-
     <Style x:Key="SplitViewText" TargetType="TextBlock">
         <Setter Property="Foreground" Value="White" />
         <Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="Margin" Value="20,0,0,0"  />
+    </Style>
+
+    <Style x:Key="ViewText" TargetType="TextBlock">
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="Margin" Value="10"  />
+        <Setter Property="FontSize" Value="20"  />
+    </Style>
+
+    <Style x:Key="ViewButtonText" TargetType="TextBlock">
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="Margin" Value="10"  />
     </Style>
 
     <Style x:Key="SplitViewIconStyle" TargetType="Image">

@@ -49,6 +49,15 @@ namespace SmartHomeApplication.ClientUWP.ViewModel
 		{
 			try
 			{
+				if (NewLampGuid.Length != 5)
+				{
+					var invalidGuidDialog = new MessageDialog("Error! The guid has to be five character long!");
+					invalidGuidDialog.Commands.Add(new UICommand("Ok"));
+					await invalidGuidDialog.ShowAsync();
+
+					return;
+				}
+
 				var token = new JObject();
 				token.Add("LampGuid", NewLampGuid);
 				token.Add("UserID", App.UserInformation.userId);
@@ -57,9 +66,9 @@ namespace SmartHomeApplication.ClientUWP.ViewModel
 				App.UserInformation.lampGuid = NewLampGuid;
 				LampGuid = NewLampGuid;
 
-				var deletedDialog = new MessageDialog("Lamp successfully added!");
-				deletedDialog.Commands.Add(new UICommand("Ok"));
-				await deletedDialog.ShowAsync();
+				var addedDialog = new MessageDialog("Lamp successfully added!");
+				addedDialog.Commands.Add(new UICommand("Ok"));
+				await addedDialog.ShowAsync();
 			} catch (Exception e)
 			{
 				Debug.WriteLine(e.Message);
