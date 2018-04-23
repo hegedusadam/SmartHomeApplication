@@ -214,7 +214,7 @@ namespace SmartHomeApplication.ClientUWP.ViewModel
 		{
 			try
 			{
-				var confirmationDialog = new MessageDialog("Are you sure you want the history of this lamp?");
+				var confirmationDialog = new MessageDialog("Are you sure you want to delete the history of your lamp?");
 				confirmationDialog.Commands.Add(new UICommand("Yes") { Id = 0 });
 				confirmationDialog.Commands.Add(new UICommand("Cancel") { Id = 1 });
 				var choice = await confirmationDialog.ShowAsync();

@@ -17,9 +17,8 @@
         <ToggleSwitch IsOn="{Binding IsOn, Mode=TwoWay}"
                       Width="Auto" Visibility="{Binding LampGuid, Converter={StaticResource NoGuidToCollapsedVisibilityConverter}}"
                       HorizontalAlignment="Center"
-                      VerticalAlignment="Center"
-                      MinWidth="200">
-            
+                      VerticalAlignment="Center">
+
         </ToggleSwitch>
 
         <TextBlock   x:Name="NoLampTextBlock" 

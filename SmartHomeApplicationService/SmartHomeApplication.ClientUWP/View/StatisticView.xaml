@@ -15,9 +15,19 @@
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="{Binding LampGuid, Converter={StaticResource NoGuidToCollapsedVisibilityConverter}}">
-            <TextBlock x:Name="TotaltTimeText" Style="{StaticResource ViewText}"></TextBlock>
-            <TextBlock Text="{Binding TotalTimeOn, Converter={StaticResource TimeSpanToStringConverter}}"></TextBlock>
-            <Button Command="{Binding DeleteChangesCommand}">
+            <TextBlock x:Name="TotaltTimeText" 
+                       Style="{StaticResource ViewText}"
+                       HorizontalAlignment="Center">
+                
+            </TextBlock>
+            <TextBlock Style="{StaticResource ViewText}" 
+                       Text="{Binding TotalTimeOn, Converter={StaticResource TimeSpanToStringConverter}}"
+                       HorizontalAlignment="Center">
+                
+            </TextBlock>
+            <Button Command="{Binding DeleteChangesCommand}"
+                    HorizontalAlignment="Center"
+                    Margin="0,15,0,0">
                 <controls:ViewButtonContent x:Name="DeleteChanges"/>
             </Button>
         </StackPanel>
