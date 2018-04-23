@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
 using Microsoft.AspNet.SignalR.Client;
 using Microsoft.AspNet.SignalR.Client.Transports;
 using Newtonsoft.Json.Linq;
@@ -11,7 +12,9 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using Windows.UI.Core;
+using Windows.UI.Popups;
 
 namespace SmartHomeApplication.ClientUWP.ViewModel
 {
@@ -20,7 +23,14 @@ namespace SmartHomeApplication.ClientUWP.ViewModel
 		private ObservableCollection<Change> changesCollection;
 		private TimeSpan totalTimeOn;
 		private string lampGuid;
+		private ICommand deleteChangesCommand;
 
+		public ICommand DeleteChangesCommand =>
+			deleteChangesCommand ??
+			(deleteChangesCommand = new RelayCommand(async () => await DeleteChanges()));
+		/// <summary>
+		/// Guid of the lamp added by the user
+		/// </summary>
 		public string LampGuid
 		{
 			get { return lampGuid; }
@@ -30,6 +40,9 @@ namespace SmartHomeApplication.ClientUWP.ViewModel
 			}
 		}
 
+		/// <summary>
+		/// The total time of the lamp being switched on
+		/// </summary>
 		public TimeSpan TotalTimeOn
 		{
 			get { return totalTimeOn; }
@@ -39,6 +52,9 @@ namespace SmartHomeApplication.ClientUWP.ViewModel
 			}
 		}
 
+		/// <summary>
+		/// Collection of Change objects
+		/// </summary>
 		public ObservableCollection<Change> ChangesCollection
 		{
 			get { return changesCollection; }
@@ -48,6 +64,9 @@ namespace SmartHomeApplication.ClientUWP.ViewModel
 			}
 		}
 
+		/// <summary>
+		/// Constructor for StatisticViewModel
+		/// </summary>
 		public StatisticViewModel()
 		{
 			LampGuid = App.UserInformation.lampGuid;
@@ -61,6 +80,10 @@ namespace SmartHomeApplication.ClientUWP.ViewModel
 			});
 		}
 
+		/// <summary>
+		/// Gets the initial data when the Page is opened
+		/// </summary>
+		/// <returns></returns>
 		private async Task Initialize()
 		{
 			try
@@ -78,16 +101,25 @@ namespace SmartHomeApplication.ClientUWP.ViewModel
 			}
 		}
 
+		/// <summary>
+		/// Sets up the HubConnection with backend
+		/// </summary>
+		/// <returns></returns>
 		public async Task SetupHub()
 		{
 			var hubConnection = new HubConnection("http://smarthomeapplicationservice.azurewebsites.net/");
 			var lampHub = hubConnection.CreateHubProxy("LampHub");
 
 			lampHub.On<string>("ChangeAdded", RefreshChanges);
+			lampHub.On<string>("ChangesDeleted", RefreshChanges);
 
 			await hubConnection.Start(new LongPollingTransport());
 		}
 
+		/// <summary>
+		/// Called when the Changes table changed
+		/// </summary>
+		/// <param name="guid"></param>
 		private async void RefreshChanges(string guid)
 		{
 			if (!LampGuid.Equals(guid))
@@ -101,6 +133,10 @@ namespace SmartHomeApplication.ClientUWP.ViewModel
 			});
 		}
 
+		/// <summary>
+		/// Get Changes from Database, calculates On periods and sums them up
+		/// </summary>
+		/// <returns></returns>
 		private async Task GetData()
 		{
 			ICollection<Change> changes = await GetChanges();
@@ -110,6 +146,10 @@ namespace SmartHomeApplication.ClientUWP.ViewModel
 			ChangesCollection = new ObservableCollection<Change>(observableCollection.Reverse());
 		}
 
+		/// <summary>
+		/// Get the Changes of a lamp by its guid from Database
+		/// </summary>
+		/// <returns></returns>
 		private async Task<ICollection<Change>> GetChanges()
 		{
 				var token = new JObject();
@@ -121,9 +161,14 @@ namespace SmartHomeApplication.ClientUWP.ViewModel
 				return changes;
 		}
 
+		/// <summary>
+		/// Determines the length of each On period
+		/// </summary>
+		/// <param name="observableCollection"></param>
 		private void GetMinutesOn(ObservableCollection<Change> observableCollection)
 		{
 			Change onChange = new Change();
+
 			foreach (var change in observableCollection)
 			{
 				if (change.state)
@@ -137,6 +182,11 @@ namespace SmartHomeApplication.ClientUWP.ViewModel
 			}
 		}
 
+		/// <summary>
+		/// Sums up all the On periods
+		/// </summary>
+		/// <param name="observableCollection"></param>
+		/// <returns></returns>
 		private TimeSpan GetTotalTimeOn(ObservableCollection<Change> observableCollection)
 		{
 			int TotalSeconds = 0;
@@ -150,6 +200,40 @@ namespace SmartHomeApplication.ClientUWP.ViewModel
 			}
 
 			return TimeSpan.FromSeconds(TotalSeconds);
+		}
+
+		/// <summary>
+		/// Delete all the Changes from Database
+		/// </summary>
+		/// <returns></returns>
+		public async Task DeleteChanges()
+		{
+			try
+			{
+				var confirmationDialog = new MessageDialog("Are you sure you want the history of this lamp?");
+				confirmationDialog.Commands.Add(new UICommand("Yes") { Id = 0 });
+				confirmationDialog.Commands.Add(new UICommand("Cancel") { Id = 1 });
+				var choice = await confirmationDialog.ShowAsync();
+
+				if ((int)choice.Id == 0)
+				{
+					var token = new JObject();
+					token.Add("lampGuid", LampGuid);
+					var result = await App.MobileService.InvokeApiAsync("/Change/DeleteChanges",  token);
+
+					var deletedDialog = new MessageDialog("Successfully cleared history!");
+					deletedDialog.Commands.Add(new UICommand("Ok"));
+					await deletedDialog.ShowAsync();
+				}
+				else
+				{
+					return;
+				}
+			}
+			catch (Exception exception)
+			{
+				Debug.WriteLine(exception.Message);
+			}
 		}
 	}
 }

@@ -45,6 +45,24 @@ namespace SmartHomeApplicationService.Controllers
 			}
 		}
 
+		[HttpPost, ActionName("DeleteChanges")]
+		public void DeleteChangesByGuid(string lampGuid)
+		{
+			try
+			{
+				int lampId = db.Lamps.Where(l => l.lampguid.Trim() == lampGuid).FirstOrDefault().Id;
+				db.Changes.RemoveRange(db.Changes.Where(c => c.lampid == lampId));
+
+				db.SaveChanges();
+
+				lampContext.Clients.All.ChangesDeleted(lampGuid);
+			}
+			catch (Exception e)
+			{
+
+			}
+		}
+
 		protected override void Dispose(bool disposing)
         {
             if (disposing)

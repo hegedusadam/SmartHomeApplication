@@ -12,6 +12,7 @@ using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
@@ -31,6 +32,10 @@ namespace SmartHomeApplication.ClientUWP.View
 			this.DataContext = ViewModel;
 
 			TotaltTimeText.Text = "Total Time Switched On:";
+
+			DeleteChanges.LabelText = "Clear History";
+			DeleteChanges.DefaultImageSource =
+				new BitmapImage(new Uri("ms-appx:///Assets/Common/delete.png", UriKind.Absolute));
 
 			Loaded += async (sender, args) =>
 			{
