@@ -14,63 +14,57 @@ using SmartHomeApplicationService.Models;
 
 namespace SmartHomeApplicationService.Controllers
 {
-    public class UserController : Controller
-    {
-        private SmartHomeApplicationDatabase db = new SmartHomeApplicationDatabase();
+	public class UserController : Controller
+	{
+		private SmartHomeApplicationDatabase db = new SmartHomeApplicationDatabase();
 
 		// GET: Users
 		public ActionResult Index()
-        {
-            return this.Json(db.Users.ToList(), JsonRequestBehavior.AllowGet);
-        }
+		{
+			return this.Json(db.Users.ToList(), JsonRequestBehavior.AllowGet);
+		}
 
 		[HttpPost, ActionName("Register")]
 		public int RegisterToDatabase(UserInfo userInfo)
 		{
-				User user = db.Users.Where(u => u.UserProfileId == userInfo.UserProfileId).FirstOrDefault();
+			User user = db.Users.Where(u => u.UserProfileId == userInfo.UserProfileId).FirstOrDefault();
 
-				if (user == null)
+			if (user == null)
+			{
+				string[] names = userInfo.Name.Split(' ');
+				User newUser = db.Users.Add(new User
 				{
-					string[] names = userInfo.Name.Split(' ');
-					User newUser = db.Users.Add(new User
-					{
-						FirstName = names[0],
-						LastName = names[1],
-						UserProfileId = userInfo.UserProfileId
-					});
+					FirstName = names[0],
+					LastName = names[1],
+					UserProfileId = userInfo.UserProfileId
+				});
 
-					db.SaveChanges();
+				db.SaveChanges();
 
-					return newUser.Id;
-				}
+				return newUser.Id;
+			}
 
-				return user.Id;
+			return user.Id;
 		}
 
 		[HttpPost, ActionName("GetGuid")]
 		public JsonResult GetLampGuid(UserInfo userInfo)
 		{
-			try
+
+			User user = db.Users.Where(u => u.UserProfileId == userInfo.UserProfileId).FirstOrDefault();
+
+			string guid;
+
+			if (user.Lamp == null)
 			{
-				User user = db.Users.Where(u => u.UserProfileId == userInfo.UserProfileId).FirstOrDefault();
-
-				string guid;
-
-				if (user.Lamp == null)
-				{
-					guid = "NOGUID";
-				}
-				else
-				{
-					guid = user.Lamp.lampguid;
-				}
-
-				return this.Json(guid, JsonRequestBehavior.AllowGet);
+				guid = "NOGUID";
 			}
-			catch (Exception e)
+			else
 			{
-				return null;
+				guid = user.Lamp.lampguid;
 			}
+
+			return this.Json(guid, JsonRequestBehavior.AllowGet);
 		}
 
 
@@ -110,18 +104,18 @@ namespace SmartHomeApplicationService.Controllers
 			string token = "";
 
 			token = Request.Headers.GetValues("X-MS-TOKEN-FACEBOOK-ACCESS-TOKEN").FirstOrDefault();
-			
+
 			return token;
 		}
 
 
 		protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
-    }
+		{
+			if (disposing)
+			{
+				db.Dispose();
+			}
+			base.Dispose(disposing);
+		}
+	}
 }
