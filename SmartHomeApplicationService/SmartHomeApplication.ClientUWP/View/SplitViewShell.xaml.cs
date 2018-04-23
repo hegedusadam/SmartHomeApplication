@@ -7,6 +7,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -92,16 +93,28 @@ namespace SmartHomeApplication.ClientUWP.View
 
 		private async void LogoutButton_Click(object sender, RoutedEventArgs e)
 		{
-			App.UserInformation = null;
-			App.User = null;
-			App.IsLoggedIn = false;
-			await App.MobileService.LogoutAsync();
 
-			Frame frame = new Frame();
-			frame.Navigate(typeof(LoginView));
-			Window.Current.Content = frame;
-			Window.Current.Activate();
-			//((Frame)SmartHomeSplitView.Content).Navigate(typeof(LoginView));
+			var confirmationDialog = new MessageDialog("Are you sure you want to log out?");
+			confirmationDialog.Commands.Add(new UICommand("Yes") { Id = 0 });
+			confirmationDialog.Commands.Add(new UICommand("Cancel") { Id = 1 });
+			var choice = await confirmationDialog.ShowAsync();
+
+			if ((int)choice.Id == 0)
+			{
+				App.UserInformation = null;
+				App.User = null;
+				App.IsLoggedIn = false;
+				await App.MobileService.LogoutAsync();
+
+				Frame frame = new Frame();
+				frame.Navigate(typeof(LoginView));
+				Window.Current.Content = frame;
+				Window.Current.Activate();
+			}
+			else
+			{
+				return;
+			}
 		}
 
 		private void HamburgerButton_Click(object sender, RoutedEventArgs e)

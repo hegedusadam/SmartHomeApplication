@@ -107,7 +107,7 @@ namespace SmartHomeApplication.ClientUWP.ViewModel
 			ObservableCollection<Change> observableCollection = new ObservableCollection<Change>(changes);
 			GetMinutesOn(observableCollection);
 			TotalTimeOn = GetTotalTimeOn(observableCollection);
-			ChangesCollection = observableCollection;
+			ChangesCollection = new ObservableCollection<Change>(observableCollection.Reverse());
 		}
 
 		private async Task<ICollection<Change>> GetChanges()

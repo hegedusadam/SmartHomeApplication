@@ -156,7 +156,8 @@ namespace SmartHomeApplication.ClientUWP.ViewModel
 					var deletedDialog = new MessageDialog("Lamp successfully deleted!");
 					deletedDialog.Commands.Add(new UICommand("Ok"));
 					await deletedDialog.ShowAsync();
-				} else
+				}
+				else
 				{
 					return;
 				}
