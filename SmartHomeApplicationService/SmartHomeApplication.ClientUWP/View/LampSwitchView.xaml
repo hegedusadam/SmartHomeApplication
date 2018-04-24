@@ -14,7 +14,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <ToggleSwitch IsOn="{Binding IsOn, Mode=TwoWay}"
+        <ToggleSwitch Style="{StaticResource CustomToggleSwitch}" IsOn="{Binding IsOn, Mode=TwoWay}"
                       Width="Auto" Visibility="{Binding LampGuid, Converter={StaticResource NoGuidToCollapsedVisibilityConverter}}"
                       HorizontalAlignment="Center"
                       VerticalAlignment="Center">
@@ -30,12 +30,11 @@
 
         </TextBlock>
 
-        <Button 
-            Command="{Binding DeleteLampCommand}" 
-            Visibility="{Binding LampGuid, Converter={StaticResource NoGuidToCollapsedVisibilityConverter}}" 
-            Grid.Row="1"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center">
+        <Button Command="{Binding DeleteLampCommand}" 
+                Visibility="{Binding LampGuid, Converter={StaticResource NoGuidToCollapsedVisibilityConverter}}" 
+                Grid.Row="1"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center">
             <controls:ViewButtonContent x:Name="DeleteLamp"/>
         </Button>
     </Grid>

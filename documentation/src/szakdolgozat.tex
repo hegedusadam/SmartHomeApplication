@@ -1,0 +1,68 @@
+\documentclass[a4paper,12pt]{report}
+\usepackage[utf8]{inputenc}           % vagy latin2 helyett utf8
+\usepackage[T1]{fontenc}              % karakterkódolás
+\usepackage[hungarian]{babel}           % angol, magyar beállítások
+
+%\usepackage[nottoc]{tocbibind}
+%\usepackage{url}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{colorlinks=false}
+\urlstyle{same}
+
+%\bibliographystyle{plain}
+
+\usepackage{listings}                 % forráskód-beágyazás
+
+\usepackage{multicol}
+\usepackage{longtable}
+
+\frenchspacing                % helyközök
+%\usepackage{times}           % betűtípus
+\usepackage{lmodern}          % vagy inkább ez
+
+\usepackage[margin=2.5cm,left=3.5cm,includeheadfoot]{geometry}
+                              % margók
+\usepackage{graphicx}         % képekhez
+\usepackage{setspace}         % sorköz
+\onehalfspacing               % másfeles
+
+\usepackage{pgfplots}
+\pgfplotsset{width=7cm,compat=1.12}
+
+\begin{document}
+
+% ------------------------------------------------------------------------------
+% Címlap
+
+\input{szakdolgozat_cimlap.tex}
+
+% ------------------------------------------------------------------------------
+% Témabejelentő
+
+%\vspace*{\fill}
+%\begin{center}
+%Ehelyett az oldal helyett a Szakdolgozat-téma bejelentő szerepel.
+%\end{center}
+%\vfill
+%\thispagestyle{empty}
+%\newpage
+\setcounter{page}{1}
+
+% ------------------------------------------------------------------------------
+% Tartalomjegyzék
+
+\tableofcontents
+
+% ------------------------------------------------------------------------------
+
+
+\chapter{Bevezetés}
+
+\section{Motiváció}
+Napjainkban mindent átsző a techn
+
+% ------------------------------------------------------------------------------
+
+
+
+\end{document}
