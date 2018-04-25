@@ -34,6 +34,8 @@ namespace SmartHomeApplication.LampUWP
 				await ViewModel.CreateOrReadGuid();
 			};
 			this.DataContext = ViewModel;
+
+            GuidText.Text = "GUID:";
 		}
 	}
 }

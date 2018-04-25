@@ -39,7 +39,20 @@
                    Visibility="{Binding LampGuid, Converter={StaticResource NoGuidToVisibleVisibilityConverter}}"
                    Style="{StaticResource ViewText}"/>
 
-        <ScrollViewer Grid.Row="1" Visibility="{Binding LampGuid, Converter={StaticResource NoGuidToCollapsedVisibilityConverter}}">
+        <StackPanel Grid.Row="1">
+            <Grid HorizontalAlignment="Center">
+                <Grid.ColumnDefinitions> 
+                    <ColumnDefinition Width="200"/>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="200"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock x:Name="WhenTextBlock" HorizontalAlignment="Center" Grid.Column="0" Text="adsa"/>
+                <TextBlock x:Name="StateTextBlock" HorizontalAlignment="Center" Grid.Column="1" Text="Heasdaasder"/>
+                <TextBlock x:Name="MinutesOnTextBlock" HorizontalAlignment="Center" Grid.Column="2" Text="sadds"/>
+            </Grid>
+            
+            <ScrollViewer Visibility="{Binding LampGuid, Converter={StaticResource NoGuidToCollapsedVisibilityConverter}}">
             <GridView ItemsSource="{Binding ChangesCollection}"
                       IsItemClickEnabled="True"
                       IsSwipeEnabled="true"
@@ -70,5 +83,6 @@
                 </GridView.ItemTemplate>
             </GridView>
         </ScrollViewer>
+       </StackPanel>
     </Grid>
 </Page>
