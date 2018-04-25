@@ -6,7 +6,11 @@
 %\usepackage[nottoc]{tocbibind}
 %\usepackage{url}
 \usepackage[hidelinks]{hyperref}
-\hypersetup{colorlinks=false}
+\hypersetup{
+colorlinks=true,
+linkcolor=blue,
+urlcolor=cyan,
+}
 \urlstyle{same}
 
 %\bibliographystyle{plain}
@@ -28,6 +32,7 @@
 
 \usepackage{pgfplots}
 \pgfplotsset{width=7cm,compat=1.12}
+
 
 \begin{document}
 
@@ -86,6 +91,51 @@
     \label{fig: Az alkalmazás struktúrája}
 \end{figure}
 
+\chapter{Felhasználói dokumentáció}
+
+\section{Minimális rendszerkövetelmények}
+    A felhasználónak az alábbiakra van szüksége a program használatához:
+
+    \begin{itemize}
+        \item Egy Raspberry Pi 3 Model B mikroprocesszor, Windows 10 IoT Core operációs rendszerrel
+        \item Windows 10 asztali vagy mobil eszköz
+        \item Facebook profil
+    \end{itemize}
+
+\section{Raspberry Pi}
+
+\subsection{Az eszközről}
+    A Raspberry Pi egy bankkártya méretű, egyetlen áramköri lapra integrált számítógép, melyet az Egyesült Királyságban
+    helyeztek forgalmomba 2012-ben, főleg oktatási célokra. Azóta számos változata megjelent, a szakdolgozat elkészítéséhez
+    egy Raspberry Pi 3 Model B-t használtam. Számos bemenettel rendelkezik, többek között Ethernet csatlakozóval, HDMI, USB
+    portokkal, a felhasznált modell pedig már beépített Wi-Fi adapterrel is. Többféle operációs rendszert telepíthetünk rá,
+    köztük a Windows 10 IoT Core-t is, így kiválóan alkalmas arra, hogy futtathassuk rajta az IoT kliensalkalmazást. A továbbiakban
+    a mikroprocesszor konfigurálása következik.
+
+\begin{figure}[h!]
+    \hspace{5cm}
+    \includegraphics[width=6cm]{images/raspberry_pi3.jpg}
+    \caption{Raspberry Pi 3 Model B}
+    \label{fig: Raspberry Pi 3}
+\end{figure}
+
+\subsection{Beszerzés}
+    A program futtatásához az eszköz korábbi verziói is megfelelőek lehetnek, azonban érdemes lehet a fent említett Raspberry Pi 3
+    Model B -t, illetve az ennél újabb kiadásokat beszerezni, mivel ezek bizonyítottan elég erős hardverrel és csatlakozókkal rendelkeznek
+    a feladat ellátásához. A szükséges komponensek:
+
+\begin{itemize}
+    \item Raspberry Pi 3 model B 1GB RAM Quad Core 2016-os alaplap
+    \item 1.2A-es Sunny tápegység, 24 órás üzemre tervezve
+    \item Legalább 8GB tárolókapacitású microSD kártya
+\end{itemize}
+
+    Az eszközt magyar viszonteladóktól is be lehet szerezni, valamint lehetőség van különböző előre összeállított csomagokat megvásárolni,
+     melyek a fent említett kötelező elemeken túl tartalmazhatnak védőtokot az alaplapnak, illetve előtelepített operációs rendszert.
+
+    A dolgozathoz használt kiszerelés az alábbi \href{https://malnapc.hu/yis/raspberry-pi-3-quad-core-suli-kit}{linken} elérhető.
+
+\subsection{Operációs rendszer telepítése Raspberry Pi eszközre}
     
 % ------------------------------------------------------------------------------
 
