@@ -8,8 +8,8 @@
 \usepackage[hidelinks]{hyperref}
 \hypersetup{
 colorlinks=true,
-linkcolor=blue,
-urlcolor=cyan,
+linkcolor=black,
+urlcolor=blue,
 }
 \urlstyle{same}
 
@@ -136,7 +136,35 @@ urlcolor=cyan,
     A dolgozathoz használt kiszerelés az alábbi \href{https://malnapc.hu/yis/raspberry-pi-3-quad-core-suli-kit}{linken} elérhető.
 
 \subsection{Operációs rendszer telepítése Raspberry Pi eszközre}
-    
+
+\subsubsection{Telepítés előtelepített SD kártyáról}
+    Ha olyan verziót vásároltunk, melyhez előtepített operációs rendszert járt, akkor nincs más dolgunk, helyezzük be az SD kártyát
+    az alaplapba, kössük össze a tápegységgel, helyezzük áram alá, s az eszköz azonnal elindul. Egy HDMI kábel segítségével kössük össze
+    monitorunkkal, a vezérléshez szükség lesz legalább egy egérre. Az internetelérés történhet Ethernet csatlakozón, vagy (legalább Raspberry
+    Pi 3 esetén) Wi-Fi-n keresztül is. Ha mindent jól csináltunk, akkor az eszköz rövid betöltés után megjelenít egy ablakot,
+    melyben kiválaszthatjuk az általunk kívánt operációs rendszert. Többet is telepíthetünk, és javasolt is az alapértelmezett Raspbiant,
+    valamint számunkra létfontosságú Windows 10 IoT Core-t. Ezt a Raspberry le fogja tölteni, ezért \textbf{elengedhetetlen} az internetkapcsolat.
+    Az eszköz automatikusan telepíti a kiválasztott rendszereket, miután végzett, a mikroprocesszorunk használatra alkalmas.
+
+\begin{figure}[h!]
+    \hspace{5cm}
+    \includegraphics[width=6cm]{images/rpi_os_setup.jpg}
+    \caption{Raspberry Pi Operációs rendszer kiválasztása}
+    \label{fig: Raspberry Pi Operációs rendszer}
+\end{figure}
+
+\subsubsection{Telepítés nem előtelepített SD kártyáról}
+    Ha nincs előre telepítve a szükséges operációs rendszer, akkor nekünk kell letölteni hivatalos forrásból.
+    Ehhez a microsoft készített egy könnyen kezelhető felületet, a Windows 10 IoT Core Dashboardot, melyet
+    \href{https://developer.microsoft.com/en-us/windows/iot/Downloads.htm}{ide} kattintva tudunk letölteni.
+    Telepítsük fel az alkalmazást, majd kattintsunk a "\textbf{Set up a new device}" fülre, töltsük ki a szükséges adatokat, helyezzük
+    az SD kártyát a számítógépünkbe. A "\textbf{Download and install}" lehetőségre klikkelve az alkalmazás telepíti nekünk
+    az operációs rendszert.
+    Ezt követően a lépések megegyeznek az előtelepítéses utasításokkal, tegyük a microSD-t a mikroprocesszorunkba, csatlakoztassuk
+    a tápegységet, szükséges perifériákat, a rendszer rövid időn belül betölt.
+
+    A részletes leírás az alábbi linken tekinthető meg: \url{https://www.windowscentral.com/how-install-windows-10-iot-raspberry-pi-3}
+
 % ------------------------------------------------------------------------------
 
 
