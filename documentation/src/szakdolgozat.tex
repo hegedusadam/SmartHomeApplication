@@ -59,8 +59,28 @@
 \chapter{Bevezetés}
 
 \section{Motiváció}
-Napjainkban mindent átsző a techn
+    Napjainkban mindent átsző a technnológia. Jelen van az oktatásban, egészségügyben, tömegközelekedésben, az élet rengeteg
+    területén, de ami talán a legfontosabb, az otthonunkban. A legtöbb háztartásban előfordulnak okos eszközök, a család
+    minden tagja ismerkedik a számítógép használatával, unokától kezdve a nagymamáig. De mégis mi célt szolgál a technológia?
+    Szórakozás, információszerzés, kapcsolattartás távoli ismerősökkel, millió oka lehet annak hogy valaki laptopot ragadjon.
+    Talán az egyik legfontosabb ezek közül az, hogy eszközeink segítsék, könnyebbé tegyék mindennapjainkat. Ez a gondolat
+    motivált a dolgozatom megírására, szerettem volna egy olyan alkalmazást elkészíteni mely egyszerű funkciót tölbe, mégis
+    hasznos lehet a dolgos hétköznapjainkon. Bárkivel előfordulhat hogy felkapcsolva felejti a lámpát a reggeli rohanás során
+    és csak a munkahelyén jut eszébe. A szakdolgozatom erre a problémára szeretne megoldást kínálni. Az alkalmazás segítségével
+    bárki regisztrálhat egy lámpát, akár több ember ugyanazt a fényforrást, és távolról fel -és lekapcsolhatja, követheti hogy
+    mikor történt változás, illetve mennyi ideig volt összesen bekapcsolt állapotban az eszköz. Mindez valós időben történik,
+    tehát minden felhasználó a legfrissebb információkkal rendelkezik a program használata közben.
 
+\section{A programról}
+    Az alkalmazás három részből áll, két kliensalkalmazásból, valamint egy szerverből. A Windows 10 klienst használhatják
+    bejelentkezett felhasználók, ezen a kényelmes felületen találhatják a fő funckiókat, lámpát adhatnak hozzá profiljukhoz, valós időben
+    vezérelhetik azt, megtekinthetik az eszköz statisztikáit. A másik kliensalkalmazást egy Raspberry Pi 3 mikroprocesszor futtatja, mely
+    rá van kötve a vezérelni kívánt lámpára, szabályozza annak áramellátását, a szervertől kapott utasítások alapján. Minden változás után
+    visszaigazolja a sikeres kapcsolást, valamint módosítások körülményeit is elküldi a szervernek, így az rögzítheti az eseményeket az
+    adatbázisban. A szerver tehát köztes szerepet tölt be, a felhasználó rajta keresztül tud üzenni a eszközének, a lámpa pedig tőle
+    kapja az utasításokat. Az adatbázis-kezelés is az ő feladata.
+
+    
 % ------------------------------------------------------------------------------
 
 
