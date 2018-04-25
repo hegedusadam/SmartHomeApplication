@@ -1,4 +1,3 @@
 \select@language {hungarian} \contentsline {chapter}{\numberline {1}Bevezet\IeC {\'e}s}{2}{chapter.1}
 \select@language {hungarian} \contentsline {section}{\numberline {1.1}Motiv\IeC {\'a}ci\IeC {\'o}}{2}{section.1.1}
 \select@language {hungarian} \contentsline {section}{\numberline {1.2}A programr\IeC {\'o}l}{2}{section.1.2}
-\select@language {hungarian} \contentsline {section}{\numberline {1.3}valami}{3}{section.1.3}
