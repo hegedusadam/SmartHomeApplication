@@ -13,6 +13,8 @@ urlcolor=blue,
 }
 \urlstyle{same}
 
+\usepackage{subcaption}
+
 %\bibliographystyle{plain}
 
 \usepackage{listings}                 % forráskód-beágyazás
@@ -164,6 +166,42 @@ urlcolor=blue,
     a tápegységet, szükséges perifériákat, a rendszer rövid időn belül betölt.
 
     A részletes leírás az alábbi linken tekinthető meg: \url{https://www.windowscentral.com/how-install-windows-10-iot-raspberry-pi-3}
+
+\subsection{Lámpa csatlakoztatása Raspberry Pi eszközhöz}
+    Mivel nem rendelkezem mérnöki háttérismeretekkel, ezért nem egy valódi lámpát, hanem egy LED-et használtam a szakdolgozatom
+    elkészítése során, így a LED működtetéséhez szükséges lépéseket, eszközöket fogom ismertetni.
+
+\subsubsection{Szükséges elemek}
+
+\begin{enumerate}
+    \item \textbf{Egy} tetszőleges színű LED 2 - 2.5V-os fényforrás
+    \item \textbf{Egy} próbapanel
+    \item \textbf{Egy} legalább 270 Ohm-os ellenállás, a szakdolgozathoz 470 Ohm-ost használtam
+    \item \textbf{Két} darab ANYA-APA Jumper kábel
+\end{enumerate}
+
+\begin{figure}[h!]
+    \centering
+    \begin{subfigure}[b]{0.4\linewidth}
+        \includegraphics[width=\linewidth]{images/led.png}
+        \caption{LED}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.4\linewidth}
+        \includegraphics[width=\linewidth]{images/probapanel.jpg}
+        \caption{Próbapanel}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.4\linewidth}
+        \includegraphics[width=\linewidth]{images/ellenallas.jpg}
+        \caption{Ellenállás}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.4\linewidth}
+        \includegraphics[width=\linewidth]{images/anyaapa.jpg}
+        \caption{ANYA-APA kábel}
+    \end{subfigure}
+    \caption{Szükséges elemek}
+    \label{fig:lampaelemek}
+\end{figure}
+
 
 % ------------------------------------------------------------------------------
 

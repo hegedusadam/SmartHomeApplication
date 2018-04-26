@@ -75,9 +75,9 @@
                                 <ColumnDefinition Width="200"/>
                             </Grid.ColumnDefinitions>
 
-                            <TextBlock Grid.Column="0" Text="{Binding date}"/>
-                            <TextBlock Grid.Column="1" Text="{Binding state, Converter={StaticResource BooleanToOnOrOffStringConverter}}"/>
-                            <TextBlock Grid.Column="2" Text="{Binding timeOn, Converter={StaticResource TimeSpanToStringConverter}}"/>
+                            <TextBlock HorizontalAlignment="Center" Grid.Column="0" Text="{Binding date}"/>
+                            <TextBlock HorizontalAlignment="Center" Grid.Column="1" Text="{Binding state, Converter={StaticResource BooleanToOnOrOffStringConverter}}"/>
+                            <TextBlock HorizontalAlignment="Center" Grid.Column="2" Text="{Binding timeOn, Converter={StaticResource TimeSpanToStringConverter}}"/>
                         </Grid>
                     </DataTemplate>
                 </GridView.ItemTemplate>
