@@ -202,7 +202,54 @@ urlcolor=blue,
     \label{fig:lampaelemek}
 \end{figure}
 
+\subsubsection{Összeszerelés}
+    Miután beszereztük a szükséges elemeket, megkezdhetjük az összeszerelést. A próbapanelbe fogjuk belehelyezni a LED-et,
+    az ellenállást, és a jumper kábel megfelelő végét. A másik végét a Raspberry Pi megfelelő GPIO pinjeire fogjuk csatlakoztatni.
+    Ahhoz hogy a pinek között tudjunk tájékozódni, érdemes vásárolni egy kártyát, melyet rá lehet szúrni a tüskékre, és lehet látni
+    a számozást.
 
+\begin{figure}[h!]
+    \hspace{5cm}
+    \includegraphics[width=6cm]{images/gpiohelper.jpg}
+    \caption{A GPIO pinekhez kapható segítség}
+    \label{fig: Pin segítség}
+\end{figure}
+
+    Készítsük magunk elé a mikroprocesszort és a többi szükséges eszközt, majd kövessük a következő lépéseket:
+
+\begin{enumerate}
+    \item A LED \textbf{hosszabbik} lábát szúrjuk bele a próbapanel \textbf{E} oszlopának \textbf{6.} sorába
+    \item A LED \textbf{rövidebb} lába kerüljön egyel a hosszabbik alá, tehát a \textbf{E} oszlop \textbf{7.} sorába
+    \item Hajlítsuk meg az ellenállás lábait úgy, hogy egy \textbf{U} alakot formáljon
+    \item Egyik lábát helyezzük a LED hosszabbik vége mellé, tehát a \textbf{D 7} mezőbe
+    \item A másik végződést szúrjuk a \textbf{D 1} helyre
+    \item Fogjunk két ANYA-APA kábelt, az egyik APA végét szúrjuk az \textbf{A 1}, a másikét az \textbf{A 7} helyre, a LED
+    rövidebb lábával egy sorba.
+    \item Az első kábel ANYA végét csatlakoztassuk a Raspberry Pi 3.3V-os kimenetelére. Ez a bal felső kimenet a mikroprocesszoron.
+    \item Végezetül a második kábel szabad végét kössük a 4-es GPIO pin-re. Ehhez használjuk a kis kártyát ha nem vagyunk biztosak
+    magunkban.
+\end{enumerate}
+
+\begin{figure}[h!]
+    \centering
+    \begin{subfigure}[b]{0.4\linewidth}
+        \includegraphics[width=\linewidth]{images/osszeszerelt1.jpg}
+        \caption{Összeszerelt próbapanel oldalról}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.4\linewidth}
+        \includegraphics[width=\linewidth]{images/osszeszerelt2.jpg}
+        \caption{Összeszerelt próbapanel felülről}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.5\linewidth}
+        \includegraphics[width=\linewidth]{images/osszeszerelt3.jpg}
+        \caption{Próbapanel rácsatlakoztatva a Raspberry Pi-re}
+    \end{subfigure}
+    \caption{Ha mindent jól csináltunk, a végeredmény így fog kinézni}
+    \label{fig:összeszerelés}
+\end{figure}
+
+    A mikroprocesszorunk elkészült, most már alkalmas arra, hogy a IoT kliensalkalmazást futtassa.
+    
 % ------------------------------------------------------------------------------
 
 

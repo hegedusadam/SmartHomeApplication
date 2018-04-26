@@ -11,3 +11,4 @@
 \select@language {hungarian} \contentsline {subsubsection}{Telep\IeC {\'\i }t\IeC {\'e}s nem el\IeC {\H o}telep\IeC {\'\i }tett SD k\IeC {\'a}rty\IeC {\'a}r\IeC {\'o}l}{6}{section*.6}
 \select@language {hungarian} \contentsline {subsection}{\numberline {2.2.4}L\IeC {\'a}mpa csatlakoztat\IeC {\'a}sa Raspberry Pi eszk\IeC {\"o}zh\IeC {\"o}z}{6}{subsection.2.2.4}
 \select@language {hungarian} \contentsline {subsubsection}{Sz\IeC {\"u}ks\IeC {\'e}ges elemek}{7}{section*.7}
+\select@language {hungarian} \contentsline {subsubsection}{\IeC {\"O}sszeszerel\IeC {\'e}s}{8}{section*.9}
