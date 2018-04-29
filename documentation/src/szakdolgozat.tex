@@ -15,6 +15,7 @@ urlcolor=blue,
 
 \usepackage{subcaption}
 \usepackage{csquotes}
+\usepackage{float}
 
 %\bibliographystyle{plain}
 
@@ -290,6 +291,68 @@ urlcolor=blue,
     \item Jelszó: ``\textbf{p@ssw0rd}''
 \end{itemize}
 
+    Ha sikeres volt az authentikáció, akkor a Windows Device Portal felülete fog megjelenni előttünk, mely így fest:
+
+\begin{figure}[h!]
+    \includegraphics[width=\linewidth]{images/deviceportal.jpg}
+    \caption{Windows Device Portal felülete}
+    \label{fig: Windows Device Portal}
+\end{figure}
+
+    Ez egy nagyon hasznos felület, megváltoztathatjuk eszközünk nevét, jelszavát, felügyelhetjük a futó alkalmazásokat,
+    kikapcsolhatjuk a Raspberry-t. De most egyelőre csak alkalmazást szeretnénk futtatni a mikroprocesszoron, így kattintsunk
+    a bal oldalon található ``\textbf{Apps}"" fülre, majd az ``\textbf{Apps manager}"" lehetőségre.
+
+\begin{figure}[h!]
+    \centering
+    \begin{subfigure}[b]{0.4\linewidth}
+        \includegraphics[width=\linewidth]{images/apps.jpg}
+        \caption{Kattintsunk az Apps fülre}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.4\linewidth}
+        \includegraphics[width=\linewidth]{images/appsmanager.jpg}
+        \caption{Majd az Apps Managerre}
+    \end{subfigure}
+    \caption{Navigáció alkalmazás hozzáadásához}
+    \label{fig:Apps manager}
+\end{figure}
+
+    Most már majdnem készen vagyunk, válasszuk ki az ``\textbf{Add}'' lehetőséget, majd a megjelenő kis ablakban húzzuk bele
+    a letöltött alkalmazást, vagy ki is kereshetjük a fájl böngészőből.
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.4\linewidth}
+        \includegraphics[width=\linewidth]{images/addapps.jpg}
+        \caption{Kattinsunk az Add-ra}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.4\linewidth}
+        \includegraphics[width=\linewidth]{images/deploy.jpg}
+        \caption{Húzzuk be, vagy keressük ki a letöltött alkalmazást}
+    \end{subfigure}
+    \caption{Alkalmazás hozzáadása}
+    \label{fig:AddApps}
+\end{figure}
+
+    Ha mindent jól csináltunk, akkor a listában megjelenik alkalmazásunk és a mellette található legördülő menüben a ``\textbf{Start}''
+    lehetőséget választva elindul az applikáció.
+
+    \textbf{Fontos!} Áramszünet esetén a mikroprocesszor nem indítja el magától a programot, ehhez a ``\textbf{Startup}'' oszlopban
+    be kell pipálnunk a lehetőséget.
+
+\begin{figure}[h!]
+    \centering
+    \begin{subfigure}[b]{0.4\linewidth}
+        \includegraphics[width=\linewidth]{images/startapp.jpg}
+        \caption{Indítsuk el az alkalmazást}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.4\linewidth}
+        \includegraphics[width=\linewidth]{images/startupapp.jpg}
+        \caption{Tegyük alapértelmezetté programunkat}
+    \end{subfigure}
+    \caption{Alkalmazás indítása és alapértelmezett futtatása}
+    \label{fig:StartupApp}
+\end{figure}
 % ------------------------------------------------------------------------------
 
 
