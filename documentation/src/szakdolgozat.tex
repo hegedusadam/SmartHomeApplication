@@ -14,6 +14,7 @@ urlcolor=blue,
 \urlstyle{same}
 
 \usepackage{subcaption}
+\usepackage{csquotes}
 
 %\bibliographystyle{plain}
 
@@ -249,7 +250,46 @@ urlcolor=blue,
 \end{figure}
 
     A mikroprocesszorunk elkészült, most már alkalmas arra, hogy a IoT kliensalkalmazást futtassa.
-    
+
+\subsection{Telepítés}
+
+\subsubsection{Asztali és mobilos környezetre}
+    A felhasználói kliensalkalmazást a piactérről tudjuk letölteni, ha rákeresünk a ``KeepSwitched'' kulcsszóra. További
+    teendőnk nincs, az érkező frissítéseket a program automatikusan letölteni és telepíti.
+    A használathoz szükségünk van internet kapcsolatra és Facebook profilra.
+
+\subsubsection{Raspberry Pi-re}
+    Miután megfelelően összeszereltük a mikroprocesszorunkat, futtathatjuk az IoT kliensalkalmazást, melyet szintén a piactérről
+    KeepSwitchedIoT néven tölthetünk le.
+    Most következik az Application Deployment, tehát a letöltött alkalmazást futtatni fogjuk Raspberry Pi eszközünkön. Ezt
+    megtehetjük böngészőből is, csak az Raspberry IP címére van szükségünk, amit leolvashatunk a képernyőről miután betöltött
+    az eszköz.
+
+\begin{figure}[h!]
+    \hspace{5cm}
+    \includegraphics[width=6cm]{images/rpiip.jpg}
+    \caption{A pirossal bekarikázott IP címre van szükségünk}
+    \label{fig: Raspberry IP}
+\end{figure}
+
+    Másoljuk a kapott értéket a böngésző címsorába, és a \textbf{8080} - as porton keresztül tudjuk elérni eszközünket.
+    Tehát ha az eszközünk IP címe például \textbf{192.168.0.105}, akkor az alábbi kerül a címsorba:
+
+\begin{figure}[h!]
+    \hspace{5cm}
+    \includegraphics[width=6cm]{images/browserrpi.jpg}
+    \caption{A címsorba írandó IP cím}
+    \label{fig: Raspberry IP Browser}
+\end{figure}
+
+    Ha helyen másoltuk ki az IP címet, akkor a böngésző kérni fog tőlünk egy felhasználónevet és jelszót. A Windows 10 IoT Core
+    operációs rendszer esetén az alapértelmezett adatok az alábbiak:
+
+\begin{itemize}
+    \item Felhasználónév: ``\textbf{Administrator}''
+    \item Jelszó: ``\textbf{p@ssw0rd}''
+\end{itemize}
+
 % ------------------------------------------------------------------------------
 
 

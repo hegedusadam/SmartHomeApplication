@@ -47,9 +47,9 @@
                     <ColumnDefinition Width="200"/>
                 </Grid.ColumnDefinitions>
 
-                <TextBlock x:Name="WhenTextBlock" HorizontalAlignment="Center" Grid.Column="0" Text="adsa"/>
-                <TextBlock x:Name="StateTextBlock" HorizontalAlignment="Center" Grid.Column="1" Text="Heasdaasder"/>
-                <TextBlock x:Name="MinutesOnTextBlock" HorizontalAlignment="Center" Grid.Column="2" Text="sadds"/>
+                <TextBlock x:Name="WhenTextBlock" HorizontalAlignment="Center" Grid.Column="0"/>
+                <TextBlock x:Name="StateTextBlock" HorizontalAlignment="Center" Grid.Column="1"/>
+                <TextBlock x:Name="MinutesOnTextBlock" HorizontalAlignment="Center" Grid.Column="2"/>
             </Grid>
             
             <ScrollViewer Visibility="{Binding LampGuid, Converter={StaticResource NoGuidToCollapsedVisibilityConverter}}">
