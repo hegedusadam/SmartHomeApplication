@@ -31,6 +31,8 @@ namespace SmartHomeApplication.ClientUWP.View
 			ViewModel = new LoginViewModel();
             this.InitializeComponent();
 			this.DataContext = ViewModel;
+
+            WelcomeTextBlock.Text = "Welcome to KeepSwitched!";
 		}
 
 		protected override void OnNavigatedTo(NavigationEventArgs e)

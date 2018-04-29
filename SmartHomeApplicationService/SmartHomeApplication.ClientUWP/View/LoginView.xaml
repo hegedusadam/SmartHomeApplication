@@ -15,9 +15,11 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="1" Margin="50,0,50,0">
-            <Button Name="FaceBookButtonLogin" Margin="0,8,8,0" Command="{Binding LoginCommand}" Style="{StaticResource LoginButtonStyle}" Background="{StaticResource FacebookLoginButtonColor}">
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="20,0,0,0">
+        <TextBlock x:Name="WelcomeTextBlock" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0" FontSize="30"></TextBlock>
+        
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="1">
+            <Button Name="FaceBookButtonLogin" Command="{Binding LoginCommand}" Style="{StaticResource LoginButtonStyle}" Background="{StaticResource FacebookLoginButtonColor}">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                     <Image Source="{StaticResource FacebookLogo}" HorizontalAlignment="Left" Height="24" Width="24"/>
                     <TextBlock Text="Login with Facebook" Style="{StaticResource LoginButtonTextStyle}"/>
                 </StackPanel>

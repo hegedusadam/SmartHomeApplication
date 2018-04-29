@@ -7,10 +7,14 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Networking.Connectivity;
+using Windows.UI.Core;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -38,6 +42,14 @@ namespace SmartHomeApplication.ClientUWP
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
+
+            Task.Run(async () =>
+            {
+                await Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
+                {
+                    await hasInternetConnection();
+                });
+            });
         }
 
         /// <summary>
@@ -99,5 +111,21 @@ namespace SmartHomeApplication.ClientUWP
 			Window.Current.Activate();
 			base.OnActivated(args);
 		}
-	}
+
+        public static async Task hasInternetConnection()
+        {
+            ConnectionProfile connections = NetworkInformation.GetInternetConnectionProfile();
+            bool internet = connections != null && connections.GetNetworkConnectivityLevel() == NetworkConnectivityLevel.InternetAccess;
+
+            if (!internet)
+            {
+                var noInternetDialog = new MessageDialog("Could not connect to internet. Please fix your connection and try again!");
+                noInternetDialog.Title = "Connection Error";
+                await noInternetDialog.ShowAsync();
+                noInternetDialog.Commands.Add(new UICommand("Ok"));
+
+                Current.Exit();
+            }
+        }
+    }
 }
