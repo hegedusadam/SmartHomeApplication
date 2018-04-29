@@ -119,10 +119,10 @@ namespace SmartHomeApplication.ClientUWP
 
             if (!internet)
             {
-                var noInternetDialog = new MessageDialog("Could not connect to internet. Please fix your connection and try again!");
+                var noInternetDialog = new MessageDialog("Could not connect to the Internet. Please fix your connection and try again!");
                 noInternetDialog.Title = "Connection Error";
-                await noInternetDialog.ShowAsync();
                 noInternetDialog.Commands.Add(new UICommand("Ok"));
+                await noInternetDialog.ShowAsync();
 
                 Current.Exit();
             }

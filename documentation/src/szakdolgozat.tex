@@ -113,8 +113,8 @@ urlcolor=blue,
     helyeztek forgalmomba 2012-ben, főleg oktatási célokra. Azóta számos változata megjelent, a szakdolgozat elkészítéséhez
     egy Raspberry Pi 3 Model B-t használtam. Számos bemenettel rendelkezik, többek között Ethernet csatlakozóval, HDMI, USB
     portokkal, a felhasznált modell pedig már beépített Wi-Fi adapterrel is. Többféle operációs rendszert telepíthetünk rá,
-    köztük a Windows 10 IoT Core-t is, így kiválóan alkalmas arra, hogy futtathassuk rajta az IoT kliensalkalmazást. A továbbiakban
-    a mikroprocesszor konfigurálása következik.
+    köztük a Windows 10 IoT Core-t is, így kiválóan alkalmas arra, hogy futtathassuk rajta az IoT (Internet of Things) kliensalkalmazást.
+    A továbbiakban a mikroprocesszor konfigurálása következik.
 
 \begin{figure}[h!]
     \hspace{5cm}
@@ -356,7 +356,37 @@ urlcolor=blue,
 
     A program telepítését befejeztük, az alkalmazás használatra kész!
 
+\section{Felhasználói esetek}
+
+\subsection{Bejelentkezés}
+    A Windows 10 kliensalkalmazást csak bejelentkezett felhasználók tudják használni. Fontos, hogy \textbf{csak és kizárólag}
+    Facebook profillal lehet belépni.
+
+    A bejelentkezés lépései:
+
+\begin{enumerate}
+    \item Indítsuk el a programot, rövid idő után megjelenik a kezdőképernyő
+    \item Kattintsunk a ``\textbf{Login with Facebook}'' feliratú kék hátterű gombra
+    \item Ha van letöltött Facebook alkalmazásunk, akkor az, egyébként a böngésző fog elindulni
+    \item A Facebook engedélyt kér a profil használatára, engedélyezzük
+    \item A program megjeleníti a lámpa hozzáadása nézetet, sikeresen bejelentkeztünk
+\end{enumerate}
+
 \section{Felhasználói felület}
+
+\subsection{IoT Kliensalkalmazás}
+    A Raspberry Pi-n futó alkalmazás nem rendelkezik különösebb felhasználói felülettel, csupán egy szürke háttérből, és egy
+    szövegdobozból áll. A szövegdobozban szerepel az eszköz GUID-ja, egyedi azonosítója, mely segítségével tudunk egy lámpát
+    hozzáadni a profilunkhoz.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=6cm]{images/lampuwp.jpg}
+    \caption{Az IoT kliensalkalmazás felülete}
+    \label{fig: LampUWP}
+\end{figure}
+
+
 % ------------------------------------------------------------------------------
 
 
