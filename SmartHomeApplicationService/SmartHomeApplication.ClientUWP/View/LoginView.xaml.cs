@@ -8,6 +8,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -33,7 +34,7 @@ namespace SmartHomeApplication.ClientUWP.View
 			this.DataContext = ViewModel;
 
             WelcomeTextBlock.Text = "Welcome to KeepSwitched!";
-		}
+        }
 
 		protected override void OnNavigatedTo(NavigationEventArgs e)
 		{

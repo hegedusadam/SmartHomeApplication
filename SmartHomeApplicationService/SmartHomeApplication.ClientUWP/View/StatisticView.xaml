@@ -39,8 +39,13 @@
                    Visibility="{Binding LampGuid, Converter={StaticResource NoGuidToVisibleVisibilityConverter}}"
                    Style="{StaticResource ViewText}"/>
 
-        <StackPanel Grid.Row="1">
-            <Grid HorizontalAlignment="Center">
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            
+            <Grid HorizontalAlignment="Center" Grid.Row="0">
                 <Grid.ColumnDefinitions> 
                     <ColumnDefinition Width="200"/>
                     <ColumnDefinition Width="100"/>
@@ -51,38 +56,38 @@
                 <TextBlock x:Name="StateTextBlock" HorizontalAlignment="Center" Grid.Column="1"/>
                 <TextBlock x:Name="MinutesOnTextBlock" HorizontalAlignment="Center" Grid.Column="2"/>
             </Grid>
-            
-            <ScrollViewer Visibility="{Binding LampGuid, Converter={StaticResource NoGuidToCollapsedVisibilityConverter}}">
-            <GridView ItemsSource="{Binding ChangesCollection}"
+
+            <ScrollViewer Visibility="{Binding LampGuid, Converter={StaticResource NoGuidToCollapsedVisibilityConverter}}" Grid.Row="1">
+                <GridView ItemsSource="{Binding ChangesCollection}"
                       IsItemClickEnabled="True"
                       IsSwipeEnabled="true"
                       SelectionMode="Single"
                       HorizontalAlignment="Center"
                       Visibility="{Binding LampGuid, Converter={StaticResource NoGuidToCollapsedVisibilityConverter}}">
 
-                <GridView.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <WrapGrid Orientation="Vertical"/>
-                    </ItemsPanelTemplate>
-                </GridView.ItemsPanel>
+                    <GridView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapGrid Orientation="Vertical"/>
+                        </ItemsPanelTemplate>
+                    </GridView.ItemsPanel>
 
-                <GridView.ItemTemplate>
-                    <DataTemplate>
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="200"/>
-                                <ColumnDefinition Width="100"/>
-                                <ColumnDefinition Width="200"/>
-                            </Grid.ColumnDefinitions>
+                    <GridView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="200"/>
+                                    <ColumnDefinition Width="100"/>
+                                    <ColumnDefinition Width="200"/>
+                                </Grid.ColumnDefinitions>
 
-                            <TextBlock HorizontalAlignment="Center" Grid.Column="0" Text="{Binding date}"/>
-                            <TextBlock HorizontalAlignment="Center" Grid.Column="1" Text="{Binding state, Converter={StaticResource BooleanToOnOrOffStringConverter}}"/>
-                            <TextBlock HorizontalAlignment="Center" Grid.Column="2" Text="{Binding timeOn, Converter={StaticResource TimeSpanToStringConverter}}"/>
-                        </Grid>
-                    </DataTemplate>
-                </GridView.ItemTemplate>
-            </GridView>
-        </ScrollViewer>
-       </StackPanel>
+                                <TextBlock HorizontalAlignment="Center" Grid.Column="0" Text="{Binding date}"/>
+                                <TextBlock HorizontalAlignment="Center" Grid.Column="1" Text="{Binding state, Converter={StaticResource BooleanToOnOrOffStringConverter}}"/>
+                                <TextBlock HorizontalAlignment="Center" Grid.Column="2" Text="{Binding timeOn, Converter={StaticResource TimeSpanToStringConverter}}"/>
+                            </Grid>
+                        </DataTemplate>
+                    </GridView.ItemTemplate>
+                </GridView>
+            </ScrollViewer>
+        </Grid>
     </Grid>
 </Page>

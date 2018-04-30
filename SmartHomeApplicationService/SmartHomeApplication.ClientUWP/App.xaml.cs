@@ -15,6 +15,7 @@ using Windows.Foundation.Collections;
 using Windows.Networking.Connectivity;
 using Windows.UI.Core;
 using Windows.UI.Popups;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -42,6 +43,9 @@ namespace SmartHomeApplication.ClientUWP
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
+
+            ApplicationView.PreferredLaunchViewSize = new Size(700, 500);
+            ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
 
             Task.Run(async () =>
             {
