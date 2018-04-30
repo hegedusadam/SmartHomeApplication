@@ -28,3 +28,6 @@
 \select@language {hungarian} \contentsline {subsection}{\numberline {2.5.2}Windows 10 kliensalkalmaz\IeC {\'a}s}{16}{subsection.2.5.2}
 \select@language {hungarian} \contentsline {subsubsection}{\numberline {2.5.2.1}Bejelentkez\IeC {\'e}s}{16}{subsubsection.2.5.2.1}
 \select@language {hungarian} \contentsline {subsubsection}{\numberline {2.5.2.2}Men\IeC {\"u}}{17}{subsubsection.2.5.2.2}
+\select@language {hungarian} \contentsline {subsubsection}{\numberline {2.5.2.3}L\IeC {\'a}mpa hozz\IeC {\'a}ad\IeC {\'a}sa n\IeC {\'e}zet}{18}{subsubsection.2.5.2.3}
+\select@language {hungarian} \contentsline {subsubsection}{\numberline {2.5.2.4}TODO: sikertelen hozz\IeC {\'a}ad\IeC {\'a}s}{19}{subsubsection.2.5.2.4}
+\select@language {hungarian} \contentsline {subsubsection}{\numberline {2.5.2.5}L\IeC {\'a}mpa vez\IeC {\'e}rl\IeC {\'e}se n\IeC {\'e}zet}{19}{subsubsection.2.5.2.5}

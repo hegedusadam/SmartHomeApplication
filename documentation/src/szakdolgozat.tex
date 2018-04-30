@@ -521,6 +521,82 @@ urlcolor=blue,
     mutató nyíl található
     \item  ``\textbf{Log Out}'' Ezen gomb segítségével tudunk kijelentkezni. Ikonja egy nyitott ajtó
 \end{itemize}
+
+\subsubsection{Lámpa hozzáadása nézet}
+    Bejelentkezés után a program automatikan erre a nézetre irányít, vagy a menüben az ``\textbf{Add Lamp}'' lehetőségre
+    kattintva juthatunk el ide.
+    Amennyiben még nem rendelkezünk hozzáadott eszközzel, akkor egy szöveges beviteli mező és egy a nézet nevével megegyező
+    feliratú gomb található az oldalon. Ha már csatlakoztattunk lámpát akkor az előbbi lehetőségek nem elérhetőek, helyette
+    egy rövid szöveg fogad minket, miszerint már van fényforássunk, a többi oldal felkeresésével tudjuk vezérelni, statisztikáit
+    megtekinteni.
+
+\begin{figure}[h!]
+    \centering
+    \begin{subfigure}[b]{0.4\linewidth}
+        \includegraphics[width=\linewidth]{images/addlampview.jpg}
+        \caption{Lámpa hozzadása nézet ha nincs még eszközünk}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.4\linewidth}
+        \includegraphics[width=\linewidth]{images/alreadyhaslamp.jpg}
+        \caption{Lámpa hozzáadása nézet ha már van nézetünk}
+    \end{subfigure}
+    \caption{Lámpa hozzáadása nézet}
+    \label{fig:AddLampView}
+\end{figure}
+
+    A lámpa hozzáadása az eszköz öt hosszúságú egyéni azonosítója segítségével történik, amennyiben nem megfelelő karaktersorozatot
+    adunk be, a program hibaüzenetet dob.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=6cm]{images/fivecharacter.jpg}
+    \caption{Nem megfelelő hosszúságú GUID esetén kapott hibaüzenet}
+    \label{fig: FiveCharacter}
+\end{figure}
+
+\subsubsection{TODO: sikertelen hozzáadás}
+
+\subsubsection{Lámpa vezérlése nézet}
+    Ez az oldal felelős a lámpa fel -és lekapcsolásáért, valamint itt tudjuk leválasztani az eszközt a profilunkról. Amennyiben
+    nem rendelkezünk fényforrással, akkor nem jelenik meg a kapcsoló és a törlés gomb, az alkalmazás egy rövid üzenettel kér
+    arra, hogy csatlakoztassunk egy lámpát, majd utána vezéreljük azt.
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.4\linewidth}
+        \includegraphics[width=\linewidth]{images/switchview.jpg}
+        \caption{Lámpa vezérlése}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.4\linewidth}
+        \includegraphics[width=\linewidth]{images/switchdonthavelamp.jpg}
+        \caption{Lámpa vezérlése ha nincs lámpánk}
+    \end{subfigure}
+    \caption{Lámpa vezérlése nézet}
+    \label{fig:SwitchLampView}
+\end{figure}
+
+    Ha úgy döntünk hogy eltávolítjuk a profilunkhoz kapcsolt lámpát, akkor kattintsunk a ``\textbf{Delete Lamp}'' feliratú
+    gombra, a program megkérdezi hogy véglegesítjük-e a döntést. Ha igen, akkor a sikeres törlést követően értesítést kapunk
+    a művelet befejeztéről.
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.4\linewidth}
+        \includegraphics[width=\linewidth]{images/suredelete.jpg}
+        \caption{Törlést megerősítő felugró ablak}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.4\linewidth}
+        \includegraphics[width=\linewidth]{images/deletesuccess.jpg}
+        \caption{Sikeres törlés értesítő üzenet}
+    \end{subfigure}
+    \caption{Lámpa törlése}
+    \label{fig:LampDelete}
+\end{figure}
+
+    \textbf{Fontos!} A törlés ebben az esetben is végleges, nem lehet visszaállítani a korábbi állapotot, azonban ha szeretnénk,
+    ugyanazt a lámpát az ``Add Lamp'' oldalon gond nélkül felvehetjük újra.
+
+
 % ------------------------------------------------------------------------------
 
 
