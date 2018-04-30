@@ -368,8 +368,52 @@ urlcolor=blue,
     \item Indítsuk el a programot, rövid idő után megjelenik a kezdőképernyő
     \item Kattintsunk a ``\textbf{Login with Facebook}'' feliratú kék hátterű gombra
     \item Ha van letöltött Facebook alkalmazásunk, akkor az, egyébként a böngésző fog elindulni
+    \item Betöltődik a Facebook oldala, jelentkezzünk be email címünkkel, jelszavunkkal
     \item A Facebook engedélyt kér a profil használatára, engedélyezzük
     \item A program megjeleníti a lámpa hozzáadása nézetet, sikeresen bejelentkeztünk
+\end{enumerate}
+
+\subsection{Lámpa hozzáadása}
+    A program célja, hogy távolról tudjunk vezérelni egy lámpát, ezért most végigmegyünk azokon a lépéseken, melyek a fényforrás
+    hozzáadásához kellenek.
+
+\begin{enumerate}
+    \item Jelentkezzünk be a Windows 10 kliensalkalmazásba
+    \item Sikeres bejelentkezés esetén a program a lámpa hozzadásáért felelős nézetre navigál, mely egy ``\textbf{GUID of Your lamp}''
+    feliratból, egy szöveges beviteli mezőből, valamint egy egy gombból áll
+    \item Ha még nem tettük volna meg, indítsuk el az IoT kliensalkalmazást, és olvassuk le a felhasználói felületén található
+    5 karakterből álló egyéni azonosítót, a GUID-ot.
+    \item Ezt a karaktersosorozatot másoljuk a szöveges beviteli mezőbe, majd kattintsunk az ``\textbf{Add lamp}'' feliratú gombra
+    \item Ha megfelelő azonosítót adtunk be, akkor a lámpa sikeres felvételéről egy felugró ablak fog tájékoztatni minket
+\end{enumerate}
+
+\subsection{Lámpa vezérlése}
+    Miután sikeresen csatlakoztattunk lámpát a profilunkhoz, szeretnénk vezérelni azt. Most az ehhez szükséges lépéseket tekintjük át.
+
+\begin{enumerate}
+    \item Jelentkezzünk be a Windows 10 kliensalkalmazásba
+    \item Ha már sikeresen hozzáadtunk egy lámpát, akkor a képernyőn nem a szöveges beviteli mező lesz és a hozzáadás gomb, hanem
+    egy felirat, mely tájékoztat arról, hogy már csatlakoztattunk eszközt
+    \item Kattintsunk a bal felső sarokban lévő ``hamburgerger'' ikonra, ezzel előhozva a menüt
+    \item Válasszuk a ``\textbf{Switch Lamp}'' menüpontot
+    \item A megjelenített oldalon egy kapcsoló és egy gomb található. A kapcsolóval tudjuk a lámpát fel -és lekapcsolni, ``On''
+    állapotban a fényforrás bekapcsolt, ``Off'' esetén pedig kikapcsolt állapotban van.
+\end{enumerate}
+
+    Most már sikeresen tudjunk vezérelni az alkalmazáson keresztül a profilunkhoz kapcsolt eszközt.
+
+\subsection{Lámpa eltávolítása}
+    Előfordulhat, hogy másik lámpát szeretnék vezérelni, így az előzőt el kell távolítani profilunkból. Ezt az alábbi pár lépésben
+    megtehetjük.
+
+\begin{enumerate}
+    \item Jelentkezzünk be a Windows 10 kliensalkalmazásba
+    \item Bal felül kattintsunk a ``hamburger'' ikonra, ezzel előhozva a menüt
+    \item Válasszuk a ``\textbf{Switch Lamp}'' lehetőséget, megjelenik a vezérlő nézet
+    \item Az oldal alján található egy ``\textbf{Delete Lamp}'' feliratú gomb egy kuka ikonnal. Erre kattintsunk
+    \item A program egy felugró ablakon keresztül megkérdezi, hogy biztosan szeretnénk-e eltávolítani a csatolt eszközünket
+    válasszuk a ``\textbf{Yes}'' opciót a törléshez
+    \item Az alkalmazás visszaigazolja a sikeres műveletet
 \end{enumerate}
 
 \section{Felhasználói felület}

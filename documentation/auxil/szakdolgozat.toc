@@ -17,5 +17,8 @@
 \select@language {hungarian} \contentsline {subsection}{\numberline {2.3.2}Raspberry Pi-re}{10}{subsection.2.3.2}
 \select@language {hungarian} \contentsline {section}{\numberline {2.4}Felhaszn\IeC {\'a}l\IeC {\'o}i esetek}{12}{section.2.4}
 \select@language {hungarian} \contentsline {subsection}{\numberline {2.4.1}Bejelentkez\IeC {\'e}s}{12}{subsection.2.4.1}
-\select@language {hungarian} \contentsline {section}{\numberline {2.5}Felhaszn\IeC {\'a}l\IeC {\'o}i fel\IeC {\"u}let}{13}{section.2.5}
-\select@language {hungarian} \contentsline {subsection}{\numberline {2.5.1}IoT Kliensalkalmaz\IeC {\'a}s}{13}{subsection.2.5.1}
+\select@language {hungarian} \contentsline {subsection}{\numberline {2.4.2}L\IeC {\'a}mpa hozz\IeC {\'a}ad\IeC {\'a}sa}{13}{subsection.2.4.2}
+\select@language {hungarian} \contentsline {subsection}{\numberline {2.4.3}L\IeC {\'a}mpa vez\IeC {\'e}rl\IeC {\'e}se}{13}{subsection.2.4.3}
+\select@language {hungarian} \contentsline {subsection}{\numberline {2.4.4}L\IeC {\'a}mpa elt\IeC {\'a}vol\IeC {\'\i }t\IeC {\'a}sa}{14}{subsection.2.4.4}
+\select@language {hungarian} \contentsline {section}{\numberline {2.5}Felhaszn\IeC {\'a}l\IeC {\'o}i fel\IeC {\"u}let}{14}{section.2.5}
+\select@language {hungarian} \contentsline {subsection}{\numberline {2.5.1}IoT Kliensalkalmaz\IeC {\'a}s}{14}{subsection.2.5.1}
