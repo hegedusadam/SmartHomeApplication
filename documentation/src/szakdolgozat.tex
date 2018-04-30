@@ -36,7 +36,7 @@ urlcolor=blue,
 
 \usepackage{pgfplots}
 \pgfplotsset{width=7cm,compat=1.12}
-
+\setcounter{secnumdepth}{3}
 
 \begin{document}
 
@@ -472,7 +472,55 @@ urlcolor=blue,
 \end{figure}
 
 \subsection{Windows 10 kliensalkalmazás}
-    
+
+\subsubsection{Bejelentkezés}
+    Az alkalmazás indítása után egy szürke hátterű ablak jelenik meg üdvözlőszöveggel, középen pedig a bejelentkezéshez szükséges
+    gombbal. Erre kattintva tudunk Facebookon keresztül belépni a programba.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=6cm]{images/loginview.jpg}
+    \caption{Bejelentkező ablak}
+    \label{fig: Login}
+\end{figure}
+
+    \textbf{Fontos!} Az állandó internetkapcsolat alapkövetelmény, a program indításakor az alkalmazás ellenőrzi, hogy csatlakozunk-e
+    a világhálóhoz, amennyiben nem, egy felugró ablak fog fogadni minket, mely tájékoztat a hibáról, majd bezárul a program.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=6cm]{images/connectionerror.jpg}
+    \caption{Internetkapcsolat hiánya esetén látható hibaüzenet}
+    \label{fig: ConnectionError}
+\end{figure}
+
+\subsubsection{Menü}
+    Bejelentkezés után a menüt a bal felső sarokban található ``hamburger'' ikonra kattintva tudjuk előhozni. Ez felel az
+    alkalmazáson belüli navigációért, és itt van lehetőség kijelentkezésre is.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=3cm,height=6cm,keepaspectratio]{images/hamburgermenu.jpg}
+    \caption{Hamburger menü}
+    \label{fig: Hamburger}
+\end{figure}
+
+    A képen látható, hogy a ``hamburger'' ikon mellett található az éppen megnyitott lap neve, a minta esetében ``ADD LAMP'',
+    alatta a Facebook profilképünk, és a nevünk.
+    Továbbá a személyes adataink alatt találhatóak a nézetek, melyek közt navigálhatunk. Kezdetben a lámpa hozzáadásáért felelős
+    oldal töltődik be, onnan válthatunk a menü segítségével. A választási lehetőség neve mellett egy kis ikon található, ez
+    adhat egy kis segítséget abban, hogy az adott nézet miért felelős. A kijelentkezés gomb a menü alján található.
+
+    Az alkalmazás az alábbi lehetőségeket kínálja:
+
+\begin{itemize}
+    \item ``\textbf{Add Lamp}'' Lámpa hozzadásáért felelős nézet. Ikonja egy plusz jel bekarikázva
+    \item ``\textbf{Switch Lamp}'' A lámpa vezérléséért felelős nézet, továbbá itt tudjuk eltávolítani a profilunkhoz csatolt
+    eszközt. Ikonja egy lámpakapcsoló
+    \item ``\textbf{Statistic}'' A lámpa statisztikáit tudjuk ebben a nézetben szemügyre venni. Ikonja egy diagram melyen egy felfele
+    mutató nyíl található
+    \item  ``\textbf{Log Out}'' Ezen gomb segítségével tudunk kijelentkezni. Ikonja egy nyitott ajtó
+\end{itemize}
 % ------------------------------------------------------------------------------
 
 
