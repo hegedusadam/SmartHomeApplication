@@ -35,7 +35,7 @@ namespace SmartHomeApplication.ClientUWP.View
 			NoLampTextBlock.Text = "No lamp added! Please visit the Add Lamp view to add a new lamp!";
             WhenTextBlock.Text = "When";
             StateTextBlock.Text = "State";
-            MinutesOnTextBlock.Text = "Minutes switched On";
+            MinutesOnTextBlock.Text = "Time switched On";
 
 			DeleteChanges.LabelText = "Clear History";
 			DeleteChanges.DefaultImageSource =

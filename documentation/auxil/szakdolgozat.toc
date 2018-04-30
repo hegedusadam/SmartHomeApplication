@@ -20,5 +20,7 @@
 \select@language {hungarian} \contentsline {subsection}{\numberline {2.4.2}L\IeC {\'a}mpa hozz\IeC {\'a}ad\IeC {\'a}sa}{13}{subsection.2.4.2}
 \select@language {hungarian} \contentsline {subsection}{\numberline {2.4.3}L\IeC {\'a}mpa vez\IeC {\'e}rl\IeC {\'e}se}{13}{subsection.2.4.3}
 \select@language {hungarian} \contentsline {subsection}{\numberline {2.4.4}L\IeC {\'a}mpa elt\IeC {\'a}vol\IeC {\'\i }t\IeC {\'a}sa}{14}{subsection.2.4.4}
-\select@language {hungarian} \contentsline {section}{\numberline {2.5}Felhaszn\IeC {\'a}l\IeC {\'o}i fel\IeC {\"u}let}{14}{section.2.5}
-\select@language {hungarian} \contentsline {subsection}{\numberline {2.5.1}IoT Kliensalkalmaz\IeC {\'a}s}{14}{subsection.2.5.1}
+\select@language {hungarian} \contentsline {subsection}{\numberline {2.4.5}Statisztika megtekint\IeC {\'e}se}{14}{subsection.2.4.5}
+\select@language {hungarian} \contentsline {subsection}{\numberline {2.4.6}Statisztika el\IeC {\H o}zm\IeC {\'e}nyek t\IeC {\"o}rl\IeC {\'e}se}{15}{subsection.2.4.6}
+\select@language {hungarian} \contentsline {section}{\numberline {2.5}Felhaszn\IeC {\'a}l\IeC {\'o}i fel\IeC {\"u}let}{15}{section.2.5}
+\select@language {hungarian} \contentsline {subsection}{\numberline {2.5.1}IoT Kliensalkalmaz\IeC {\'a}s}{15}{subsection.2.5.1}
