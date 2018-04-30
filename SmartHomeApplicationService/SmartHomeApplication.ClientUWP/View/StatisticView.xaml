@@ -45,7 +45,7 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             
-            <Grid HorizontalAlignment="Center" Grid.Row="0">
+            <Grid HorizontalAlignment="Center" Grid.Row="0" Visibility="{Binding LampGuid, Converter={StaticResource NoGuidToCollapsedVisibilityConverter}}">
                 <Grid.ColumnDefinitions> 
                     <ColumnDefinition Width="200"/>
                     <ColumnDefinition Width="100"/>

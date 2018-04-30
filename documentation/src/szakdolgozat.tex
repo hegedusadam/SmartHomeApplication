@@ -596,7 +596,65 @@ urlcolor=blue,
     \textbf{Fontos!} A törlés ebben az esetben is végleges, nem lehet visszaállítani a korábbi állapotot, azonban ha szeretnénk,
     ugyanazt a lámpát az ``Add Lamp'' oldalon gond nélkül felvehetjük újra.
 
+\subsubsection{Statisztika nézet}
+    Csatolt eszközünkről szerezhetünk információt ezen az oldalon. Listázza a korábbi fel -és lekapcsolásokat, azok pontos idejét,
+    milyen változatás történt, valamint hogy mennyi ideig volt bekapcsolva az adott ciklusban. Az összesített időt is megjeleníti a
+    nézet. Amennyiben nem rendelkezünk lámpával, itt is egy rövid üzenetet kapunk, hogy először csatlakoztassunk eszközt.
 
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.4\linewidth}
+        \includegraphics[width=\linewidth]{images/statisticview.jpg}
+        \caption{Statisztika nézet}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.4\linewidth}
+        \includegraphics[width=\linewidth]{images/statisticnolamp.jpg}
+        \caption{Statisztika nézet, ha nincs lámpa}
+    \end{subfigure}
+    \caption{Statisztika oldal}
+    \label{fig:Statistic}
+\end{figure}
+
+    Lehetőség nyílik a teljes előzményt törölni, ez akkor lehet hasznos, ha például új villanykörtét szerelünk a lámpába,
+    és szeretnénk ha tiszta lappal indulna a statisztika. Ehhez a ``Clear History'' feliratú gombra kell kattintatunk, ezután
+    a korábbi esetekhez hasonlóan egy felugró ablak kéri a törlés megerősítését, a ``Yes'' opciót választva a sikeres törlés
+    esetén visszaigazolást kapunk a művelet zökkenőmentes befejezéséről.
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.4\linewidth}
+        \includegraphics[width=\linewidth]{images/statistichistoriydeletesure.jpg}
+        \caption{Előzmények törlésének megerősítése}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.4\linewidth}
+        \includegraphics[width=\linewidth]{images/statisticdeletesucces.jpg}
+        \caption{Előzmények törlése sikeresen lezajlott}
+    \end{subfigure}
+    \caption{Statisztika előzmények törlése}
+    \label{fig:StatisticDelete}
+\end{figure}
+
+    \textbf{Fontos!} A törlés végleges, az előzményeket \textbf{nem} lehet visszanyerni, valamint ezen lámpa összes felhasználója
+    számára törli az adatokat.
+
+\subsubsection{Kijelentkezés}
+    A felhasználó ki tud jelentkezni az alkalmazásból, a program a nevét és profilképét nem használja tovább. A menü alján
+    található ``Log Out'' feliratú gomb egy kis ajtó ikonnal mellette. Erre kattintva a program egy szokásos felugró ablakkal
+    győződik meg szándékunk komolyságáról. Megerősített kijelentkezés után a bejelentkező képernyőre navigál az alkalmazás.
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.4\linewidth}
+        \includegraphics[width=\linewidth]{images/logoutsure.jpg}
+        \caption{Kijelentkezés megerősítése}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.4\linewidth}
+        \includegraphics[width=\linewidth]{images/logoutbacktologin.jpg}
+        \caption{Kijelentkezés után a bejelentkező oldal jelenik meg}
+    \end{subfigure}
+    \caption{Kijelentkezés menete}
+    \label{fig:Logout}
+\end{figure}
 % ------------------------------------------------------------------------------
 
 
