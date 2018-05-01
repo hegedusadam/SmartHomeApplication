@@ -46,14 +46,6 @@ namespace SmartHomeApplication.ClientUWP
 
             ApplicationView.PreferredLaunchViewSize = new Size(700, 500);
             ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
-
-            Task.Run(async () =>
-            {
-                await Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
-                {
-                    await hasInternetConnection();
-                });
-            });
         }
 
         /// <summary>
@@ -63,7 +55,15 @@ namespace SmartHomeApplication.ClientUWP
         /// <param name="e">Details about the launch request and process.</param>
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
-			SplitViewShell shell = Window.Current.Content as SplitViewShell;
+            Task.Run(async () =>
+            {
+                await Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
+                {
+                    await hasInternetConnection();
+                });
+            });
+
+            SplitViewShell shell = Window.Current.Content as SplitViewShell;
 
 			if (shell == null)
 			{

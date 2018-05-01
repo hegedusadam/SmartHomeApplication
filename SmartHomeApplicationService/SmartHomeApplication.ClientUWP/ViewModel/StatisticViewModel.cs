@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -224,10 +225,20 @@ namespace SmartHomeApplication.ClientUWP.ViewModel
 					var token = new JObject();
 					token.Add("lampGuid", LampGuid);
 					var result = await App.MobileService.InvokeApiAsync("/Change/DeleteChanges",  token);
+                    HttpResponseMessage httpResponse = result.ToObject<HttpResponseMessage>();
 
-					var deletedDialog = new MessageDialog("Successfully cleared history!");
-					deletedDialog.Commands.Add(new UICommand("Ok"));
-					await deletedDialog.ShowAsync();
+                    if (httpResponse.StatusCode.Equals(HttpStatusCode.OK))
+                    {
+                        var deletedDialog = new MessageDialog("Successfully cleared history!");
+                        deletedDialog.Commands.Add(new UICommand("Ok"));
+                        await deletedDialog.ShowAsync();
+                    }
+                    else
+                    {
+                        var errorDialog = new MessageDialog("Error! Failed to delete history! Please try again!");
+                        errorDialog.Commands.Add(new UICommand("Ok"));
+                        await errorDialog.ShowAsync();
+                    }
 				}
 				else
 				{

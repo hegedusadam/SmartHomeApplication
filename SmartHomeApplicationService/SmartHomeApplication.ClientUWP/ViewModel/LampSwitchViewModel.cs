@@ -150,13 +150,23 @@ namespace SmartHomeApplication.ClientUWP.ViewModel
 					token.Add("userId", App.UserInformation.userId);
 					token.Add("lampGuid", LampGuid);
 					var result = await App.MobileService.InvokeApiAsync("/Lamp/DeleteUserFromLamp", token);
+                    HttpResponseMessage httpResponse = result.ToObject<HttpResponseMessage>();
 
-					LampGuid = "NOGUID";
+                    if (httpResponse.StatusCode.Equals(HttpStatusCode.OK))
+                    {
+                        var deletedDialog = new MessageDialog("Lamp successfully deleted!");
+                        deletedDialog.Commands.Add(new UICommand("Ok"));
+                        await deletedDialog.ShowAsync();
 
-					var deletedDialog = new MessageDialog("Lamp successfully deleted!");
-					deletedDialog.Commands.Add(new UICommand("Ok"));
-					await deletedDialog.ShowAsync();
-				}
+                        LampGuid = "NOGUID";
+                    }
+                    else
+                    {
+                        var errorDialog = new MessageDialog("Error! Failed to delete lamp! Please try again!");
+                        errorDialog.Commands.Add(new UICommand("Ok"));
+                        await errorDialog.ShowAsync();
+                    }
+                }
 				else
 				{
 					return;

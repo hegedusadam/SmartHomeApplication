@@ -9,6 +9,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using SmartHomeApplicationService.Models;
 
@@ -17,12 +18,6 @@ namespace SmartHomeApplicationService.Controllers
 	public class UserController : Controller
 	{
 		private SmartHomeApplicationDatabase db = new SmartHomeApplicationDatabase();
-
-		// GET: Users
-		public ActionResult Index()
-		{
-			return this.Json(db.Users.ToList(), JsonRequestBehavior.AllowGet);
-		}
 
 		[HttpPost, ActionName("Register")]
 		public int RegisterToDatabase(UserInfo userInfo)
@@ -48,7 +43,7 @@ namespace SmartHomeApplicationService.Controllers
 		}
 
 		[HttpPost, ActionName("GetGuid")]
-		public JsonResult GetLampGuid(UserInfo userInfo)
+		public string GetLampGuid(UserInfo userInfo)
 		{
 
 			User user = db.Users.Where(u => u.UserProfileId == userInfo.UserProfileId).FirstOrDefault();
@@ -64,12 +59,12 @@ namespace SmartHomeApplicationService.Controllers
 				guid = user.Lamp.lampguid;
 			}
 
-			return this.Json(guid, JsonRequestBehavior.AllowGet);
-		}
+            return JsonConvert.SerializeObject(guid);
+        }
 
 
 		[HttpGet, ActionName("GetUserInfo")]
-		public async Task<JsonResult> GetUserInfo()
+		public async Task<string> GetUserInfo()
 		{
 			string accessToken = GetAccessToken();
 			UserInfo info = new UserInfo();
@@ -96,8 +91,8 @@ namespace SmartHomeApplicationService.Controllers
 				}
 			}
 
-			return this.Json(info, JsonRequestBehavior.AllowGet);
-		}
+            return JsonConvert.SerializeObject(info);
+        }
 
 		private string GetAccessToken()
 		{

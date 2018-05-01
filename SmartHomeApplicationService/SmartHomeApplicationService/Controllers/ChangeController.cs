@@ -40,15 +40,24 @@ namespace SmartHomeApplicationService.Controllers
 		}
 
 		[HttpPost, ActionName("DeleteChanges")]
-		public void DeleteChangesByGuid(string lampGuid)
+		public string DeleteChangesByGuid(string lampGuid)
 		{
-			int lampId = db.Lamps.Where(l => l.lampguid.Trim() == lampGuid).FirstOrDefault().Id;
-			db.Changes.RemoveRange(db.Changes.Where(c => c.lampid == lampId));
+            try
+            {
+                int lampId = db.Lamps.Where(l => l.lampguid.Trim() == lampGuid).FirstOrDefault().Id;
+                db.Changes.RemoveRange(db.Changes.Where(c => c.lampid == lampId));
 
-			db.SaveChanges();
+                db.SaveChanges();
 
-			lampContext.Clients.All.ChangesDeleted(lampGuid);
-		}
+                lampContext.Clients.All.ChangesDeleted(lampGuid);
+
+                return JsonConvert.SerializeObject(new HttpStatusCodeResult(HttpStatusCode.OK));
+            }
+            catch (Exception e)
+            {
+                return JsonConvert.SerializeObject(new HttpStatusCodeResult(HttpStatusCode.InternalServerError));
+            }
+        }
 
 		protected override void Dispose(bool disposing)
 		{

@@ -18,39 +18,47 @@ namespace SmartHomeApplicationService.Controllers
 		private SmartHomeApplicationDatabase db = new SmartHomeApplicationDatabase();
 		private IHubContext lampContext = GlobalHost.ConnectionManager.GetHubContext<LampHub>();
 
-		// GET: Lamps
-		public ActionResult Index()
-		{
-			return this.Json(db.Lamps.ToList(), JsonRequestBehavior.AllowGet);
-		}
-
 		[System.Web.Mvc.Authorize]
 		[HttpPost, ActionName("AddUserToLamp")]
-		public ActionResult AddUserLamp(NewLamp newLamp)
+		public string AddUserLamp(NewLamp newLamp)
 		{
-			Lamp lamp = db.Lamps.Where(l => l.lampguid.Trim() == newLamp.LampGuid).FirstOrDefault();
+            try
+            {
+                Lamp lamp = db.Lamps.Where(l => l.lampguid.Trim() == newLamp.LampGuid).FirstOrDefault();
 
-			User user = db.Users.Find(newLamp.UserId);
-			lamp.Users.Add(user);
+                User user = db.Users.Find(newLamp.UserId);
+                lamp.Users.Add(user);
 
-			db.SaveChanges();
+                db.SaveChanges();
 
-			return new HttpStatusCodeResult(HttpStatusCode.OK);
+                return JsonConvert.SerializeObject(new HttpStatusCodeResult(HttpStatusCode.OK));
+            }
+            catch (Exception e)
+            {
+                return JsonConvert.SerializeObject(new HttpStatusCodeResult(HttpStatusCode.InternalServerError));
+            }
 		}
 
 		[System.Web.Mvc.Authorize]
 		[HttpPost, ActionName("DeleteUserFromLamp")]
-		public ActionResult DeleteUserFromLamp(UserInfo userInfo)
+		public string DeleteUserFromLamp(UserInfo userInfo)
 		{
-			Lamp lamp = db.Lamps.Where(l => l.lampguid.Trim() == userInfo.lampGuid).FirstOrDefault();
+            try
+            {
+                Lamp lamp = db.Lamps.Where(l => l.lampguid.Trim() == userInfo.lampGuid).FirstOrDefault();
 
 
-			User user = db.Users.Find(userInfo.userId);
-			lamp.Users.Remove(user);
+                User user = db.Users.Find(userInfo.userId);
+                lamp.Users.Remove(user);
 
-			db.SaveChanges();
+                db.SaveChanges();
 
-			return new HttpStatusCodeResult(HttpStatusCode.OK);
+                return JsonConvert.SerializeObject(new HttpStatusCodeResult(HttpStatusCode.OK));
+            }
+            catch (Exception e)
+            {
+                return JsonConvert.SerializeObject(new HttpStatusCodeResult(HttpStatusCode.InternalServerError));
+            }
 		}
 
 		[HttpPost, ActionName("RegisterDevice")]

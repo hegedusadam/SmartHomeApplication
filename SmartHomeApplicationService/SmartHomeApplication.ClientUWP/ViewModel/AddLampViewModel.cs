@@ -5,6 +5,8 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -62,14 +64,24 @@ namespace SmartHomeApplication.ClientUWP.ViewModel
 				token.Add("LampGuid", NewLampGuid);
 				token.Add("UserID", App.UserInformation.userId);
 				var result = await App.MobileService.InvokeApiAsync("/Lamp/AddUserToLamp", token);
+                HttpResponseMessage httpResponse = result.ToObject<HttpResponseMessage>();
+             
+                if (httpResponse.StatusCode.Equals(HttpStatusCode.OK))
+                {
+                    App.UserInformation.lampGuid = NewLampGuid;
+                    LampGuid = NewLampGuid;
 
-				App.UserInformation.lampGuid = NewLampGuid;
-				LampGuid = NewLampGuid;
-
-				var addedDialog = new MessageDialog("Lamp successfully added!");
-				addedDialog.Commands.Add(new UICommand("Ok"));
-				await addedDialog.ShowAsync();
-			} catch (Exception e)
+                    var deletedDialog = new MessageDialog("Lamp successfully added!");
+                    deletedDialog.Commands.Add(new UICommand("Ok"));
+                    await deletedDialog.ShowAsync();
+                }
+                else
+                {
+                    var errorDialog = new MessageDialog("Error! Failed to add lamp! Please try again!");
+                    errorDialog.Commands.Add(new UICommand("Ok"));
+                    await errorDialog.ShowAsync();
+                }
+            } catch (Exception e)
 			{
 				Debug.WriteLine(e.Message);
 			}
