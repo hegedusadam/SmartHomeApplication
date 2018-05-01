@@ -665,6 +665,21 @@ urlcolor=blue,
 \end{figure}
 
 \chapter{Fejlesztői dokumentáció}
+
+\section{Általános áttekintés}
+    A program három fő részből áll, és mindegyik rész Microsoft technológiák felhasználásával készült. Kliens oldalon két
+    Universal Windows Platform alkalmazás található. Az egyik, IoT kliensalkalmazás, mely egy Windows 10 IoT Core operációs rendszerrel
+    telepített Raspberry Pi 3 Model B-n fut, feladata a rácsatlakoztatott lámpa vezérlése. A másik, egy Windows 10 asztali és mobil
+    alkalmazás, mely az ügyfelek számára nyújt kényelmes felületet a fényforrás irányításához. Az előbbi két alkalmazást egy .NET Web
+    szerver köti össze, mely Microsoft Azure App Service szolgáltatásában fut. Az adatbázist egy Azure SQL szerver testesíti meg, és a webes
+    applikáció kezeli.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{images/struktura.jpg}
+    \caption{A program struktúrája}
+    \label{fig: Struktura}
+\end{figure}
 % ------------------------------------------------------------------------------
 
 
