@@ -746,6 +746,44 @@ urlcolor=blue,
     \item Gépeljük be: git clone ``https://github.com/hegedusadam/SmartHomeApplication.git'', majd üssünk entert
     \item A program a GitHub felhasználónevünket és jelszavunkat fogja kérni
 \end{enumerate}
+
+\section{Microsoft Azure}
+    Az Azure a Microsoft felhőalapű platformja, melyen infrastruktúra -és platformszolgáltatásokat vehetünk igénybe. Több mint
+    hatszáz lehetőség közül választhatunk, számunkra azonban csak kettőre van szükség. Az \textbf{Azure App Service} és az
+    \textbf{Azure SQL szerver} szolgáltatásokra. Ezek igénybevételéhez regisztrálnunk kell a \url{portal.azure.com} oldalon.
+    Számos adatunk mellett bankkártya információkat is meg kell adnunk, azonban az App Service számunkra elegendő szolgáltatás
+    ingyenes, az SQL szerver pedig minimális költséggel jár havonta, amennyiben egy gyengébb konfigurációt választunk.
+
+\subsection{App Service létrehozása}
+    Miután sikeresen regisztráltunk az oldalon, hozzuk létre a szerver futtatásához szükséges platformszolgáltatást. Kattintsunk
+    a bal felső sarokban található ``\textbf{Create Resource}'' gombra, majd a megnyíló ablakban a ``\textbf{Web + Mobile}'' lehetőségre.
+    A szakdolgozathoz ``\textbf{Mobile App}'' - ot használtam, de lényegi különbség nincs a ``Web App'' - hoz képest.
+    Ezt követően töltsük ki a szükséges adatokat, majd a platform konfigurálja nekünk a szervert.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=10cm,keepaspectratio]{images/azurecreatemobilapp.jpg}
+    \caption{Mobile App létrehozás lépései}
+    \label{fig: MobileApp}
+\end{figure}
+
+\subsection{Azure SQL adatbázis létehozása}
+    Az Azure adatbázis szolgáltatását fogjuk igénybe venni, mivel könnyen kezelhető, kényelmes felülete nyújt, és egyszerűen
+    csatlakoztathatjuk a korábban létrehozott \textbf{Mobile App} szolgáltatásunkhoz.
+    Adatbázis hozzáadásához ugyanúgy a bal felső sarokban a ``Create Resource'' lehetőségre kell kattintanunk, és a ``Popular''
+    fül alatt talán már meg is találhatjuk a szükséges szolgáltatást, ha mégsincs ott, akkor a kereső kezdjük el gépelni az ``SQL``
+    betűket, majd az eredmények között válasszuk az ``\textbf{SQL database}'' opciót.
+    Jelen esetben is töltsük ki a megfelelő adatokat, szükséges paramétereket, figyeljünk az díjszabásra, nehogy egy túlzottan drága
+    szolgáltatást rakjunk össze.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=10cm,keepaspectratio]{images/azuresqldatabase.jpg}
+    \caption{SQL adatbázis létrehozás lépései}
+    \label{fig: SQLDatabase}
+\end{figure}
+
+
 % ------------------------------------------------------------------------------
 
 
