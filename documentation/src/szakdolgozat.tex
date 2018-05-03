@@ -783,6 +783,78 @@ urlcolor=blue,
     \label{fig: SQLDatabase}
 \end{figure}
 
+\subsection{Azure Active Directory}
+    A Microsoft kész szolgáltatást nyújt Athentikációra is, lehetőségünk van valamelyik ismert közösségi oldal által nyújtott
+    bejelentkezési felületet beleépíteni alkalmazásunkba. Ez azért előnyös, mert nem kell kritikus adat tárolásával foglalkoznom,
+    elvégzi azt egy sokkal biztonságosabb szolgáltatás. A program elkészítéséhez Facebook authentikációt használtam, ezt be kell
+    konfigurálni.
+    Ehhez az alábbi lépések szükségesek:
+
+\begin{enumerate}
+    \item Lépjünk be a frissen létrehozott App Service vezérlőjébe. A lehetőségek között görgessünk le, amíg meg nem találjuk
+    a kulcs ikonnal rendelkező \\ ``\textbf{Authentication/Authorization}'' menüpontot
+    \item Állítsuk az ``\textbf{App Service Authentication}'' kapcsolót \textbf{On} - ra
+    \item Az alatta lévő ``\textbf{Action to take when request is not authenticated}'' legördülő menüben válasszuk az
+    ``\textbf{Allow Anonymous request}'' opciót. Azért engedélyezzük, mert az IoT kliensalkalmazásunk a GUID segítségével
+    végzi az authentikációt, a kliensek által hívható függvényeknél használni fogjuk az Authenticate annotációt
+    \item Jelen állás szerint a Facebook alatt a \textbf{Not Configured} feliratot kell látnunk. A közösségi oldal fejlesztőknek
+    szóló oldalán kell további lépéseket tennünk, ehhez minden szükséges teendőt leír az alábbi hivatalos segítség:
+    \url{https://docs.microsoft.com/en-us/azure/active-directory-b2c/active-directory-b2c-setup-fb-app}
+    \item Az oldal legalján meg kell adnunk a \textbf{Redirect URL} - t, mely az előző pontban lévő konfigurációnál is kelleni fog.
+    Példa url: \textbf{smarthomeapplicationservice://easyauth.callback}
+\end{enumerate}
+
+    Ha mindent jól csináltunk, akkor az Azure oldalán már nincs további teendőnk, még a szerver forráskódjában \textbf{szükséges}
+    egy helyen változtatni, utána rendben fog működni az authentikáció. A Windows 10 kliensalkalmazás leírásában megtalálható a hátralévő változtatás.
+
+\section{Az alkalmazás felépítése}
+    Miután minden előzetes követelményt teljesítettünk, a szükséges szolgáltatásokat igénybe vettük, megfelelően konfiguráltuk,
+    forráskódot letöltöttük, indítsuk el a \textbf{Visual Studio 2017} fejlesztőkörnyezetet, és nyissuk meg a \textbf{SmartHomeApplication}
+    könyvtáron belül a \textbf{SmartHomeApplication.sln} fájlt, mely tartalmazza mindhárom rész forráskódját. Miután betöltött, a ``Solution Explorer'' - ben
+    láthatjuk az egyes alkalmazásokat, azok felépítését, könyvtárait, osztályait. Ezen rész az előbb felsorolt dolgokat mutatja be
+    részletesebben.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=8cm]{images/structure.jpg}
+    \caption{Az alkalmazás alkotóelemei Solution Explorerben}
+    \label{fig: SolutionExplorer}
+\end{figure}
+
+\subsection{Szerver}
+
+\subsubsection{Áttekintés}
+    A szerver egy ASP.Net webalkalmazás, mely végpontként szolgál. Ezen keresztül kommunikál a két kliensalkalmazás, és az adatbázissal
+    is ő van kapcsolatban, szerepe kulcsfontosságú. A megvalósításhoz ASP.NET Web Api projekt sablont használtam, és \textbf{Model-View-Controller}
+    (MVC) tervezési mintát. A Solution Explorerer - ben \textbf{SmartHomeApplication.Service} néven találhatjuk a projektet.
+
+\subsubsection{Publish}
+    Alkalmazásunkat még futtatnunk kell a már elkészített \textbf{Mobile App} - ban. Ezt könnyen megtehetjük Visual Studio - ban.
+    Solution Explorer - ben kattintsunk jobb egérgombbal az alkalmazás nevére, majd a most megjelent lehetőségek közül válasszuk
+    a ``\textbf{Publish}'' opciót. Ez egy másik oldalra fog navigálni, ahol ki kell töltenünk a szükséges adatokat, majd ha mindent
+    megfelelően konfiguráltunk, akkor az alkalmazás hiba nélkül fog futni az App Service - ben.
+    Mikor változtatunk a szerver forráskódján, akkor \textbf{kötelező} a Publish műveletet újra végrehajtani, azonban nincs szükség
+    újra beállítani adatainkat.
+
+    \textbf{Fontos!} A Publish beállításánál tudjuk pár lépésben hozzácsatolni a már korábban létrehozott SQL adatbázis szerverünket az alkalmazásunkhoz.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=8cm]{images/publishbutton.jpg}
+    \caption{A Publish opciót válasszuk a lehetőségek közül}
+    \label{fig: Publish}
+\end{figure}
+
+\subsubsection{Struktúra}
+    Az alkalmazás számos generált könyvtár mellett az alábbi szükséges csomagokkal rendelkezik:
+
+ \begin{itemize}
+     \item Models
+     \item Views
+     \item Controllers
+     \item Hubs
+ \end{itemize}
+
 
 % ------------------------------------------------------------------------------
 
