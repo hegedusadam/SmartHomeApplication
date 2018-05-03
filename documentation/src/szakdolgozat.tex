@@ -849,11 +849,18 @@ urlcolor=blue,
     Az alkalmazás számos generált könyvtár mellett az alábbi szükséges csomagokkal rendelkezik:
 
  \begin{itemize}
-     \item Models
-     \item Views
-     \item Controllers
-     \item Hubs
+     \item \textbf{Models} - az adatbázis kapcsolatért és adatátvitelért felelős osztályok
+     \item \textbf{Views} - megjelenítésért felelős osztályok
+     \item \textbf{Controllers} - Az adatszolgáltatásért felelős végpontokat tartalmazó osztályok
+     \item \textbf{Hubs} - A SignalR működéséhez szükséges \textbf{Hub} leszármazott osztályt tartalmazza
  \end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=6cm,keepaspectratio]{images/servicestructure.jpg}
+    \caption{A szerver struktúrája}
+    \label{fig: ServiceStructure}
+\end{figure}
 
 
 % ------------------------------------------------------------------------------
