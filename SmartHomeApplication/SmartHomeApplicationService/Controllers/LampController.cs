@@ -62,12 +62,12 @@ namespace SmartHomeApplicationService.Controllers
 		}
 
 		[HttpPost, ActionName("RegisterDevice")]
-		public ActionResult RegisterDevice(GuidDTO guidDTO)
+		public ActionResult RegisterDevice(string Guid)
 		{
 			Lamp newLamp = db.Lamps.Add(new Lamp
 			{
 				name = "DefaultLampName",
-				lampguid = guidDTO.Guid,
+				lampguid = Guid,
 				ison = false
 			});
 
