@@ -77,16 +77,6 @@ namespace SmartHomeApplicationService.Controllers
 		}
 
 		[System.Web.Mvc.Authorize]
-		[HttpPost, ActionName("Delete")]
-		public ActionResult DeleteConfirmed(int id)
-		{
-			Lamp lamp = db.Lamps.Find(id);
-			db.Lamps.Remove(lamp);
-			db.SaveChanges();
-			return new HttpStatusCodeResult(HttpStatusCode.OK);
-		}
-
-		[System.Web.Mvc.Authorize]
 		[HttpPost, ActionName("GetLampState")]
 		public string GetActualLampState(string guid)
 		{

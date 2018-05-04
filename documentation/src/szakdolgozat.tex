@@ -907,7 +907,7 @@ urlcolor=blue,
      Visszatérési értéke egy szerializált UserInfo objektum. Segédfüggvénye a \textbf{GetAccesToken}, mely
  \end{itemize}
 
-    \textbf{ChangeController} - A ``\textbf{Changes} adatbázis táblához tartozó Controller osztály, mely a lámpák változásait kezeli az adatbázisban.
+    \textbf{ChangeController} - A ``\textbf{Changes}'' adatbázis táblához tartozó Controller osztály, mely a lámpák változásait kezeli az adatbázisban.
     Az alábbi két végponttal rendelkezik:
 
  \begin{itemize}
@@ -924,7 +924,31 @@ urlcolor=blue,
 \begin{itemize}
     \item \textbf{AddUserToLamp} - \textbf{HttpPost} egy \textbf{NewLamp} objektumot kap paraméterül, mely egy UserId - t és egy GUID - ot tartalmaz.
     A GUID alapján megkeresi a \textbf{Lamp} entitást, mely \textbf{Users} adattagjához hozzáadja a UserId által meghatározott \textbf{User} - t.
+    Rendelkezik \textbf{Authorize} annotációval, tehát csak bejelentkezett kliens tudja meghívni ezt az endpointot.
+    \item \textbf{DeleteUserFromLamp} - \textbf{HttpPost} egy \textbf{UserInfo} objektumot kap paraméterül, mely a felhasználó userId - ját és
+    a hozzá tartozó lámpának a GUID - ját tartalmazza. Feladata hogy eltávolítsa a lámpa Users adattagjából az adott ügyfelet, ezzel leválasztva
+    a fényforrást a felhasználóról. Szintén \textbf{Authorize} annotációval rendelkezik, így csak és kizárólag sikeres bejelentkezés után
+    lehet meghívni ezt a végpontot.
+    \item \textbf{RegisterDevice} - \textbf{HttpPost} egy \textbf{string} paramétert kap, mely az új eszköz GUID - ja. Ezt a végpontot
+    az IoT kliensalkalmazás hívja meg, mikor egy olyan mikroproccesszor futtatja az alkalmazást, mely még nincs jelen az adatbázisban,
+    és ezzel regisztrálja magát.
+    \item \textbf{TurnLamp} - \textbf{HttpPost} egy \textbf{bool} és egy \textbf{string} paramétert kap, a logikai változó a lámpa fel -vagy lekapcsolására
+    szolgál, a karakterlánc pedig a kapcsolásra váró lámpa GUID - ját tartalmazza. Feladata az IoT kliensalkalmazást futtató eszközöknek
+    jelet küldeni SignalR segítségével, hogy a megfelelő azonosítóval rendelkező lámpa végrehajtsa a változtatást. \textbf{Authorize}
+    annotációval felruházott, tehát csak bejelentkezett felhasználók tudják meghívni.
+    \item \textbf{GetChanges} - \textbf{HttpPost} egy \textbf{string} paramétert kap, mely egy eszköz azonosítóját takarja. A végpont visszaadja
+    a GUID által reprezentált lámpa változásainak listáját, ami egy \textbf{ICollection}. \textbf{Authorize} annotációval felszerelt, csak Facebook
+    authentikáción sikeresen átesett felhasználók kliensalkalmazása hívhatja meg.
+    \item \textbf{UpdateLamp} - \textbf{HttpPut} egy \textbf{LampState} objektumot kap paraméterül, melyben a lámpa GUID - ját fedő \textbf{string}
+    illetve az állapot reprezentáló \textbf{bool} adattag található. A végpontot az IoT kliensalkalmazás hívja meg, feladata felülírni az adatbázisban
+    az adott eszköz \textbf{IsOn} mezőjét.
 \end{itemize}
+
+\subsubsection{Hubs}
+    A valósidejűség megvalósítása érdekében a szerver használja a \textbf{Microsoft.AspNet.\\SignalR} könyvtárat, mely segítségével
+    tud jelzést küldeni az eseményekre feliratkozott klienseknek. Ehhez szükség van egy \textbf{IHubContext} adattagra a Controller
+    osztályokban, ezek példányosításához, pedig egy \textbf{LampHub} osztályra, mely \textbf{Hub} leszármazott. A valósidejűségről
+    a későbbiekben még bővebben szó esik.
 % ------------------------------------------------------------------------------
 
 
