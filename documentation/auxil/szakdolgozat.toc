@@ -56,3 +56,4 @@
 \select@language {hungarian} \contentsline {subsubsection}{\numberline {3.5.1.5}Models}{32}{subsubsection.3.5.1.5}
 \select@language {hungarian} \contentsline {subsubsection}{\numberline {3.5.1.6}Controllers}{33}{subsubsection.3.5.1.6}
 \select@language {hungarian} \contentsline {subsubsection}{\numberline {3.5.1.7}Hubs}{35}{subsubsection.3.5.1.7}
+\select@language {hungarian} \contentsline {subsection}{\numberline {3.5.2}IoT kliensalkalmaz\IeC {\'a}s}{35}{subsection.3.5.2}

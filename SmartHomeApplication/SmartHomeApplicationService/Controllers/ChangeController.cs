@@ -18,13 +18,6 @@ namespace SmartHomeApplicationService.Controllers
 		private SmartHomeApplicationDatabase db = new SmartHomeApplicationDatabase();
 		private IHubContext lampContext = GlobalHost.ConnectionManager.GetHubContext<LampHub>();
 
-		// GET: Change
-		public string Index()
-		{
-			return JsonConvert.SerializeObject(db.Changes.ToList());
-		}
-
-
 		[HttpPost, ActionName("AddChange")]
 		public void AddNewStateChange([Bind(Include = "Guid, IsOn, date")] LampState LampState)
 		{

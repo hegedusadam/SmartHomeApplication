@@ -824,7 +824,7 @@ urlcolor=blue,
 \subsection{Szerver}
 
 \subsubsection{Áttekintés}
-    A szerver egy ASP.Net webalkalmazás, mely végpontként szolgál. Ezen keresztül kommunikál a két kliensalkalmazás, és az adatbázissal
+    A szerver egy ASP.Net webalkalmazás, mely C\# nyelven íródott, és végpontként szolgál. Ezen keresztül kommunikál a két kliensalkalmazás, és az adatbázissal
     is ő van kapcsolatban, szerepe kulcsfontosságú. A megvalósításhoz ASP.NET Web Api projekt sablont használtam, és \textbf{Model-View-Controller}
     (MVC) tervezési mintát. A Solution Explorerer - ben \textbf{SmartHomeApplication.Service} néven találhatjuk a projektet.
 
@@ -897,6 +897,13 @@ urlcolor=blue,
     \textbf{UserController} - A ``\textbf{Users}'' táblához tartozó Controller osztály, mely az ügyfelekkel kapcsolatos adatokat szolgáltatja
     elsősorban a Windows 10 kliensalkalmazás felé. Az alábbi végpontokkal rendelkezik:
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=6cm,keepaspectratio]{images/servicecontrollers.jpg}
+    \caption{Controllers könyvtár. A HomeController egy használaton kívüli program által generált osztály}
+    \label{fig: ControllersPackage}
+\end{figure}
+
  \begin{itemize}
      \item \textbf{GetGuid} - \textbf{HttpPost} egy \textbf{UserInfo} objektumot kap paraméterül, feladata hogy visszaadja a paraméter
      objektum UserProfileId adattagjával megegyező \textbf{User} entitás lámpájának GUID - ját. Ha nincs csatlakoztatva eszköz,
@@ -949,6 +956,42 @@ urlcolor=blue,
     tud jelzést küldeni az eseményekre feliratkozott klienseknek. Ehhez szükség van egy \textbf{IHubContext} adattagra a Controller
     osztályokban, ezek példányosításához, pedig egy \textbf{LampHub} osztályra, mely \textbf{Hub} leszármazott. A valósidejűségről
     a későbbiekben még bővebben szó esik.
+
+\subsection{IoT kliensalkalmazás}
+    Az IoT kliensalkalmazás egy \textbf{Universal Windows Platform} alkalmazás, melynek sajátossága, hogy minden Windows 10 rendszerrel
+    ellátott eszközön fut, így a Windows 10 IoT Core operációs rendszerrel felszerelt Raspberri Pi 3 Model B - n is. A program \textbf{C\#} nyelven
+    íródott, a felhasználói felület pedig \textbf{XAML} - ben. Az alkalmazás \textbf{Model - View - ViewModel} (MVVM) tervezési mintát
+    valósít meg, ám lokális adatbázissal nem rendelkezik, a szerveren keresztül kommunikál a tárhellyel. A ``Solution Explorer'' - ben
+    \textbf{SmartHomeApplication.LampUWP} néven találjuk az alkalmazást.
+
+\subsubsection{Struktúra}
+    Az alkalmazás az MVVM tervezési minta alapján az alábbi részekkel rendelkezik:
+
+\begin{itemize}
+    \item \textbf{Model} - lokális adatbázissal nem rendelkezik az alkalmazás, de DTO osztályokat tartalmaz
+    \item \textbf{View} - A GUID felület megjelenítésére szolgáló osztály
+    \item \textbf{ViewModel} - a szerverrel való kapcsolattartás, a View számára állítja elő a megjelenítendő adatot
+\end{itemize}
+
+\subsubsection{Model}
+    Lokális adatbázis nem léte miatt, a Model csomagban csak két darab \textbf{DTO} osztály található, melyek az alábbiak:
+
+\begin{itemize}
+    \item \textbf{GuidDTO} - egy \textbf{string} adattagot tartalmaz, mely az eszköz GUID - ját tartalmazza, az osztályt
+    a \textbf{RegisterDevice} használja
+    \item \textbf{LampStateDTO} - egy \textbf{string}, \textbf{bool}, és egy \textbf{DateTime} adattagot tartalmazó DTO
+    osztály. Feladata, hogy az alkalmazás a lámpa állapotában történő változást közölje a szerver felé
+\end{itemize}
+
+\subsubsection{View}
+    Az alkalmazás egyetlen \textbf{XAML} kiterjesztésű fájlt tartalmaz, \textbf{MainPage.xaml} néven, egyszerű felületet
+    ír le, csupán két darab \textbf{TextBlock} található rajta egy \textbf{StackPanel} - en belül. Szerepe mégis kulcsfontosságú,
+    megjeleníti, a lámpa GUID - ját, melyet a felhasználó innen leolvas, és hozzá tudja adni a profiljához a Windows 10 kliensalkalmazásban.
+
+\subsubsection{ViewModel}
+    
+
+
 % ------------------------------------------------------------------------------
 
 
