@@ -989,7 +989,9 @@ urlcolor=blue,
     megjeleníti, a lámpa GUID - ját, melyet a felhasználó innen leolvas, és hozzá tudja adni a profiljához a Windows 10 kliensalkalmazásban.
 
 \subsubsection{ViewModel}
-    
+    A MainPage.xaml - hez tartozó ViewModel osztályt a projektben \textbf{MainViewModel.cs} néven lehet megtalálni. Ez az osztály
+    felelős a szerverrel való kommunikációért, a megjelenítendő adat előállítása a View számára. Az osztály \textbf{GalaSoft.MvvmLight.ViewModelBase}
+    leszármazott, megvalósítja az \textbf{INotifyPropertyChanged} interfészt.
 
 
 % ------------------------------------------------------------------------------
