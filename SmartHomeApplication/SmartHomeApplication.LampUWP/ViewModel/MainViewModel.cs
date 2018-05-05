@@ -69,7 +69,7 @@ namespace SmartHomeApplication.LampUWP.ViewModel
 			}
 		}
 
-		public async Task RegisterDevice(string guidString)
+		private async Task RegisterDevice(string guidString)
 		{
 			try
 			{
@@ -96,12 +96,12 @@ namespace SmartHomeApplication.LampUWP.ViewModel
 			var hubConnection = new HubConnection("http://smarthomeapplicationservice.azurewebsites.net/");
 			var lampHub = hubConnection.CreateHubProxy("LampHub");
 
-			lampHub.On<bool, string>("OnSwitch", handleCallback);
+			lampHub.On<bool, string>("OnSwitch", SwitchLamp);
 
 			await hubConnection.Start(new LongPollingTransport());
 		}
 
-		private async void handleCallback(bool TurnOn, string guid)
+		private async void SwitchLamp(bool TurnOn, string guid)
 		{
 			try
 			{

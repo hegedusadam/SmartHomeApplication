@@ -991,9 +991,40 @@ urlcolor=blue,
 \subsubsection{ViewModel}
     A MainPage.xaml - hez tartozó ViewModel osztályt a projektben \textbf{MainViewModel.cs} néven lehet megtalálni. Ez az osztály
     felelős a szerverrel való kommunikációért, a megjelenítendő adat előállítása a View számára. Az osztály \textbf{GalaSoft.MvvmLight.ViewModelBase}
-    leszármazott, megvalósítja az \textbf{INotifyPropertyChanged} interfészt.
+    leszármazott, megvalósítja az \textbf{INotifyPropertyChanged} interfészt.\\
 
+    \textbf{Property - k} - A MainViewModel.cs az alábbi adattagokkal rendelkezik:
 
+\begin{itemize}
+    \item \textbf{LampGuid} - \textbf{string property}, mely a lámpa GUID - ját tárolja, szolgáltatja a View - nek
+    \item \textbf{GpioController} - \textbf{GpioController property}, mely arra szolgál, hogy megnyissogn egy \textbf{LedPin} - t, így
+    lehessen azt vezérelni
+    \item \textbf{LedPin} - \textbf{LedPin property} a GPIO pin, melyen keresztül áramot tudunk vezetni a lámpába
+    \item \textbf{OpenedPin} - \textbf{readonly int} konstans, mely a megnyitandó GPIO pin számát tartalmazza
+\end{itemize}
+
+    \textbf{Metódusok} - A MainViewModel osztály az alábbi metódusokkal rendelkezik:
+
+ \begin{itemize}
+     \item \textbf{Konstruktor} - az osztály tartalmaz egy paraméter nélküli konstruktort, melyben a \textbf{GpioController adattag} kap értéket,
+     majd megnyitja az \textbf{OpenedPin} konstans adattag által megadott \textbf{LedPin} - t.
+     \item \textbf{CreateOrReadGuid} - ez egy \textbf{public async Task} metódus, mely egy kulcs alapján ellenőrzi, hogy az adott eszköz
+     rendelkezik-e már GUID - dal, vagy sem. Ha nem, akkor az \textbf{Application.Current.LocalSettings} segítségével a lokális könyvtárba
+     a \textbf{Guid.NewGuid()} statikus metódussal generál egy új azonosítót a megadott kulccsal, így a legközelebbi indításkor már ezt az értéket
+     fogja kiolvasni az alkalmazás a \textbf{LampGuid} property - be. A függvényt a \textbf{MainPage.xaml.cs} osztály konstruktorában hívódik meg.
+     \item \textbf{RegisterDevice} - egy \textbf{private async Task} metódus, mely egy string paramétert kap, ami az eszköz GUID - ját tartalmazza.
+     A függvény egy \textbf{HttpClient} segítségével meghívja a szerver \textbf{/Lamp/RegisterDevice} végpontját a kapott karakterlánccal, így
+     a lámpa be lesz regisztrálva az adatbázisba. A függvényt a \textbf{CreateOrReplaceGuid} metódus hívja meg, miután új azonosítót generál.
+     \item \textbf{SetupHub} - \textbf{public async Task} függvény, mely feliratkozik a szerver által fenntartott \textbf{Hub} - ra, azon belül
+     az ``\textbf{OnSwitch}'' eseményre, mely a lámpa fel -és lekapcsolását kommunikálja a kliensek felé. A függvény függvény aszinkron módon hívódik
+     meg a \textbf{MainPage.xaml.cs} osztály konstruktorában.
+     \item \textbf{SwitchLamp} - \textbf{private async void} egy \textbf{string} és egy \textbf{bool} paraméterrel rendelkező függvény, mely az ``OnSwitch''
+     esemény bekövetkezésekor lefut. Ellenőrzi, hogy a string paraméter által reprezentált GUID megegyezik-e a \textbf{LampGuid} property - vel. Ha nem,
+     a metódus visszatér és semmi nem történik, ha igen akkor pedig a logikai változótól függően áramot vezet lámpába, vagy áramtalanítja azt.
+     \item \textbf{SendLampState} - \textbf{private async Task} metódus, melyet a SwitchLamp függvény hív meg a sikeres állapotváltozás után.
+     Feladata, hogy tájékoztassa a szervert az operáció végeztéről, így egy LampStateDTO objektumot készít a megfelelő adatokkal, majd azt szerializálja
+     és egy \textbf{HttpClient} segítségével paraméterként elküldi a \textbf{/Lamp/UpdateLamp} és \textbf{/Change/AddChange} végpontokra.
+ \end{itemize}
 % ------------------------------------------------------------------------------
 
 
