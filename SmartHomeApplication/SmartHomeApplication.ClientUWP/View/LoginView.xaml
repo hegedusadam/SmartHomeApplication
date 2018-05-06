@@ -20,8 +20,8 @@
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="1">
             <Button Name="FaceBookButtonLogin" Command="{Binding LoginCommand}" Style="{StaticResource LoginButtonStyle}" Background="{StaticResource FacebookLoginButtonColor}">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                    <Image Source="{StaticResource FacebookLogo}" HorizontalAlignment="Left" Height="24" Width="24"/>
-                    <TextBlock Text="Login with Facebook" Style="{StaticResource LoginButtonTextStyle}"/>
+                    <Image x:Name="LoginImage" HorizontalAlignment="Left" Height="24" Width="24"/>
+                    <TextBlock x:Name="LoginText" Style="{StaticResource LoginButtonTextStyle}"/>
                 </StackPanel>
             </Button>
         </StackPanel>

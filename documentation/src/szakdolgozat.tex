@@ -1088,6 +1088,25 @@ urlcolor=blue,
     időt, ebből formáz órákra, percekre, másodpercekre lebontott eredményt.
 
 \subsubsection{Resources}
+    Az alkalmazásban számos ismétlődő elem van. Színek, stílusok, ikonok, ezen tulajdonságok állandó ismétlése bonyolultságot
+    és hibalehetősőséget adna a kódnak. Ezért érdemes ezeket kigyűjteni külön fájlokban, nevet adni neki, majd ez alapján hivatkozni
+    rájuk a megfelelő elemekben, így sokkal átláthatóbb és kezelhetőbb lesz a forráskód. Kettő fájl található a csomagban:\\
+
+    \textbf{Colors.xaml} - Különböző színkódokat tárol, melyeket több helyen felhasznál az alkalmazás, például: \textbf{ViewColor}.\\
+
+    \textbf{Styles.xaml} - Különböző stílus leírásokat tárol, melyeket a program számos helyen felhasznál. A leírások több sorosak,
+    így végtelen átláthatatlan lenne a kód ha nem gyűjtenénk ki őket külön fájlba. Példa: \textbf{SplitViewButtonStyle}.
+
+\subsubsection{Model}
+    A tervezési minta része, mely lokális adatbázis \textbf{nem} tárol, ez az alkalmazás is közvetlenül a szervertől kéri le az
+    adatokat. \textbf{Data Transfer Object} osztályokat tartalmaz, melyek a kommunikációt teszik lehetővé a szerveroldallal.
+
+\begin{itemize}
+    \item \textbf{Change.cs} - a lámpa egy változását reprezentálja, tartalmaz \textbf{DateTime}, \textbf{bool}, \textbf{TimeSpan} property - ket,
+    melyek segítségével a \textbf{StatisticView} fel tudja tölteni a táblázatot az oldalon.
+    \item \textbf{UserInfo.cs} - a felhasználó adatainak megfelelő property - kel rendelkezik, melyek a ``userId''-t, az ügyfél nevét
+    a lámpájának GUID -  ját, valamint Facebook profilképének Uri - ját tárolják.
+\end{itemize}
 % ------------------------------------------------------------------------------
 
 

@@ -264,12 +264,6 @@
         <Setter Property="HorizontalAlignment" Value="Left" />
     </Style>
 
-    <Style x:Key="LoginButtonTextStyle2" TargetType="TextBlock">
-        <Setter Property="FontFamily" Value="SegoeUI" />
-        <Setter Property="VerticalAlignment" Value="Center" />
-        <Setter Property="HorizontalAlignment" Value="Left" />
-    </Style>
-
     <Style x:Key="SplitViewText" TargetType="TextBlock">
         <Setter Property="Foreground" Value="White" />
         <Setter Property="VerticalAlignment" Value="Center" />

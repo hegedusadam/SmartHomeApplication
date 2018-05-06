@@ -15,6 +15,7 @@ using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
@@ -32,6 +33,10 @@ namespace SmartHomeApplication.ClientUWP.View
 			ViewModel = new LoginViewModel();
             this.InitializeComponent();
 			this.DataContext = ViewModel;
+
+            LoginImage.Source =
+                new BitmapImage(new Uri("ms-appx:///Assets/Login/facebook.png", UriKind.Absolute));
+            LoginText.Text = "Login with Facebook";
 
             WelcomeTextBlock.Text = "Welcome to KeepSwitched!";
         }
