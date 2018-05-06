@@ -68,3 +68,5 @@
 \select@language {hungarian} \contentsline {subsubsection}{\numberline {3.5.3.4}Converters}{40}{subsubsection.3.5.3.4}
 \select@language {hungarian} \contentsline {subsubsection}{\numberline {3.5.3.5}Resources}{40}{subsubsection.3.5.3.5}
 \select@language {hungarian} \contentsline {subsubsection}{\numberline {3.5.3.6}Model}{41}{subsubsection.3.5.3.6}
+\select@language {hungarian} \contentsline {subsubsection}{\numberline {3.5.3.7}View}{41}{subsubsection.3.5.3.7}
+\select@language {hungarian} \contentsline {subsubsection}{\numberline {3.5.3.8}ViewModel}{44}{subsubsection.3.5.3.8}

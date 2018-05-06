@@ -1107,6 +1107,129 @@ urlcolor=blue,
     \item \textbf{UserInfo.cs} - a felhasználó adatainak megfelelő property - kel rendelkezik, melyek a ``userId''-t, az ügyfél nevét
     a lámpájának GUID -  ját, valamint Facebook profilképének Uri - ját tárolják.
 \end{itemize}
+
+\subsubsection{View}
+    Ebben a csomagban találhatóak a megjelenítésért felelős \textbf{XAML} fájlok. Összesen öt darab állomány szerepel az alkalmazásban,
+    ezek az alábbiek:
+
+    \textbf{LoginView.xaml} - A felhasználó ezt az oldal látja először, ezen keresztül tud bejelentkezni az alkalmazásba. Egy \textbf{TextBlock} - ot
+    tartalmaz, mely az üdvözlő szöveget tartalmazza, és egy \textbf{StackPanel} - t, melyen belül a bejelentkező gomb foglal helyet, mely egy további
+    StackPanel - t tárol, amin belül az ikont megjelenítő \textbf{Image} és a gomb feliratát kiírató TextBlock található.  A gomb \textbf{Command}
+    attribútumához hozzá van kötve a \textbf{LoginViewModel} LoginCommand property - je.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=6cm,keepaspectratio]{images/loginview.jpg}
+    \caption{LoginView}
+    \label{fig: LoginView}
+\end{figure}
+
+    \textbf{AddLampView.xaml} - Az az oldal mely a lámpa hozzáadására alkalmas felülete valósítja meg. Egy középre igazított \textbf{StackPanel} - t
+    tartalmaz, melyben két darab \textbf{TextBlock}, egy \textbf{TextBox} - ot, valamint egy Button - t tartalmaz, amin belül egy \textbf{control:ViewButtonContent}
+    található. Az egyik TextBlock \textbf{NoGuidToCollapsedVisibility} converterrel rendelkezik, tehát akkor jelenik meg, ha már hozzáadtunk lámpát,
+    és erről tájékoztatja a felhasználót. A többi komponens mind \textbf{NoGuidToVisibleVisibilityConverter} - rel van felvértezve, és akkor
+    jelennek meg mikor éppen nincs csatlakoztatott eszközünk. A TextBox - ba írhatjuk a GUID - ot, a gombbal pedig végrehajtani az \textbf{AddLampViewModel}
+    ``AddLampCommand'' property - jét, mely a gombhoz van
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.4\linewidth}
+        \includegraphics[width=\linewidth]{images/addlampview.jpg}
+        \caption{AddLampView - nincs lámpa}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.4\linewidth}
+        \includegraphics[width=\linewidth]{images/alreadyhaslamp.jpg}
+        \caption{AddLampView - van lámpa}
+    \end{subfigure}
+    \caption{AddLampView}
+    \label{fig:AddLamp}
+\end{figure}
+
+    \textbf{LampSwitchView.xaml} - A lámpa vezérlésére alkalmas oldal. Három elemet tartalmaz, egy \textbf{ToggleSwitch} - et, mely
+    egy szabályos kapcsoló, és ezzel lehet fel -vagy lekapcsolni a fényforrást, egy \textbf{controls:ViewButtonContent} - et, ami egy
+    Button elemen belül található és az eszköz törlését lehet elindítani a hozzákötött \textbf{DeleteLampCommand} segítségével. Ezek
+    \textbf{NoGuidToCollapsedVisibilityConverter} - rel rendelkeznek, míg a TextBlock az ellenkezőjével, az hívja fel a figyelmünk
+    a lámpa hiányára.
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.4\linewidth}
+        \includegraphics[width=\linewidth]{images/switchview.jpg}
+        \caption{SwitchLampView - van lámpa}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.4\linewidth}
+        \includegraphics[width=\linewidth]{images/switchdonthavelamp.jpg}
+        \caption{SwitchLampView - nincs lámpa}
+    \end{subfigure}
+    \caption{SwitchLampView}
+    \label{fig:SwitchLamp}
+\end{figure}
+
+    \textbf{StatisticView.xaml} - A lámpa statisztikáit tekinthetjük meg ezen az oldalon. Egy \textbf{StackPanel} fogja közre a fő
+    elemeket, melyek egy az összes bekapcsolt időt kiírató TextBlock, az előzményeket kitörlő \textbf{controls:ViewButtonContent} - et tartalmazó
+    Button, melyhez a \textbf{StatisticViewModel} DeleteChangesCommand property - je van hozzákötve. Továbbá az oldal fő összetevője egy \textbf{ScrollViewer},
+    amely az előzmények táblázatát testesíti meg. A most felsorolt elemek mind \textbf{NoGuidToCollapsedVisibilityConverter} - rel vannak ellátva,
+    mivel csak akkor lehet statisztikát megtekinteni, ha van is eszköz aminek le lehet kérni az előzményét. Egy TextBlock jelenik meg a képernyőn a megfelelő
+    szöveggel ha nem rendelkezünk eszközzel.
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.4\linewidth}
+        \includegraphics[width=\linewidth]{images/statisticview.jpg}
+        \caption{StatisticView - van lámpa}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.4\linewidth}
+        \includegraphics[width=\linewidth]{images/statisticnolamp.jpg}
+        \caption{StatisticView - nincs lámpa}
+    \end{subfigure}
+    \caption{StatisticView}
+    \label{fig:StatisticView}
+\end{figure}
+
+    \textbf{SplitViewShell.xaml} - Az alkalmazás kulcsfontosságú része. Erre navigál a program a sikeres bejelentkezés után, ez a nézet
+    felelős a menü és a többi oldal megjelenítéséért. Egy \textbf{SplitView} - t tartalmaz, melynek két része van. Az egyik, melyben a hamburger
+    menü van, nyitható, összecsukható, a másik az az oldal amit a menüpontok közül kiválaszt a felhasználó, vagy kezdetben az ``AddLampView''.
+    A menüpontok \textbf{control:SplitViewButtonContent} -ket tartalmazó Button elemek, a kiválasztott gomb képe és szövegének háttere kék lesz.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=6cm,height=7cm,keepaspectratio]{images/hamburgermenu.jpg}
+    \caption{SplitViewShell}
+    \label{fig: SplitViewShell}
+\end{figure}
+
+\subsubsection{ViewModel}
+    A ViewModel osztályok kulcsfontosságúak a program működésében. Ők állítják elő a nézetek számára a szükséges adatokat, melyeket \textbf{DataBindig} - gal
+    küldenek át a XAML fájloknak, valamint a szerverrel val kommunikációt is ők végzik. Az összes osztály \textbf{Galasoft.MvvmLight.ViewModelBase} leszármazott, így
+    megvalósítják az \textbf{INotifyPropertyChanged} interfészt. Az alkalmazás az alábbi négy ViewModel osztállyal rendelkezik:
+
+    \textbf{LoginViewModel.cs} - ez a LoginView - hoz tartozó ViewModel, tartalmazza az authentikáció szükséges eljárásokat. \\
+
+    Két darab \textbf{property} - vel rendelkezik:
+
+\begin{itemize}
+    \item \textbf{LoginComman} - \textbf{ICommand}, a LoginView bejelentkező gombjához van kötve, mikor a gombra kattint a felhasználó
+    ez a parancs fut le, ami meghívja az \textbf{AuthenticateAsync} metódust.
+    \item \textbf{IsLoggedIn} - \textbf{bool}, igaz, ha a felhasználó sikeresen bejelentkezett, különben hamis. Az \textbf{App.xaml.cs}
+    állományban van szükség rá, a program nem fut tovább sikertelen authentikáció esetén.
+\end{itemize}
+
+    Az alábbi metódusok találhatóak meg benne:
+
+\begin{itemize}
+    \item \textbf{AuthenticateAsync} - \textbf{private async Task<bool>}, ez a metódus végzi az authentikációt. Az \textbf{App.xaml.cs} - ben
+    található \textbf{MobileService} adattag \textbf{LoginAsync} függvényét hívja meg Facebook authentikációra. \\
+    \\\textbf{Fontos!} - Az \textbf{Azure Active Directory} - val kapcsolatban volt még egy dolog amit szükséges változtatni a programon ha saját
+    szerveren szeretnénk futtatni. A LoginAsync eljárás második paramétere egy string \textbf{UriScheme}, melynek meg kell egyeznie
+    a \textbf{redirect url} első felével. Tehát a példánkban \textbf{smarthomeapplicationservice://easyauth.callback} volt az url,
+    ezért az UriScheme \textbf{smarthomeapplicationservice} lesz, ahogy a kódban is látszik.\\
+    \\Sikeres bejelentkezés után az IsLoggedIn property - t ``true'' értékre állítja, valamint meghívja a \textbf{GetUserInfo} metódust.
+    \item \textbf{GetUserInfo} - \textbf{private async Task}, sikeres bejelentkezés után a metódus meghívja a \textbf{/User/GetUserInfo} végpontot,
+    ezzel lekérve a felhasználó nevét, profilképét. Az eljárás két további fontos függvényt hív meg, \textbf{RegisterToDatabase} - t, és \textbf{GetLampGuid} - ot.
+    \item \textbf{RegisterToDataBase} - \textbf{private async Task}, a felhasználót regisztrálja be az adatbázisba a neve és a \textbf{UserProfileId} - ja alapján.
+    \item \textbf{GetLampGuid} - \textbf{private async Task}, lekéri a felhasználó lámpájának GUID - ját az adatbázisból, és elmenti
+    az App.UserInformation adattagba, ahonnan később minden további ViewModel eléri.
+\end{itemize}
 % ------------------------------------------------------------------------------
 
 
