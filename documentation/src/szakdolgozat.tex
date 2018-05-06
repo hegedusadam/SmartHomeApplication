@@ -1025,6 +1025,69 @@ urlcolor=blue,
      Feladata, hogy tájékoztassa a szervert az operáció végeztéről, így egy LampStateDTO objektumot készít a megfelelő adatokkal, majd azt szerializálja
      és egy \textbf{HttpClient} segítségével paraméterként elküldi a \textbf{/Lamp/UpdateLamp} és \textbf{/Change/AddChange} végpontokra.
  \end{itemize}
+
+ \subsection{Windows 10 kliensalkalmazás}
+    A Windows 10 kliensalkalmazás szintén egy \textbf{Universal Windows Platform} (UWP) alkalmazás, így a program bármely Windows 10
+    operációs rendszerrel telepített eszközön fut, tehát mind asztali számítógépen, okostelefonon, vagy tableten. Az alkalmazás \textbf{C\#} nyelven
+    íródott, a felhasználói felület elkészítéséhet pedig \textbf{XAML} - t használtam. Az IoT kliensalkalmazáshoz hasonlóan, a szakdolgozatom
+    ezen része is \textbf{Model - View - ViewModel} (MVVM) tervezési mintát valósít meg, ám ennél az alkalmazásnál sem található lokális
+    adatbázis, közvetlenül a szerveren keresztül szerzi az adatokat. Nyissuk meg a ``Solution Explorer'' - ben a \textbf{SmartHomeApplication.ClientUWP}
+    projektet.
+
+ \subsubsection{Struktúra}
+    Az alkalmazás az alábbi szükséges könyvtárakkal rendelkezik, köztük a tervezési minta által meghatározottakkal:
+
+\begin{itemize}
+    \item \textbf{Assets} - az alkalmazás által használt képeket tartalmazza
+    \item \textbf{Controls} - a felhasználó felület tervezésében használt \textbf{UserControl} - kat tárol
+    \item \textbf{Converters} - a felhasználói felületen használt Converter osztályokat foglalja magában
+    \item \textbf{Model} - a tervezési mintának megfelelő csomag, azonban lokális adatbázist nem tárol, kizárólag \textbf{DTO} osztályokat
+    \item \textbf{Resources} - a felhasználói felület egységesítését elősgető \textbf{XAML} állományok, színeket, stílusokat tárolnak
+    \item \textbf{View} - a felhasználói felület \textbf{XAML} állományait tartalmazza
+    \item \textbf{ViewModel} - a tervzési mintának megfelelő csomag, a felhasználói felület számára adatot előállító és a szerverrel
+    kommunikáló osztályokat tartalmazza
+\end{itemize}
+
+\subsubsection{Assets}
+    Az alkalmazás számos képet használ, többek között a menüben, például hozzáadás, törlés ikon. Ezeket az Assets csomagban tárolja a program,
+    azon belül három könyvtárra tagolva. A \textbf{SplitView} package - ban a menüben felhasznált képek találhatóak, a \textbf{Login} mappában
+    a bejelentkezési felületen megtalálható Facebook logó van, a \textbf{Common} könyvtárban pedig az alkalmazás több részén előforduló ikonok,
+    például a törlés gombok mellette található kuka ikon foglal helyet.
+
+\subsubsection{Controls}
+    Olyan elemeket tartalmazó \textbf{XAML} állományok, mely többször felhasználásra kerülnek, kiszervezésük külön fájlba egyszerűsíti a kódot
+    és átláthatóbbá teszi azt. Két darab ilyen \textbf{UserControl} szerepel a csomagban, \textbf{SplitViewButtonContent.xaml} és
+    \textbf{ViewButtonContent.xaml}.\\
+
+    \textbf{SplitViewButtonContent} - A menü gombjait leíró állomány, mely egy \textbf{StackPanel} - en belül tárol egy \textbf{Image} - t,
+    és egy \textbf{TextBlock} - ot. Például az ``Add Lamp'' menüpontnál látható egy bekarikázott plusz jel(Image), és maga az ``Add Lamp''
+    szöveg, melyet a TextBlock tartalmaz.\\
+
+    \textbf{ViewButtonContent} - Ugyanazon elemmekkel rendelkezik, mint a SplitViewButtonContent, azonban ennek az állománynak nincs
+    ``\textbf{SelectedTextColor}`` illetve ``\textbf{SelectedImageSource}'' adattagja.
+
+\subsubsection{Converters}
+    A Converterek nagyon fontos szerepet játszanak a felhasználói felület működésében. Egy kapott paramétert alakítanak más típusú
+    változóvá. Az alkalmazás négy darab konvertáló osztály tartalmaz, melyek megvalósítják az \textbf{IValueConverter} interfészt:\\
+
+    \textbf{BooleanToOnOrOffStringConverter.cs} - egy \textbf{bool} értéket kap paraméterül, ez alapján ad vissza egy ``On'' vagy
+    ``Off'' stringet. A \textbf{StatisticView} oldal használja, mikor a táblázatban meg kell jeleníteni, hogy egy adott változás
+    alkalmazával a lámpát be (``On'')  -vagy lekapcsolták. (``Off'')\\
+
+    \textbf{NoGuidToCollapsedVisibilityConverter.cs} - egy \textbf{string} paramétert kap, ebből kell előállítania \textbf{Visibility} értéket.
+    Ezt a Convertert a lámpával kapcsolatos oldalak használják, és a \textbf{LampGuid} alapján rejtik el vagy jelenítik meg
+    a vizuális elemeket. Ha nincs lámpa csatolva a felhasználóhoz, akkor elrejti, ha van, akkor megjeleníti, például a kapcsolót.\\
+
+    \textbf{NoGuidToVisibleVisibilityConverter.cs} - az előző Converter inverze. Szintén \textbf{string} paraméterből állít elő
+    \textbf{Visibility} - t, hasonlóan a \textbf{LampGuid} adattag alapján, azonban ez az osztály akkor jeleníti meg az elemet,
+    ha nincs lámpa csatolva a felhasználóhoz, tehát a LampGuid ``NOGUID'' értékkel rendelkezik. Ezt a konvertálót használják azok az
+    elemek, melyek tájékoztatnak a hozzáadott eszköz hiányáról, például a \textbf{LampSwitchView} állományban.\\
+
+    \textbf{TimeSpanToStringConverter.cs} - szintén a \textbf{StatisticView} használja a táblázaton belül, feladata hogy egy \textbf{TimeSpan}
+    objektumból a felhasználó számára kényelmesen leolvasható információt alakítson. A TimeSpan méri két \textbf{DateTime} közt eltelt
+    időt, ebből formáz órákra, percekre, másodpercekre lebontott eredményt.
+
+\subsubsection{Resources}
 % ------------------------------------------------------------------------------
 
 

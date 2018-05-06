@@ -132,7 +132,7 @@ namespace SmartHomeApplication.LampUWP.ViewModel
 			}
 		}
 
-		public async Task SendLampState(bool LampIsOn)
+		private async Task SendLampState(bool LampIsOn)
 		{
 			LampStateDTO response = new LampStateDTO
 			{
