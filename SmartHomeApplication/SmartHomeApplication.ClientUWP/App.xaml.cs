@@ -35,6 +35,7 @@ namespace SmartHomeApplication.ClientUWP
 		public static MobileServiceClient MobileService = new MobileServiceClient("https://smarthomeapplicationservice.azurewebsites.net");
 		public static UserInfo UserInformation;
 		public static bool IsLoggedIn = false;
+
 		/// <summary>
 		/// Initializes the singleton application object.  This is the first line of authored code
 		/// executed, and as such is the logical equivalent of main() or WinMain().
@@ -97,7 +98,7 @@ namespace SmartHomeApplication.ClientUWP
         private void OnSuspending(object sender, SuspendingEventArgs e)
         {
             var deferral = e.SuspendingOperation.GetDeferral();
-            //TODO: Save application state and stop any background activity
+
             deferral.Complete();
         }
 

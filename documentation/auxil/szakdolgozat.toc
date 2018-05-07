@@ -70,3 +70,5 @@
 \select@language {hungarian} \contentsline {subsubsection}{\numberline {3.5.3.6}Model}{41}{subsubsection.3.5.3.6}
 \select@language {hungarian} \contentsline {subsubsection}{\numberline {3.5.3.7}View}{41}{subsubsection.3.5.3.7}
 \select@language {hungarian} \contentsline {subsubsection}{\numberline {3.5.3.8}ViewModel}{44}{subsubsection.3.5.3.8}
+\select@language {hungarian} \contentsline {subsubsection}{\numberline {3.5.3.9}App.xaml.cs}{48}{subsubsection.3.5.3.9}
+\select@language {hungarian} \contentsline {section}{\numberline {3.6}Adatb\IeC {\'a}zis bemutat\IeC {\'a}sa}{48}{section.3.6}

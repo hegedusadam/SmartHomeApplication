@@ -1201,14 +1201,14 @@ urlcolor=blue,
 \subsubsection{ViewModel}
     A ViewModel osztályok kulcsfontosságúak a program működésében. Ők állítják elő a nézetek számára a szükséges adatokat, melyeket \textbf{DataBindig} - gal
     küldenek át a XAML fájloknak, valamint a szerverrel val kommunikációt is ők végzik. Az összes osztály \textbf{Galasoft.MvvmLight.ViewModelBase} leszármazott, így
-    megvalósítják az \textbf{INotifyPropertyChanged} interfészt. Az alkalmazás az alábbi négy ViewModel osztállyal rendelkezik:
+    megvalósítják az \textbf{INotifyPropertyChanged} interfészt. Az alkalmazás az alábbi négy ViewModel osztállyal rendelkezik:\\
 
     \textbf{LoginViewModel.cs} - ez a LoginView - hoz tartozó ViewModel, tartalmazza az authentikáció szükséges eljárásokat. \\
 
     Két darab \textbf{property} - vel rendelkezik:
 
 \begin{itemize}
-    \item \textbf{LoginComman} - \textbf{ICommand}, a LoginView bejelentkező gombjához van kötve, mikor a gombra kattint a felhasználó
+    \item \textbf{LoginCommand} - \textbf{ICommand}, a LoginView bejelentkező gombjához van kötve, mikor a gombra kattint a felhasználó
     ez a parancs fut le, ami meghívja az \textbf{AuthenticateAsync} metódust.
     \item \textbf{IsLoggedIn} - \textbf{bool}, igaz, ha a felhasználó sikeresen bejelentkezett, különben hamis. Az \textbf{App.xaml.cs}
     állományban van szükség rá, a program nem fut tovább sikertelen authentikáció esetén.
@@ -1230,6 +1230,99 @@ urlcolor=blue,
     \item \textbf{GetLampGuid} - \textbf{private async Task}, lekéri a felhasználó lámpájának GUID - ját az adatbázisból, és elmenti
     az App.UserInformation adattagba, ahonnan később minden további ViewModel eléri.
 \end{itemize}
+
+    \textbf{AddLampViewModel.cs} - Az \textbf{AddLampView} - hez tartozó ViewModel osztály, feladata az új eszköz hozzáadásának
+    folyamatát lefolytatni a szerverrel.\\
+    Három \textbf{property} - vel rendelkezik:
+
+\begin{itemize}
+    \item \textbf{NewLampGuid} - \textbf{string} - a felhasználó által begépelt karaktersorozat, a hozzáadni kívánt eszköz azonosítója,
+    melynek még át kell esnie ellenőrzéseken. (Megfelelő hossz, létező azonosító)
+    \item \textbf{LampGuid} - \textbf{string} - a jelenlegi eszköz azonoítója
+    \item \textbf{AddLampCommand} - \textbf{ICommand} - a parancs, mely az \textbf{AddLampView} lámpa hozzáadás gombjához van hozzárendelve,
+    aktiváláskor meghívja az \textbf{AddNewLamp} függvényt
+\end{itemize}
+
+    \textbf{Metódusok} - az osztály egyetlen metódussal rendelkezik, az \textbf{AddNewLamp} eljárással, mely egy új eszköz hozzáadásását
+    biztosítja. Előzetesen ellenőrzi hogy az ügyfél által begépelt \textbf{NewLampGuid} öt karakter hosszúságú-e. Ha nem, akkor egy
+    \textbf{MessageDialog} ablak közli, hogy érvénytelen GUID - dal próbálkoztunk, majd a függvény visszatér. Az azonosító létezését
+    a szerver ellenőrzi, nem a kliens feladata. Ha megfelelő hosszúságú a GUID, akkor az eljárás meghívja a \textbf{/Lamp/AddUserToLamp}
+    végpontot. Az visszaad egy \textbf{HttpResponseMessage} - t, mely alapján eldönthető hogy a hozzáadás sikeresen zajlott - e le, és erről
+    MessageDialog - ban tájékoztatja a felhasználót.\\
+
+    \textbf{LampSwitchViewModel.cs} - A \textbf{LampSwitchView} - hoz tartozó ViewModel, feladata a lámpa állapotával kapcsolatos
+    kommunikációt folytatni a szerverrel.\\
+
+    Az alábbi \textbf{property} - kel rendelkezik:
+
+\begin{itemize}
+    \item \textbf{LampGuid} - \textbf{string}, a többi ViewModel - hez hasonlóan, ez az osztály is tárolja a lámpa GUID - ját, és törlés
+    esetén meg is változtatja az \textbf{App} osztályban található property - t.
+    \item \textbf{DeleteLampCommand} - \textbf{ICommand}, a törlés gombhoz kötött parancs, aktiváláskor meghívja a \textbf{DeleteLamp} metódust
+    \item \textbf{IsOn} - \textbf{bool}, a \textbf{ToggleSwitch} - hez hozzákötött logikai változó, a kapcsoló állapota ettő a változótól függ
+\end{itemize}
+
+    \textbf{Metódusok:}
+
+\begin{itemize}
+    \item \textbf{Konstruktor} - az osztály konstruktora beállítja a LampGuid property - t, illetve egy külön szálon meghívja az \textbf{Initialize} eljárást.
+    \item \textbf{Initialize} - \textbf{private async Task}, az osztály létrejöttekor lekéri a szervertől a lámpa állapotát, hogy a kapcsoló
+    azonnal megfelelően működjön
+    \item \textbf{SetupHub} - \textbf{public async Task}, ez a függvény felelős a \textbf{Hub} ``SwitchClient'' eseményére való feliratkozásért
+    , így a kliens értesül a lámpa állapotában végbement változásokról
+    \item \textbf{SwitchUponChange} - \textbf{private async void}, külső változtatás esetén ez a metódus fut le, mely ellenőrzi, hogy a lámpa
+    azonosítója megegyezik-e a felhasználóéval, és ha igen, akkor állítja az \textbf{IsOn} property - t.
+    \item \textbf{SwitchLamp} - \textbf{private async Task}, a felhasználó által végzett változtatást közli a szerver felé, meghívja a
+    \textbf{/Lamp/TurnLamp} végpontot.
+    \item \textbf{DeleteLamp} - \textbf{private async Task}, a lámpa eltávolítását végző metódus.  Egy \textbf{MessageDialog} - ban megerősítést
+    kér az ügyféltől, majd meghívja a \textbf{/Lamp/DeleteUserFromLamp} végpontot, a sikeres törlés után tájékoztatja a felhasználót, majd
+    eltávolítja a GUID - ot.
+\end{itemize}
+
+    \textbf{StatisticViewModel.cs} - A \textbf{StatisticView} - hez kapcsolódó ViewModel osztály, feladata a szervertől lekérni a lámpához
+    tartozó változásokat, új változás esetén pedig frissíteni a felhasználói felületet.\\
+
+    \textbf{Property - k:}
+
+\begin{itemize}
+    \item \textbf{DeleteChangesCommand} - \textbf{ICommand}, az előzményeket törléséért felelős gombhoz kötött parancs, mely meghívja a
+    \textbf{DeleteChanges} metódust
+    \item \textbf{LampGuid} - \textbf{string}, a felhasználóhoz tartozó lámpa azonoítója
+    \item \textbf{TotalTimeOn} - \textbf{TimeSpan}, a teljes időmennyiséget tartalmazza, mialatt a lámpa be volt kapcsolba
+    \item \textbf{ChangesCollection} - \textbf{ObservableCollection<Change>}, a változásokat tároló Collection, ezen adatok
+    alapján készül a táblázat a felhasználói felületen.
+\end{itemize}
+
+    \textbf{Metódusok:}
+
+\begin{itemize}
+    \item \textbf{Konstruktor} - beállítja a LampGuid property - t, majd egy külön szálon meghívja az \textbf{Initialize} függvényt
+    \item \textbf{Initialize} - \textbf{private async Task}, az osztály példányosításakor fut le, ha nincs GUID - ja a felasználónak akkor
+    visszatér az eljárás, különben meghívja a \textbf{GetData} függvényt
+    \item \textbf{SetupHub} - \textbf{public async Task}, feliratkozik a \textbf{Hub} ``ChangeAdded'' és ``ChangesDeleted'' eseményeire,
+    melyekhez hozzáköti a \textbf{RefreshChanges} függvényt.
+    \item \textbf{RefreshChanges} - \textbf{private async void}, a megfelelő esemény bekövetkezte után fut le ez a függvény, feladata
+    újra lekérni az adatok a \textbf{GetData} eljárással.
+    \item \textbf{GetData} - \textbf{private async Task}, meghívja a \textbf{GetChanges} függvényt, mely egy Change - ket tartalmazó
+    \textbf{ICollection} - t ad vissza. Továbbá végrehajta a \textbf{GetMinutesOn} és \textbf{GetTotalTimeOn} eljárásokat a kapott eredményre.
+    \item \textbf{GetChanges} - \textbf{private async Task<ICollection<Change>>}, ez a metódus kéri le a szervertől a lámpához tartozó változásokat a
+    \textbf{/Lamp/GetChanges} végpont segítségével.
+    \item \textbf{GetMinutesOn} - \textbf{private void}, végigiterál a Change - ket tartalmazó ObservableCollection - on, és minden eleménél
+    kiszámolja, hogy mennyi idő telt el az őt megelőző elem \textbf{DateTime} adattagja által meghatározott dátum óta
+    \item \textbf{GetTotalTimeOn} - \textbf{private TimeSpan}, végigiterál az ObservableCollection - on, és a Change - k \textbf{timeOn} adattagjait
+    összegzi
+    \item \textbf{DeleteChanges} - \textbf{private async Task}, törli a lámpa előzményeit a \textbf{/Change/DeleteChanges} végpont segítségével
+    miután megerősítést kérta felhasználótól \textbf{MessageDialog} formában
+\end{itemize}
+
+\subsubsection{App.xaml.cs}
+    Fontos kiemelni ezt az osztályt, mivel kulcsfontosságú szerepet játszik a program életében. Ez az alkalmazás belépési pontja,
+    a keret méretét a konstruktor állítja be. A globális, ViewModellek által használt adattagok itt találhatóak, a felhasználó adatait
+    tároló \textbf{UserInfo}, valamint az authentikációt, és a szerverrel való kommunikációt végző \textbf{MobileServicClient} is.
+    Az alkalmazás indításakor a program ellenőrzi az internetkapcsolatot, az ehhez szükséges függvény itt található \textbf{hasInternetCollection}
+    néven.
+
+\section{Adatbázis bemutatása}
 % ------------------------------------------------------------------------------
 
 
