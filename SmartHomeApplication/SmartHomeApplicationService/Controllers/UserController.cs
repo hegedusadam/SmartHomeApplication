@@ -17,9 +17,9 @@ namespace SmartHomeApplicationService.Controllers
 {
 	public class UserController : Controller
 	{
-		private SmartHomeApplicationDatabase db = new SmartHomeApplicationDatabase();
+        private SmartHomeApplicationDb db = new SmartHomeApplicationDb();
 
-		[HttpPost, ActionName("Register")]
+        [HttpPost, ActionName("Register")]
 		public int RegisterToDatabase(UserInfo userInfo)
 		{
 			User user = db.Users.Where(u => u.UserProfileId == userInfo.UserProfileId).FirstOrDefault();

@@ -13,10 +13,10 @@ namespace SmartHomeApplicationService.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class SmartHomeApplicationDatabase : DbContext
+    public partial class SmartHomeApplicationDb : DbContext
     {
-        public SmartHomeApplicationDatabase()
-            : base("name=SmartHomeApplicationDatabase")
+        public SmartHomeApplicationDb()
+            : base("name=SmartHomeApplicationDb")
         {
         }
     

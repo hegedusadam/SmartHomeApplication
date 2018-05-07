@@ -19,7 +19,6 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="ison" Type="bit" Nullable="false" />
           <Property Name="lampguid" Type="nchar" MaxLength="100" />
         </EntityType>
@@ -33,6 +32,8 @@
           <Property Name="UserProfileId" Type="varchar" MaxLength="150" />
           <Property Name="lampid" Type="int" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'SmartHomeApplicationDatabase.sys.database_firewall_rules' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <Association Name="FK__Changes__lampid__66603565">
           <End Role="Lamps" Type="Self.Lamps" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -94,7 +95,6 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="ison" Type="Boolean" Nullable="false" />
           <Property Name="lampguid" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
           <NavigationProperty Name="Changes" Relationship="Self.FK__Changes__lampid__66603565" FromRole="Lamps" ToRole="Changes" />
@@ -139,7 +139,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="SmartHomeApplicationDatabase" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="SmartHomeApplicationDb" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Changes" EntityType="Self.Change" />
           <EntitySet Name="Lamps" EntityType="Self.Lamp" />
           <EntitySet Name="Users" EntityType="Self.User" />
@@ -157,7 +157,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="SmartHomeApplicationDatabaseModelStoreContainer" CdmEntityContainer="SmartHomeApplicationDatabase">
+        <EntityContainerMapping StorageEntityContainer="SmartHomeApplicationDatabaseModelStoreContainer" CdmEntityContainer="SmartHomeApplicationDb">
           <EntitySetMapping Name="Changes">
             <EntityTypeMapping TypeName="SmartHomeApplicationDatabaseModel.Change">
               <MappingFragment StoreEntitySet="Changes">
@@ -172,7 +172,6 @@
             <EntityTypeMapping TypeName="SmartHomeApplicationDatabaseModel.Lamp">
               <MappingFragment StoreEntitySet="Lamps">
                 <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="ison" ColumnName="ison" />
                 <ScalarProperty Name="lampguid" ColumnName="lampguid" />
               </MappingFragment>

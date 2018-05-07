@@ -35,7 +35,7 @@ namespace SmartHomeApplication.ClientUWP.ViewModel
 			loginCommand ??
 			(loginCommand = new RelayCommand(async () => await AuthenticateAsync()));
 
-		public async System.Threading.Tasks.Task<bool> AuthenticateAsync()
+		private async System.Threading.Tasks.Task<bool> AuthenticateAsync()
 		{
 			string message;
 			IsLoggedIn = false;

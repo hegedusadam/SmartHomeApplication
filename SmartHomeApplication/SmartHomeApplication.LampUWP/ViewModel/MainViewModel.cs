@@ -22,6 +22,7 @@ namespace SmartHomeApplication.LampUWP.ViewModel
 	class MainViewModel : ViewModelBase
 	{
 		private string lampGuid;
+        private readonly string key = "lampguid8";
 
 		public string LampGuid
 		{
@@ -53,9 +54,9 @@ namespace SmartHomeApplication.LampUWP.ViewModel
 		public async Task CreateOrReadGuid()
 		{
 
-			if (ApplicationData.Current.LocalSettings.Values.ContainsKey("lampguid4"))
+			if (ApplicationData.Current.LocalSettings.Values.ContainsKey(key))
 			{
-				LampGuid = (string)ApplicationData.Current.LocalSettings.Values["lampguid4"];
+				LampGuid = (string)ApplicationData.Current.LocalSettings.Values[key];
 			}
 			else
 			{
@@ -63,7 +64,7 @@ namespace SmartHomeApplication.LampUWP.ViewModel
 				string guidString = createGuid.ToString().Substring(0, 5);
 
 				this.LampGuid = guidString;
-				ApplicationData.Current.LocalSettings.Values["lampguid4"] = guidString;
+				ApplicationData.Current.LocalSettings.Values[key] = guidString;
 
 				await RegisterDevice(guidString);
 			}

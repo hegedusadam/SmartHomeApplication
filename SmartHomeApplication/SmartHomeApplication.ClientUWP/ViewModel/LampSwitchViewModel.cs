@@ -43,19 +43,6 @@ namespace SmartHomeApplication.ClientUWP.ViewModel
 			}
 		}
 
-		public LampSwitchViewModel()
-		{
-				LampGuid = App.UserInformation.lampGuid;
-
-				Task.Run(async () =>
-				{
-					await Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
-					{
-						await Initialize();
-					});
-				});
-		}
-
 		public bool IsOn
 		{
 			get { return isOn; }
@@ -76,7 +63,20 @@ namespace SmartHomeApplication.ClientUWP.ViewModel
 			}
 		}
 
-		public async Task Initialize()
+        public LampSwitchViewModel()
+        {
+            LampGuid = App.UserInformation.lampGuid;
+
+            Task.Run(async () =>
+            {
+                await Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
+                {
+                    await Initialize();
+                });
+            });
+        }
+
+        private async Task Initialize()
 		{
 			try
 			{
@@ -120,7 +120,7 @@ namespace SmartHomeApplication.ClientUWP.ViewModel
 			});
 		}
 
-		public async Task SwitchLamp()
+		private async Task SwitchLamp()
 		{
 			try
 			{
@@ -135,7 +135,7 @@ namespace SmartHomeApplication.ClientUWP.ViewModel
 			}
 		}
 
-		public async Task DeleteLamp()
+		private async Task DeleteLamp()
 		{
 			try
 			{

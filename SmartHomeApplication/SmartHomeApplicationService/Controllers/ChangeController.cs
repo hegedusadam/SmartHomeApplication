@@ -15,8 +15,8 @@ namespace SmartHomeApplicationService.Controllers
 {
 	public class ChangeController : Controller
 	{
-		private SmartHomeApplicationDatabase db = new SmartHomeApplicationDatabase();
-		private IHubContext lampContext = GlobalHost.ConnectionManager.GetHubContext<LampHub>();
+        private SmartHomeApplicationDb db = new SmartHomeApplicationDb();
+        private IHubContext lampContext = GlobalHost.ConnectionManager.GetHubContext<LampHub>();
 
 		[HttpPost, ActionName("AddChange")]
 		public void AddNewStateChange([Bind(Include = "Guid, IsOn, date")] LampState LampState)

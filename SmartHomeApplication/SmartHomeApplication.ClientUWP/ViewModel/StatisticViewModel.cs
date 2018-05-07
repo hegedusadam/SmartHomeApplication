@@ -157,13 +157,20 @@ namespace SmartHomeApplication.ClientUWP.ViewModel
 		/// <returns></returns>
 		private async Task<ICollection<Change>> GetChanges()
 		{
-				var token = new JObject();
-				token.Add("guid", LampGuid);
-				var stringContent = new StringContent(token.ToString());
-				var result = await App.MobileService.InvokeApiAsync("/Lamp/GetChanges", token);
-				ICollection<Change> changes = result.ToObject<ICollection<Change>>();
+            try
+            {
+                var token = new JObject();
+                token.Add("guid", LampGuid);
+                var stringContent = new StringContent(token.ToString());
+                var result = await App.MobileService.InvokeApiAsync("/Lamp/GetChanges", token);
+                ICollection<Change> changes = result.ToObject<ICollection<Change>>();
 
-				return changes;
+                return changes;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
 		}
 
 		/// <summary>

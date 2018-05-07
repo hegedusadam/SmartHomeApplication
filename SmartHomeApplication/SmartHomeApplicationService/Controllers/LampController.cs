@@ -15,7 +15,7 @@ namespace SmartHomeApplicationService.Controllers
 {
 	public class LampController : Controller
 	{
-		private SmartHomeApplicationDatabase db = new SmartHomeApplicationDatabase();
+		private SmartHomeApplicationDb db = new SmartHomeApplicationDb();
 		private IHubContext lampContext = GlobalHost.ConnectionManager.GetHubContext<LampHub>();
 
 		[System.Web.Mvc.Authorize]
@@ -66,7 +66,6 @@ namespace SmartHomeApplicationService.Controllers
 		{
 			Lamp newLamp = db.Lamps.Add(new Lamp
 			{
-				name = "DefaultLampName",
 				lampguid = Guid,
 				ison = false
 			});

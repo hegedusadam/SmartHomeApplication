@@ -187,30 +187,30 @@
     </Compile>
     <Compile Include="Hubs\LampHub.cs" />
     <Compile Include="Models\Change.cs">
-      <DependentUpon>SmartHomeApplicationDataBase.tt</DependentUpon>
+      <DependentUpon>SmarthomeApplicationDatabase.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Lamp.cs">
-      <DependentUpon>SmartHomeApplicationDataBase.tt</DependentUpon>
+      <DependentUpon>SmarthomeApplicationDatabase.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\LampState.cs" />
     <Compile Include="Models\NewLamp.cs" />
-    <Compile Include="Models\SmartHomeApplicationDataBase.Context.cs">
+    <Compile Include="Models\SmarthomeApplicationDatabase.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>SmartHomeApplicationDataBase.Context.tt</DependentUpon>
+      <DependentUpon>SmarthomeApplicationDatabase.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\SmartHomeApplicationDataBase.cs">
+    <Compile Include="Models\SmarthomeApplicationDatabase.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>SmartHomeApplicationDataBase.tt</DependentUpon>
+      <DependentUpon>SmarthomeApplicationDatabase.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\SmartHomeApplicationDataBase.Designer.cs">
+    <Compile Include="Models\SmarthomeApplicationDatabase.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>SmartHomeApplicationDataBase.edmx</DependentUpon>
+      <DependentUpon>SmarthomeApplicationDatabase.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\User.cs">
-      <DependentUpon>SmartHomeApplicationDataBase.tt</DependentUpon>
+      <DependentUpon>SmarthomeApplicationDatabase.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UserInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -223,15 +223,15 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Models\SmartHomeApplicationDataBase.Context.tt">
+    <Content Include="Models\SmarthomeApplicationDatabase.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>SmartHomeApplicationDataBase.edmx</DependentUpon>
-      <LastGenOutput>SmartHomeApplicationDataBase.Context.cs</LastGenOutput>
+      <DependentUpon>SmarthomeApplicationDatabase.edmx</DependentUpon>
+      <LastGenOutput>SmarthomeApplicationDatabase.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\SmartHomeApplicationDataBase.tt">
+    <Content Include="Models\SmarthomeApplicationDatabase.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>SmartHomeApplicationDataBase.edmx</DependentUpon>
-      <LastGenOutput>SmartHomeApplicationDataBase.cs</LastGenOutput>
+      <DependentUpon>SmarthomeApplicationDatabase.edmx</DependentUpon>
+      <LastGenOutput>SmarthomeApplicationDatabase.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -240,12 +240,12 @@
     </Content>
     <Content Include="ClassDiagram1.cd" />
     <Content Include="ClassDiagram2.cd" />
-    <EntityDeploy Include="Models\SmartHomeApplicationDataBase.edmx">
+    <EntityDeploy Include="Models\SmarthomeApplicationDatabase.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>SmartHomeApplicationDataBase.Designer.cs</LastGenOutput>
+      <LastGenOutput>SmarthomeApplicationDatabase.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\SmartHomeApplicationDataBase.edmx.diagram">
-      <DependentUpon>SmartHomeApplicationDataBase.edmx</DependentUpon>
+    <Content Include="Models\SmarthomeApplicationDatabase.edmx.diagram">
+      <DependentUpon>SmarthomeApplicationDatabase.edmx</DependentUpon>
     </Content>
     <None Include="Properties\PublishProfiles\SmartHomeApplicationService - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
