@@ -9,7 +9,6 @@
 
 namespace SmartHomeApplicationService.Models
 {
-    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
     
@@ -20,7 +19,6 @@ namespace SmartHomeApplicationService.Models
         public bool state { get; set; }
         public int lampid { get; set; }
     
-        [JsonIgnore]
         public virtual Lamp Lamp { get; set; }
     }
 }

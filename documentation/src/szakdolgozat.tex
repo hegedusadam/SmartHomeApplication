@@ -1323,6 +1323,48 @@ urlcolor=blue,
     néven.
 
 \section{Adatbázis bemutatása}
+    Az adatbázis külön, összesen három táblában tárolja az adatokat, melyek az alábbiak:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{images/database.jpg}
+    \caption{Az adatbázis felépítése}
+    \label{fig: Database}
+\end{figure}
+
+\subsection{User}
+    Ez a tábla felelős a felhasználók adatainak tárolásáért. A \textbf{Lamp} táblával \textbf{sok - egy} kapcsolatban áll. Az alábbi
+    oszlopokkal rendelkezik:
+
+\begin{itemize}
+    \item \textbf{Id} - a tábla elsődleges kulcsa
+    \item \textbf{FirstName} - a felhasználó keresztneve
+    \item \textbf{LastName} - a felhasználó vezetékneve
+    \item \textbf{UserProfileId} - felhasználó Facebook azonosítója
+    \item \textbf{lampid} - idegen kulcs a \textbf{Lamp} táblához
+\end{itemize}
+
+\subsection{Change}
+    Ez a tábla tárolja a lámpa változásait. \textbf{Sok - egy} kapcsolatban áll a \textbf{Lamp} táblával.
+
+\begin{itemize}
+    \item \textbf{Id} - a tábla elsődleges kulcsa
+    \item \textbf{date} - a változás dátuma
+    \item \textbf{state} - a változás állapota \textbf{False - kikapcsolva}, \textbf{True - bekapcsolba}
+    \item \textbf{lampid} - idegen kulcs a \textbf{Lamp} táblához
+\end{itemize}
+
+\subsection{Lamp}
+    Ez a tábla tárolja a lámpával kapcsolatos adatokat. A \textbf{User} és a \textbf{Change} táblával \textbf{egy - sok} kapcsolatban
+    áll.
+
+\begin{itemize}
+    \item \textbf{Id} - a tábla elsődleges kulcsa
+    \item \textbf{ison} - a lámpa aktuális állapota
+    \item \textbf{lampguid} - az eszköz egyedi azonosítója
+\end{itemize}
+
+\subsection{Valósidejűség az alkalmazásban}
 % ------------------------------------------------------------------------------
 
 

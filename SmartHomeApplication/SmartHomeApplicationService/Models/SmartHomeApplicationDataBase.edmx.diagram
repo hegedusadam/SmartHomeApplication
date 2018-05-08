@@ -5,9 +5,9 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="87f34fbfdbc24bc7b4331d0fa8e81043" Name="Diagram1">
-        <EntityTypeShape EntityType="SmartHomeApplicationDatabaseModel.Change" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="SmartHomeApplicationDatabaseModel.Lamp" Width="1.5" PointX="0.75" PointY="2.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="SmartHomeApplicationDatabaseModel.User" Width="1.5" PointX="3" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartHomeApplicationDatabaseModel.Change" Width="1.5" PointX="6.375" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartHomeApplicationDatabaseModel.Lamp" Width="1.5" PointX="3.75" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartHomeApplicationDatabaseModel.User" Width="1.5" PointX="1.125" PointY="1.875" IsExpanded="true" />
         <AssociationConnector Association="SmartHomeApplicationDatabaseModel.FK__Changes__lampid__66603565" ManuallyRouted="false" />
         <AssociationConnector Association="SmartHomeApplicationDatabaseModel.FK_User_ToLamps" ManuallyRouted="false" />
       </Diagram>
