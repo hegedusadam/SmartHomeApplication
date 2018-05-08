@@ -1364,7 +1364,28 @@ urlcolor=blue,
     \item \textbf{lampguid} - az eszköz egyedi azonosítója
 \end{itemize}
 
-\subsection{Valósidejűség az alkalmazásban}
+\section{Valósidejűség az alkalmazásban}
+    Az alkalmazás fő tulajdonsága, hogy valós időben értesülünk az eseményekről. Mit is jelent ez? Azt, hogy az alkalmazás
+    rövid időn belül hajt végre változtatásokat, ezért a felhasználó úgy érzi, hogy azok azonnal mennek végbe. Továbbá
+    nem kell frissíteni az oldalakat, nem szükséges újraindítani az alkalmazást az új adatok, változások letöltéséhez.\\
+
+    Az alkalmazás az alábbi esetekben tesz eleget a valósidejűség követelményeinek:
+
+\begin{itemize}
+    \item \textbf{A lámpa kapcsolása} - miután a vezérlőben a kapcsolót átmozdítottuk, a lámpa szinte azonnal ki- vagy bekapcsol.
+    Gyenge internetkapcsolat esetén egy minimális késést tapasztalhatunk, de ez elenyésző.
+    \item \textbf{A lámpa kapcsolója} - mivel több ember vezérelheti ugyanazt az eszközt, ezért nagyon fontos hogy a kapcsolók
+    minden felhasználónál szinkronban legyenek. Az alkalmazás erre is megoldást biztosít, mikor egy ügyfél átkapcsolja a lámpát,
+    akkor az összes felhasználó kapcsolója átvált az oldal újratöltése nélkül.
+    \item \textbf{A lámpa statisztikája} - miközben egy felhasználó a fényforrása statisztikáit nézi előfordulhat hogy egy másik
+    ügyfél éppen azt az eszközt kapcsolta fel vagy le. Ekkor az új változás az oldal újratöltése nélkül, azonnal megjelenik a táblázatban.
+\end{itemize}
+
+\subsection{SignalR}
+    A valósidejűség megvalósításához a Microsoft által fejlesztett \textbf{ASP.NET} keretrendszerre épülő szerveroldali megoldást,
+    SignalR - t használtam. Ezzel a technológiával hatékony aszinkron kommunikáció valósítható meg, és alkalmas az program számára
+    szükséges valósidejű kommunikáció kiépítésére. Képes üzenetszórásra, mely nagyon hasznos az alkalmazás számára, mikor minden klienst
+    meg kell szólítanunk.
 % ------------------------------------------------------------------------------
 
 

@@ -37,15 +37,12 @@ namespace SmartHomeApplication.ClientUWP.ViewModel
 
 		private async System.Threading.Tasks.Task<bool> AuthenticateAsync()
 		{
-			string message;
 			IsLoggedIn = false;
 
 			try
 			{
 				App.User = await App.MobileService
 					.LoginAsync(MobileServiceAuthenticationProvider.Facebook, "smarthomeapplicationservice");
-				message =
-					string.Format("You are now signed in - {0}", App.User.UserId);
 
 				await GetUserInfo();
 
@@ -53,12 +50,12 @@ namespace SmartHomeApplication.ClientUWP.ViewModel
 			}
 			catch (Exception e)
 			{
-				message = "You must log in. Login Required";
-			}
+				string message = "You must log in. Login Required";
 
-			var dialog = new MessageDialog(message);
-			dialog.Commands.Add(new UICommand("OK"));
-			await dialog.ShowAsync();
+                var dialog = new MessageDialog(message);
+                dialog.Commands.Add(new UICommand("OK"));
+                await dialog.ShowAsync();
+            }
 
 			App.IsLoggedIn = IsLoggedIn;
 			return IsLoggedIn;
