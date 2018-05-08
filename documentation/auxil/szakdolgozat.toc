@@ -77,3 +77,5 @@
 \select@language {hungarian} \contentsline {subsection}{\numberline {3.6.3}Lamp}{50}{subsection.3.6.3}
 \select@language {hungarian} \contentsline {section}{\numberline {3.7}Val\IeC {\'o}sidej\IeC {\H u}s\IeC {\'e}g az alkalmaz\IeC {\'a}sban}{50}{section.3.7}
 \select@language {hungarian} \contentsline {subsection}{\numberline {3.7.1}SignalR}{51}{subsection.3.7.1}
+\select@language {hungarian} \contentsline {subsubsection}{\numberline {3.7.1.1}SignalR szerveroldalon}{51}{subsubsection.3.7.1.1}
+\select@language {hungarian} \contentsline {subsubsection}{\numberline {3.7.1.2}SignalR kliensoldalon}{51}{subsubsection.3.7.1.2}

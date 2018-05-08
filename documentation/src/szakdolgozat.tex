@@ -1385,7 +1385,36 @@ urlcolor=blue,
     A valósidejűség megvalósításához a Microsoft által fejlesztett \textbf{ASP.NET} keretrendszerre épülő szerveroldali megoldást,
     SignalR - t használtam. Ezzel a technológiával hatékony aszinkron kommunikáció valósítható meg, és alkalmas az program számára
     szükséges valósidejű kommunikáció kiépítésére. Képes üzenetszórásra, mely nagyon hasznos az alkalmazás számára, mikor minden klienst
-    meg kell szólítanunk.
+    meg kell szólítanunk.\\
+
+\subsubsection{SignalR szerveroldalon}
+    A szerveralkalmazásban le kell tölteni a \textbf{Microsoft.AspNet.SignalR} NuGet csomagot, mely tartalmazza a szükséges eljárásokat.
+    Majd hozzunk létre a programban egy \textbf{Hubs} könyvtárat, abban egy \textbf{LampHub} osztályt, mely egy \textbf{Hub} leszármazott.
+    Ebben az osztályban tárolhatjuk a szükséges adattagokat, melyeket később minden üzenetküldésnél felhasználhatunk. A \textbf{Controller}
+    osztályokban vegyük fel egy \textbf{IHubContext} adattagot és példányosítsuk is \textbf{GlobalHost.ConnectionManager.\\GetHubContext<LampHub>()}
+    módon. Ezek után a szerver készen áll jelzéseket küldenki a kliensek számára. Ezt a következő módon tehetjük meg: valamelyik függvénybe
+    írjuk be hogy \textbf{lampContext.Client.All}. Ez eddig annyit tesz, hogy a \textbf{lampContext} adattag segítségével mindent kliensnek címez
+    egy üzenetet. Itt még nincs vége, folytassuk a függvényhívást egy tetszőleges eseménnyel, mely legyen \textbf{OnSwitch}. Ekkor az alábbit kapjuk:
+    \textbf{lampContext.Client.All.OnSwitch(IsOn, LampGuid)}. Tehát a \textbf{lampContext} minden kliensnek elküldte az ``OnSwitch'' eseményt két paraméterrel.
+    Kliensoldalon fel kell iratkoznunk erre az eseményre, és azonnal meg fogjuk kapni az értesítést a megfelelő paraméterekkel.
+
+\subsubsection{SignalR kliensoldalon}
+    Miután végeztünk a szerveroldal konfigurálásával, térjünk át a két kliensalkalmazásra. Mindkettő alkalmazáshoz töltsük le a
+    \textbf{Microsoft.AspNet.SignalR.Client} NuGet csomagot. A \textbf{ViewModel} osztályok végzik az adatlekérést a szervertől,
+    ezért azokban a ViewModellekben, ahol szükséges a valósidejű kommunikáció, adjunk hozzá egy \textbf{SetupHub} async Task metódust.
+    Ez a függvény hozza létre a kapcsolatot a szerveroldali \textbf{Hub} - bal. Az alábbi lépések szükségesek benne:
+
+\begin{enumerate}
+    \item Hozzunk létre egy \textbf{hubConnection} változót az alábbi módon: \textbf{new HubConnection("a webalkalmazasunk url-je")}.
+    \item Az előző változó segítségével hozzunk létre egy újabbat \textbf{lampHub} néven: \textbf{hubConnection.CreateHubProxy("LampHub")}
+    \item Most már létrejött a kapcsolat a szerveroldali \textbf{Hub} - bal, feliratkozhatunk eseményekre: \textbf{lampHub.On<bool, string>("OnSwitch", SwitchLamp)}.
+    Az ``OnSwitch'' string az esemény, a \textbf{bool, string} generikus típusok a paramétereket jelölik, melyeket a \textbf{SwitchLamp}
+    async void metódus kap meg, mely akkor hívódik meg, mikor jelzést kapunk a szervertől.
+    \item Készen vagyunk, már csak meg kell hívnunk a \textbf{SetupHub} függvényt a megfelelő \textbf{View} osztály konstruktorában.
+\end{enumerate}
+
+    A SignalR egy nagyon hasznos, könnyen kezelhető technológia, mely renegeteg lehetőséggel rendelkezik, és kíválóan alkalmas
+    arra, hogy valósidejű kommunikációt valósítson meg szerver és kliens között.
 % ------------------------------------------------------------------------------
 
 
