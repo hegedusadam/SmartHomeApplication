@@ -81,3 +81,9 @@
 \select@language {hungarian} \contentsline {subsubsection}{\numberline {3.7.1.2}SignalR kliensoldalon}{51}{subsubsection.3.7.1.2}
 \select@language {hungarian} \contentsline {section}{\numberline {3.8}Tov\IeC {\'a}bbfejleszt\IeC {\'e}si lehet\IeC {\H o}s\IeC {\'e}gek}{52}{section.3.8}
 \select@language {hungarian} \contentsline {section}{\numberline {3.9}Tesztel\IeC {\'e}s}{53}{section.3.9}
+\select@language {hungarian} \contentsline {subsection}{\numberline {3.9.1}Feh\IeC {\'e}r doboz tesztek}{53}{subsection.3.9.1}
+\select@language {hungarian} \contentsline {subsection}{\numberline {3.9.2}Fekete doboz tesztek}{53}{subsection.3.9.2}
+\select@language {hungarian} \contentsline {subsubsection}{\numberline {3.9.2.1}Bejelentkez\IeC {\'e}s}{53}{subsubsection.3.9.2.1}
+\select@language {hungarian} \contentsline {subsubsection}{\numberline {3.9.2.2}L\IeC {\'a}mpa hozz\IeC {\'a}ad\IeC {\'a}sa}{54}{subsubsection.3.9.2.2}
+\select@language {hungarian} \contentsline {subsubsection}{\numberline {3.9.2.3}L\IeC {\'a}mpa vez\IeC {\'e}rl\IeC {\'e}se}{54}{subsubsection.3.9.2.3}
+\select@language {hungarian} \contentsline {subsubsection}{\numberline {3.9.2.4}Statisztika}{55}{subsubsection.3.9.2.4}

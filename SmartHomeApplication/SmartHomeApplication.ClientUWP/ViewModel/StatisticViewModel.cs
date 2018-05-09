@@ -177,7 +177,7 @@ namespace SmartHomeApplication.ClientUWP.ViewModel
 		/// Determines the length of each On period
 		/// </summary>
 		/// <param name="observableCollection"></param>
-		private void GetMinutesOn(ObservableCollection<Change> observableCollection)
+		public static void GetMinutesOn(ObservableCollection<Change> observableCollection)
 		{
 			Change onChange = new Change();
 
@@ -199,7 +199,7 @@ namespace SmartHomeApplication.ClientUWP.ViewModel
 		/// </summary>
 		/// <param name="observableCollection"></param>
 		/// <returns></returns>
-		private TimeSpan GetTotalTimeOn(ObservableCollection<Change> observableCollection)
+		public static TimeSpan GetTotalTimeOn(ObservableCollection<Change> observableCollection)
 		{
 			int TotalSeconds = 0;
 

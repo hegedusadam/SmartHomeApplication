@@ -16,6 +16,7 @@ urlcolor=blue,
 \usepackage{subcaption}
 \usepackage{csquotes}
 \usepackage{float}
+\usepackage{array}
 
 %\bibliographystyle{plain}
 
@@ -1307,12 +1308,12 @@ urlcolor=blue,
     \textbf{ICollection} - t ad vissza. Továbbá végrehajta a \textbf{GetMinutesOn} és \textbf{GetTotalTimeOn} eljárásokat a kapott eredményre.
     \item \textbf{GetChanges} - \textbf{private async Task<ICollection<Change>>}, ez a metódus kéri le a szervertől a lámpához tartozó változásokat a
     \textbf{/Lamp/GetChanges} végpont segítségével.
-    \item \textbf{GetMinutesOn} - \textbf{private void}, végigiterál a Change - ket tartalmazó ObservableCollection - on, és minden eleménél
+    \item \textbf{GetMinutesOn} - \textbf{public static void}, végigiterál a Change - ket tartalmazó ObservableCollection - on, és minden eleménél
     kiszámolja, hogy mennyi idő telt el az őt megelőző elem \textbf{DateTime} adattagja által meghatározott dátum óta
-    \item \textbf{GetTotalTimeOn} - \textbf{private TimeSpan}, végigiterál az ObservableCollection - on, és a Change - k \textbf{timeOn} adattagjait
+    \item \textbf{GetTotalTimeOn} - \textbf{public static TimeSpan}, végigiterál az ObservableCollection - on, és a Change - k \textbf{timeOn} adattagjait
     összegzi
     \item \textbf{DeleteChanges} - \textbf{private async Task}, törli a lámpa előzményeit a \textbf{/Change/DeleteChanges} végpont segítségével
-    miután megerősítést kérta felhasználótól \textbf{MessageDialog} formában
+    miután megerősítést kért a felhasználótól \textbf{MessageDialog} formában
 \end{itemize}
 
 \subsubsection{App.xaml.cs}
@@ -1431,6 +1432,90 @@ urlcolor=blue,
     a program.
 
 \section{Tesztelés}
+    A program tesztelését fehér- és fekete doboz tesztesekkel végeztem.
+
+\subsection{Fehér doboz tesztek}
+    Az alkalmazás tartalmaz egység teszteket, mely segítségével a \textbf{StatisticViewModel} időkülönbséget, illetve az összes időt
+    kiszámoló függvényeit tesztelhetjük. A tesztek a \textbf{SmartHomeApplication.ClientUWP.Test} fájlban találhatóak.
+
+\subsection{Fekete doboz tesztek}
+
+\subsubsection{Bejelentkezés}
+    A bejelentkezést az alábbi esetekkel teszteltem:\\
+
+\begin{center}
+    \begin{tabular}{ | m{4.5cm} | m{4.5cm} | m{4.5cm} |}
+        \hline
+        Esemény & Elvárás & Eredmény \\ \hline
+        ``Login with Facebook'' gombra kattintás, majd a Facebook profilunkkal bejelentkezés és engedélyezzük az alkalmazásnak
+        a profilunk használatát & Sikeres bejelentkezés, a program az ``ADD LAMP'' oldalra navigál. & Megfelelt az elvárásnak. \\ \hline
+        ``Login with Facebook'' gombra kattintást, majd nem bejelentkezni a Facebook profilunkkal & Az alkalmazás nem jelentkezik be
+        amíg nem adjuk meg az adatainkat. & Megfelelt az elvárásnak. \\ \hline
+        ``Login with Facebook'' gombra kattintás, bejelentkezés a Facebook profilunkkal, majd nem engedélyezni az alkalmazásnak az
+        adatainkhoz való hozzáférést & Az alkalmazás nem enged belépni amíg nem engedélyezzük. & Megfelelt az elvárásnak. \\ \hline
+        \hline
+    \end{tabular}
+\end{center}
+
+\subsubsection{Lámpa hozzáadása}
+    A lámpa hozzáadása oldalon az alábbi eseteket teszteltem:
+
+\begin{center}
+    \begin{tabular}{ | m{4.5cm} | m{4.5cm} | m{4.5cm} |}
+        \hline
+        Esemény & Elvárás & Eredmény \\ \hline
+        Létező GUID beírása a szöveges beviteli mezőbe, majd az ``Add Lamp'' gombra kattintás. & Rövid idő múlva felugró ablak jelzi
+        hogy sikeresen hozzáadtuk a lámpát a profilunkhoz. & Megfelelt az elvárásnak. \\ \hline
+        Helyetelen, öt karakternél rövidebb GUID beírása a szöveges beviteli mezőbe. & Az alkalmazás felugró ablakban közli hogy érvénytelen
+        azonosítót adtunk meg, öt karakter hosszúnak kell lennie & Megfelelt az elvásárnak. \\ \hline
+        Helytelen, öt karakternél hosszabb GUID beírása a szöveges beviteli mezőbe. & Az alkalmazás felugró ablakban közli, hogy érvénytelen
+        azonosítót adtunk meg, öt karakter hosszúnak kell lennie. & Megfelelt az elvárásnak. \\ \hline
+        Nem létező, de öt karakter hosszú GUID beírása a szöveges beviteli mezőbe. & Az alkalmazás felugró ablakban közli, hogy sikertelen
+        hozzáadás történt, próbálkozzunk újra. & Megfelelt az elvárásnak. \\ \hline
+        \hline
+    \end{tabular}
+\end{center}
+
+\subsubsection{Lámpa vezérlése}
+    A lámpa vezérlése oldalon az alábbi eseteket teszteltem:
+
+\begin{center}
+    \begin{tabular}{ | m{4.5cm} | m{4.5cm} | m{4.5cm} |}
+        \hline
+        Esemény & Elvárás & Eredmény \\ \hline
+        Kapcsoló állapotának megváltoztatása. & A lámpa a kapcsoló állapotának megfelelően fel- vagy lekapcsol. & Megfelelt az elvárásnak. \\ \hline
+        Kapcsoló állapotának megváltoztatása. & Ha két ügyfél használja a lámpát és az egyik változtatott, akkor a másiknál is átvált a kapcsoló a megfelelő
+        helyzetbe. & Megfelelt az elvárásnak.\\ \hline
+        ``Delete Lamp'' feliratú gombra kattintás. & Felugró ablakban kérdezi meg a program, hogy biztosan törölni szeretnénk-e a lámpát. & Megfelelt az elvárásnak. \\ \hline
+        ``Delete Lamp'' feliratú gombra kattintás, majd a ``Yes'' opció választása a felugró ablakban. & A lámpa leválasztásra kerül. & Megfelelt az elvárásnak. \\ \hline
+        ``Delete Lamp'' feliratú gombra kattintás, majd a ``Cancel'' opció választása a felugró ablakban. & A lámpa \textbf{nem} törlődik, a program zavartalanul fut tovább
+        & Megfelelt az elvárásnak. \\ \hline
+        \hline
+    \end{tabular}
+\end{center}
+
+\subsubsection{Statisztika}
+    A statisztika oldalon az alábbi teszteket végeztem el:
+
+\begin{center}
+    \begin{tabular}{ | m{4.5cm} | m{4.5cm} | m{4.5cm} |}
+        \hline
+        Esemény & Elvárás & Eredmény \\ \hline
+        A lámpát fel- vagy lekapcsolja egy felhasználó. & Az azonos lámpát használó másik ügyfél számára valós időben kerül be az új adat
+        a táblázatba. & Megfelelt az elvárásnak. \\ \hline
+        A lámpát fel- vagy lekapcsolja egy felhasználó. & Az azonos lámpát használó másik ügyfél számára valós időben frissül az összesített
+        időt tartalmazó TextBlock. & Megfelelt az elvárásnak. \\ \hline
+        ``Clear History'' gombra kattintás. & Felugró ablakban kérdezi meg a program, hogy biztosan szeretnénk - e törölni a lámpa előzményeit
+        & Megfelelt az elvárásnak.\\ \hline
+        A ``Clear History'' feliratú gombra kattintani, majd a felugró ablakban a ``Yes'' opciót választani. & A program kitörli a lámpa előzményeit
+        , az oldalról eltűnik a táblázat és az összesített időt mutató TextBlock. & Megfelelt az elvárásnak.\\ \hline
+        A ``Clear History'' feliratú gombra kattintani, majd a felugró ablakban a ``Cancel'' opciót választani. & A program zavartalanul folytatódik. &
+        Megfelelt az elvárásnak. \\ \hline
+        \hline
+    \end{tabular}
+\end{center}
+
+\subsubsection{Menü}
 % ------------------------------------------------------------------------------
 
 
