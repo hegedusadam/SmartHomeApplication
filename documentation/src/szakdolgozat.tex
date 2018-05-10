@@ -1035,6 +1035,15 @@ urlcolor=blue,
     adatbázis, közvetlenül a szerveren keresztül szerzi az adatokat. Nyissuk meg a ``Solution Explorer'' - ben a \textbf{SmartHomeApplication.ClientUWP}
     projektet.
 
+\subsubsection{Használat eset diagram}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{images/usecase.jpg}
+    \caption{Általános használati eset diagram}
+    \label{fig: UseCase}
+\end{figure}
+
  \subsubsection{Struktúra}
     Az alkalmazás az alábbi szükséges könyvtárakkal rendelkezik, köztük a tervezési minta által meghatározottakkal:
 
@@ -1388,6 +1397,13 @@ urlcolor=blue,
     szükséges valósidejű kommunikáció kiépítésére. Képes üzenetszórásra, mely nagyon hasznos az alkalmazás számára, mikor minden klienst
     meg kell szólítanunk.\\
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{images/signalr.jpg}
+    \caption{A SignalR működése}
+    \label{fig: SignalR}
+\end{figure}
+
 \subsubsection{SignalR szerveroldalon}
     A szerveralkalmazásban le kell tölteni a \textbf{Microsoft.AspNet.SignalR} NuGet csomagot, mely tartalmazza a szükséges eljárásokat.
     Majd hozzunk létre a programban egy \textbf{Hubs} könyvtárat, abban egy \textbf{LampHub} osztályt, mely egy \textbf{Hub} leszármazott.
@@ -1580,8 +1596,9 @@ urlcolor=blue,
 
     \textbf{Köszönöm!}
 % ------------------------------------------------------------------------------
-
 \begin{thebibliography}{9}
+    \pagenumbering{gobble}
+
     \bibitem{MyDriving}
     MyDriving,
     \\\texttt{https://channel9.msdn.com/coding4fun/blog/How-Is-MyDriving\\-Azure-Mobile-IoT-App-from-Build}\\
