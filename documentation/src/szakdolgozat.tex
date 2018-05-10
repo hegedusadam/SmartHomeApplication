@@ -17,6 +17,7 @@ urlcolor=blue,
 \usepackage{csquotes}
 \usepackage{float}
 \usepackage{array}
+\usepackage{breakurl}
 
 %\bibliographystyle{plain}
 
@@ -56,13 +57,16 @@ urlcolor=blue,
 %\vfill
 %\thispagestyle{empty}
 %\newpage
-\setcounter{page}{1}
 
 % ------------------------------------------------------------------------------
 % Tartalomjegyzék
+\pagenumbering{gobble}
 
 \tableofcontents
 
+\clearpage
+\setcounter{page}{1}
+\pagenumbering{arabic}
 % ------------------------------------------------------------------------------
 
 
@@ -77,7 +81,7 @@ urlcolor=blue,
     motivált a dolgozatom megírására, szerettem volna egy olyan alkalmazást elkészíteni mely egyszerű funkciót tölbe, mégis
     hasznos lehet a dolgos hétköznapjainkon. Bárkivel előfordulhat hogy felkapcsolva felejti a lámpát a reggeli rohanás során
     és csak a munkahelyén jut eszébe. A szakdolgozatom erre a problémára szeretne megoldást kínálni. Az alkalmazás segítségével
-    bárki regisztrálhat egy lámpát, akár több ember ugyanazt a fényforrást, és távolról fel -és lekapcsolhatja, követheti hogy
+    bárki regisztrálhat egy lámpát, akár több ember ugyanazt a fényforrást, és távolról fel- és lekapcsolhatja, követheti hogy
     mikor történt változás, illetve mennyi ideig volt összesen bekapcsolt állapotban az eszköz. Mindez valós időben történik,
     tehát minden felhasználó a legfrissebb információkkal rendelkezik a program használata közben.
 
@@ -148,7 +152,7 @@ urlcolor=blue,
     monitorunkkal, a vezérléshez szükség lesz legalább egy egérre. Az internetelérés történhet Ethernet csatlakozón, vagy (legalább Raspberry
     Pi 3 esetén) Wi-Fi-n keresztül is. Ha mindent jól csináltunk, akkor az eszköz rövid betöltés után megjelenít egy ablakot,
     melyben kiválaszthatjuk az általunk kívánt operációs rendszert. Többet is telepíthetünk, és javasolt is az alapértelmezett Raspbiant,
-    valamint számunkra létfontosságú Windows 10 IoT Core-t. Ezt a Raspberry le fogja tölteni, ezért \textbf{elengedhetetlen} az internetkapcsolat.
+    valamint számunkra létfontosságú Windows 10 IoT Core-t kiválasztani. Ezt a Raspberry le fogja tölteni, ezért \textbf{elengedhetetlen} az internetkapcsolat.
     Az eszköz automatikusan telepíti a kiválasztott rendszereket, miután végzett, a mikroprocesszorunk használatra alkalmas.
 
 \begin{figure}[h!]
@@ -160,8 +164,8 @@ urlcolor=blue,
 
 \subsubsection{Telepítés nem előtelepített SD kártyáról}
     Ha nincs előre telepítve a szükséges operációs rendszer, akkor nekünk kell letölteni hivatalos forrásból.
-    Ehhez a microsoft készített egy könnyen kezelhető felületet, a Windows 10 IoT Core Dashboardot, melyet
-    \href{https://developer.microsoft.com/en-us/windows/iot/Downloads.htm}{ide} kattintva tudunk letölteni.
+    Ehhez a Microsoft készített egy könnyen kezelhető felületet, a Windows 10 IoT Core Dashboardot, melyet
+    \url{https://developer.microsoft.com/en-us/windows/iot/Downloads.htm} linken tudunk elérni.
     Telepítsük fel az alkalmazást, majd kattintsunk a "\textbf{Set up a new device}" fülre, töltsük ki a szükséges adatokat, helyezzük
     az SD kártyát a számítógépünkbe. A "\textbf{Download and install}" lehetőségre klikkelve az alkalmazás telepíti nekünk
     az operációs rendszert.
@@ -284,7 +288,7 @@ urlcolor=blue,
     \label{fig: Raspberry IP Browser}
 \end{figure}
 
-    Ha helyen másoltuk ki az IP címet, akkor a böngésző kérni fog tőlünk egy felhasználónevet és jelszót. A Windows 10 IoT Core
+    Ha helyesen másoltuk ki az IP címet, akkor a böngésző kérni fog tőlünk egy felhasználónevet és jelszót. A Windows 10 IoT Core
     operációs rendszer esetén az alapértelmezett adatok az alábbiak:
 
 \begin{itemize}
@@ -292,7 +296,7 @@ urlcolor=blue,
     \item Jelszó: ``\textbf{p@ssw0rd}''
 \end{itemize}
 
-    Ha sikeres volt az authentikáció, akkor a Windows Device Portal felülete fog megjelenni előttünk, mely így fest:
+    Ha sikeres volt az autentikáció, akkor a Windows Device Portal felülete fog megjelenni előttünk, mely így fest:
 
 \begin{figure}[h!]
     \includegraphics[width=\linewidth]{images/deviceportal.jpg}
@@ -302,7 +306,7 @@ urlcolor=blue,
 
     Ez egy nagyon hasznos felület, megváltoztathatjuk eszközünk nevét, jelszavát, felügyelhetjük a futó alkalmazásokat,
     kikapcsolhatjuk a Raspberry-t. De most egyelőre csak alkalmazást szeretnénk futtatni a mikroprocesszoron, így kattintsunk
-    a bal oldalon található ``\textbf{Apps}"" fülre, majd az ``\textbf{Apps manager}"" lehetőségre.
+    a bal oldalon található ``\textbf{Apps}'' fülre, majd az ``\textbf{Apps manager}'' lehetőségre.
 
 \begin{figure}[h!]
     \centering
@@ -318,14 +322,14 @@ urlcolor=blue,
     \label{fig:Apps manager}
 \end{figure}
 
-    Most már majdnem készen vagyunk, válasszuk ki az ``\textbf{Add}'' lehetőséget, majd a megjelenő kis ablakban húzzuk bele
+    Most már majdnem készen vagyunk, válasszuk ki az ``\textbf{Add}'' lehetőséget, majd a megjelenő kis ablakba húzzuk bele
     a letöltött alkalmazást, vagy ki is kereshetjük a fájl böngészőből.
 
 \begin{figure}[H]
     \centering
     \begin{subfigure}[b]{0.4\linewidth}
         \includegraphics[width=\linewidth]{images/addapps.jpg}
-        \caption{Kattinsunk az Add-ra}
+        \caption{Kattinsunk az Add-re}
     \end{subfigure}
     \begin{subfigure}[b]{0.4\linewidth}
         \includegraphics[width=\linewidth]{images/deploy.jpg}
@@ -338,7 +342,7 @@ urlcolor=blue,
     Ha mindent jól csináltunk, akkor a listában megjelenik alkalmazásunk és a mellette található legördülő menüben a ``\textbf{Start}''
     lehetőséget választva elindul az applikáció.
 
-    \textbf{Fontos!} Áramszünet esetén a mikroprocesszor nem indítja el magától a programot, ehhez a ``\textbf{Startup}'' oszlopban
+    \textbf{Fontos!} Egy esetleges áramszünet után a mikroprocesszor nem indítja el magától a programot, ehhez a ``\textbf{Startup}'' oszlopban
     be kell pipálnunk a lehetőséget.
 
 \begin{figure}[h!]
@@ -381,7 +385,7 @@ urlcolor=blue,
 \begin{enumerate}
     \item Jelentkezzünk be a Windows 10 kliensalkalmazásba
     \item Sikeres bejelentkezés esetén a program a lámpa hozzadásáért felelős nézetre navigál, mely egy ``\textbf{GUID of Your lamp}''
-    feliratból, egy szöveges beviteli mezőből, valamint egy egy gombból áll
+    feliratból, egy szöveges beviteli mezőből, valamint egy gombból áll
     \item Ha még nem tettük volna meg, indítsuk el az IoT kliensalkalmazást, és olvassuk le a felhasználói felületén található
     5 karakterből álló egyéni azonosítót, a GUID-ot.
     \item Ezt a karaktersosorozatot másoljuk a szöveges beviteli mezőbe, majd kattintsunk az ``\textbf{Add lamp}'' feliratú gombra
@@ -395,9 +399,9 @@ urlcolor=blue,
     \item Jelentkezzünk be a Windows 10 kliensalkalmazásba
     \item Ha már sikeresen hozzáadtunk egy lámpát, akkor a képernyőn nem a szöveges beviteli mező lesz és a hozzáadás gomb, hanem
     egy felirat, mely tájékoztat arról, hogy már csatlakoztattunk eszközt
-    \item Kattintsunk a bal felső sarokban lévő ``hamburgerger'' ikonra, ezzel előhozva a menüt
+    \item Kattintsunk a bal felső sarokban lévő ``hamburger'' ikonra, ezzel előhozva a menüt
     \item Válasszuk a ``\textbf{Switch Lamp}'' menüpontot
-    \item A megjelenített oldalon egy kapcsoló és egy gomb található. A kapcsolóval tudjuk a lámpát fel -és lekapcsolni, ``On''
+    \item A megjelenített oldalon egy kapcsoló és egy gomb található. A kapcsolóval tudjuk a lámpát fel- és lekapcsolni, ``On''
     állapotban a fényforrás bekapcsolt, ``Off'' esetén pedig kikapcsolt állapotban van.
 \end{enumerate}
 
@@ -412,49 +416,49 @@ urlcolor=blue,
     \item Bal felül kattintsunk a ``hamburger'' ikonra, ezzel előhozva a menüt
     \item Válasszuk a ``\textbf{Switch Lamp}'' lehetőséget, megjelenik a vezérlő nézet
     \item Az oldal alján található egy ``\textbf{Delete Lamp}'' feliratú gomb egy kuka ikonnal. Erre kattintsunk
-    \item A program egy felugró ablakon keresztül megkérdezi, hogy biztosan szeretnénk-e eltávolítani a csatolt eszközünket
+    \item A program egy felugró ablakon keresztül megkérdezi, hogy biztosan el szeretnénk-e távolítani a csatolt eszközünket
     válasszuk a ``\textbf{Yes}'' opciót a törléshez
     \item Az alkalmazás visszaigazolja a sikeres műveletet
 \end{enumerate}
 
 \subsection{Statisztika megtekintése}
-    Az alkalmazás lehetőséget ad arra, hogy megtekintsük lámpánk használati előzményeit, mikor történt fel -vagy lekapcsolás,
-    és ekkor mennyi időre volt bekapcsolva a fényforrás, valamint összesen az áram alatt töltött napokat, órákat, perceket is
+    Az alkalmazás lehetőséget ad arra, hogy megtekintsük lámpánk használati előzményeit, mikor történt fel- vagy lekapcsolás,
+    és ekkor mennyi időre volt bekapcsolva a fényforrás, valamint összesen az áram alatt töltött órákat, perceket, másodperceket is
     számolja.
 
 \begin{enumerate}
     \item Jelentkezzünk be a Windows 10 kliensalkalmazásba
     \item Bal felül kattintsunk a ``hamburger'' ikonra, ezzel megnyitva a menüt
-    \item Kattintsunka ``\textbf{Statistic}'' menüpontra
-    \item Az összesített időmennyiség az oldal tetején, a változtatások lisája az oldal alján található
+    \item Kattintsunk a ``\textbf{Statistics}'' menüpontra
+    \item Az összesített időmennyiség az oldal tetején, a változtatások listája az oldal alján található
 \end{enumerate}
 
 \subsection{Statisztika előzmények törlése}
     Megeshet, hogy már nem vagyunk kiváncsiak a lámpa előzményeire, ekkor lehetőségünk van törölni azokat. Ez például akkor
-    fordulhat elő, ha égőt cseréltünk a fényforrásban, és szeretnénk lenullázni az időt, hogy nyomon tudjuk követni a friss
-    égőt.
+    fordulhat elő, ha égőt cseréltünk a fényforrásban, és szeretnénk lenullázni az időt, hogy tiszta lappal kezdhessük az izzó
+    követését.
 
 \begin{enumerate}
     \item Jelentkezzünk be a Windows 10 kliensalkalmazásba
     \item Bal felül kattintsunk a ``hamburger'' ikonra, ezzel megnyitva a menüt
     \item Válasszuk ``\textbf{Statistic}'' menüpontot
     \item Kattintsunk ``\textbf{Clear History}'' feliratú, kuka ikonnal rendelkező gombra
-    \item A program megkérdezi hogy biztosan szeretnénk-e törölni az előzményekett, a ``\textbf{Yes}'' opcióval véglegesíthetjük
+    \item A program megkérdezi hogy biztosan törölni szeretnénk-e az előzményeket, a ``\textbf{Yes}'' opcióval véglegesíthetjük
     a döntést
 \end{enumerate}
 
-    \textbf{Fontos!} A törlés végleges, az adatokat később semmilyen formában nem lehet visszanyerni, valamint az összes lámpára
+    \textbf{Fontos!} A törlés végleges, az adatokat később semmilyen formában nem lehet visszanyerni, valamint az összes ugyanazon lámpára
     csatlakozott felhasználó számára kitörli az előzményeket.
 
 \subsection{Kijelentkezés a programból}
-    Lehetőség van kijelentkezvi a Windows 10 kliensalkalmazásból, hasznos lehet ha más felhasználóknek kell átadnunk az általunk
+    Lehetőség van kijelentkezni a Windows 10 kliensalkalmazásból, hasznos lehet ha más felhasználónak kell átadnunk az általunk
     használt mobilt vagy asztali számítógépet.
 
 \begin{enumerate}
     \item Tegyük fel, hogy éppen a vezérlő nézeten állunk. A kijelentkezés ugyanúgy működik az összes oldalról
     \item Bal felül kattintsunk a ``hamburger'' ikonra, ezzel megnyitva a menüt
-    \item A menü legalján található kis ajtó ikonnal ellátott ``\textbf{Log Out}'' feliratű gomb. Erre kattintsunk
-    \item A program megkérdezi hogy biztosan szeretnénk-e kijelentkezni az alkalmazásból. A ``\textbf{Yes}'' gombra kattintva
+    \item A menü legalján található kis ajtó ikonnal ellátott ``\textbf{Log Out}'' feliratú gomb. Erre kattintsunk
+    \item A program megkérdezi hogy biztosan ki szeretnénk-e jelentkezni az alkalmazásból. A ``\textbf{Yes}'' gombra kattintva
     véglegesíthetjük a döntést
 \end{enumerate}
 
@@ -528,7 +532,7 @@ urlcolor=blue,
     kattintva juthatunk el ide.
     Amennyiben még nem rendelkezünk hozzáadott eszközzel, akkor egy szöveges beviteli mező és egy a nézet nevével megegyező
     feliratú gomb található az oldalon. Ha már csatlakoztattunk lámpát akkor az előbbi lehetőségek nem elérhetőek, helyette
-    egy rövid szöveg fogad minket, miszerint már van fényforássunk, a többi oldal felkeresésével tudjuk vezérelni, statisztikáit
+    egy rövid szöveg fogad minket, miszerint már van fényforássunk, amit a többi oldal felkeresésével tudunk vezérelni, statisztikáit
     megtekinteni.
 
 \begin{figure}[h!]
@@ -539,13 +543,13 @@ urlcolor=blue,
     \end{subfigure}
     \begin{subfigure}[b]{0.4\linewidth}
         \includegraphics[width=\linewidth]{images/alreadyhaslamp.jpg}
-        \caption{Lámpa hozzáadása nézet ha már van nézetünk}
+        \caption{Lámpa hozzáadása nézet ha már van eszközünk}
     \end{subfigure}
     \caption{Lámpa hozzáadása nézet}
     \label{fig:AddLampView}
 \end{figure}
 
-    A lámpa hozzáadása az eszköz öt hosszúságú egyéni azonosítója segítségével történik, amennyiben nem megfelelő karaktersorozatot
+    A lámpa hozzáadása az eszköz öt hosszúságú egyéni azonosítója segítségével történik. Amennyiben nem megfelelő karaktersorozatot
     adunk be, a program hibaüzenetet dob.
 
 \begin{figure}[H]
@@ -566,9 +570,9 @@ urlcolor=blue,
 \end{figure}
 
 \subsubsection{Lámpa vezérlése nézet}
-    Ez az oldal felelős a lámpa fel -és lekapcsolásáért, valamint itt tudjuk leválasztani az eszközt a profilunkról. Amennyiben
+    Ez az oldal felelős a lámpa fel- és lekapcsolásáért, valamint itt tudjuk leválasztani az eszközt a profilunkról. Amennyiben
     nem rendelkezünk fényforrással, akkor nem jelenik meg a kapcsoló és a törlés gomb, az alkalmazás egy rövid üzenettel kér
-    arra, hogy csatlakoztassunk egy lámpát, majd utána vezéreljük azt.
+    arra, hogy csatlakoztassunk egy lámpát, majd utána vezérelhetjük azt.
 
 \begin{figure}[H]
     \centering
@@ -606,7 +610,7 @@ urlcolor=blue,
     ugyanazt a lámpát az ``Add Lamp'' oldalon gond nélkül felvehetjük újra.
 
 \subsubsection{Statisztika nézet}
-    Csatolt eszközünkről szerezhetünk információt ezen az oldalon. Listázza a korábbi fel -és lekapcsolásokat, azok pontos idejét,
+    Csatolt eszközünkről szerezhetünk információt ezen az oldalon. Listázza a korábbi fel- és lekapcsolásokat, azok pontos idejét,
     milyen változatás történt, valamint hogy mennyi ideig volt bekapcsolva az adott ciklusban. Az összesített időt is megjeleníti a
     nézet. Amennyiben nem rendelkezünk lámpával, itt is egy rövid üzenetet kapunk, hogy először csatlakoztassunk eszközt.
 
@@ -691,7 +695,6 @@ urlcolor=blue,
     \item Intel Core i7-7500U 2.70GHz
     \item 8 GB DDR4 RAM
     \item 256 GB SSD
-    \item 2 db FullHD felbontású képernyő
 \end{itemize}
 
     Ez az összetétel elegendőnek bizonyult, ennél gyengébb hardveren is elfuthat, azonban a fejlesztőkörnyezet erőforrásigénye
@@ -744,21 +747,21 @@ urlcolor=blue,
 \begin{enumerate}
     \item Navigáljunk a könyvtárba, ahova szeretnénk a forráskódot letölteni
     \item Nyissunk meg egy parancssort
-    \item Gépeljük be: git clone ``https://github.com/hegedusadam/SmartHomeApplication.git'', majd üssünk entert
+    \item Gépeljük be: git clone ``https://github.com/hegedusadam/\\SmartHomeApplication.git'', majd üssünk entert
     \item A program a GitHub felhasználónevünket és jelszavunkat fogja kérni
 \end{enumerate}
 
 \section{Microsoft Azure}
-    Az Azure a Microsoft felhőalapű platformja, melyen infrastruktúra -és platformszolgáltatásokat vehetünk igénybe. Több mint
+    Az Azure a Microsoft felhőalapű platformja, melyen infrastruktúra- és platformszolgáltatásokat vehetünk igénybe. Több mint
     hatszáz lehetőség közül választhatunk, számunkra azonban csak kettőre van szükség. Az \textbf{Azure App Service} és az
     \textbf{Azure SQL szerver} szolgáltatásokra. Ezek igénybevételéhez regisztrálnunk kell a \url{portal.azure.com} oldalon.
-    Számos adatunk mellett bankkártya információkat is meg kell adnunk, azonban az App Service számunkra elegendő szolgáltatás
+    Számos adatunk mellett bankkártya információkat is meg kell adnunk, azonban az App Service számunkra elegendő szolgáltatása
     ingyenes, az SQL szerver pedig minimális költséggel jár havonta, amennyiben egy gyengébb konfigurációt választunk.
 
 \subsection{App Service létrehozása}
     Miután sikeresen regisztráltunk az oldalon, hozzuk létre a szerver futtatásához szükséges platformszolgáltatást. Kattintsunk
     a bal felső sarokban található ``\textbf{Create Resource}'' gombra, majd a megnyíló ablakban a ``\textbf{Web + Mobile}'' lehetőségre.
-    A szakdolgozathoz ``\textbf{Mobile App}'' - ot használtam, de lényegi különbség nincs a ``Web App'' - hoz képest.
+    A szakdolgozathoz ``\textbf{Mobile App}'' - ot használtam, de lényegi különbség nincs a ``\textbf{Web App}'' - hoz képest.
     Ezt követően töltsük ki a szükséges adatokat, majd a platform konfigurálja nekünk a szervert.
 
 \begin{figure}[H]
@@ -772,7 +775,7 @@ urlcolor=blue,
     Az Azure adatbázis szolgáltatását fogjuk igénybe venni, mivel könnyen kezelhető, kényelmes felülete nyújt, és egyszerűen
     csatlakoztathatjuk a korábban létrehozott \textbf{Mobile App} szolgáltatásunkhoz.
     Adatbázis hozzáadásához ugyanúgy a bal felső sarokban a ``Create Resource'' lehetőségre kell kattintanunk, és a ``Popular''
-    fül alatt talán már meg is találhatjuk a szükséges szolgáltatást, ha mégsincs ott, akkor a kereső kezdjük el gépelni az ``SQL``
+    fül alatt talán már meg is találhatjuk a szükséges szolgáltatást, ha mégsincs ott, akkor a kereső kezdjük el gépelni az ``SQL''
     betűket, majd az eredmények között válasszuk az ``\textbf{SQL database}'' opciót.
     Jelen esetben is töltsük ki a megfelelő adatokat, szükséges paramétereket, figyeljünk az díjszabásra, nehogy egy túlzottan drága
     szolgáltatást rakjunk össze.
@@ -785,28 +788,28 @@ urlcolor=blue,
 \end{figure}
 
 \subsection{Azure Active Directory}
-    A Microsoft kész szolgáltatást nyújt Athentikációra is, lehetőségünk van valamelyik ismert közösségi oldal által nyújtott
-    bejelentkezési felületet beleépíteni alkalmazásunkba. Ez azért előnyös, mert nem kell kritikus adat tárolásával foglalkoznom,
-    elvégzi azt egy sokkal biztonságosabb szolgáltatás. A program elkészítéséhez Facebook authentikációt használtam, ezt be kell
+    A Microsoft kész szolgáltatást nyújt autentikációra is, lehetőségünk van valamelyik ismert közösségi oldal által nyújtott
+    bejelentkezési felületet beleépíteni alkalmazásunkba. Ez azért előnyös, mert nem kellett kritikus adatok tárolásával foglalkoznom,
+    elvégzi azt egy sokkal biztonságosabb szolgáltatás. A program elkészítéséhez Facebook autentikációt használtam, ezt be kell
     konfigurálni.
     Ehhez az alábbi lépések szükségesek:
 
 \begin{enumerate}
     \item Lépjünk be a frissen létrehozott App Service vezérlőjébe. A lehetőségek között görgessünk le, amíg meg nem találjuk
     a kulcs ikonnal rendelkező \\ ``\textbf{Authentication/Authorization}'' menüpontot
-    \item Állítsuk az ``\textbf{App Service Authentication}'' kapcsolót \textbf{On} - ra
-    \item Az alatta lévő ``\textbf{Action to take when request is not authenticated}'' legördülő menüben válasszuk az
+    \item Állítsuk az ``\textbf{App Service autentication}'' kapcsolót \textbf{On} - ra
+    \item Az alatta lévő ``\textbf{Action to take when request is not autenticated}'' legördülő menüben válasszuk az
     ``\textbf{Allow Anonymous request}'' opciót. Azért engedélyezzük, mert az IoT kliensalkalmazásunk a GUID segítségével
-    végzi az authentikációt, a kliensek által hívható függvényeknél használni fogjuk az Authenticate annotációt
+    végzi az autentikációt, a kliensek által hívható függvényeknél használni fogjuk az Authorize annotációt
     \item Jelen állás szerint a Facebook alatt a \textbf{Not Configured} feliratot kell látnunk. A közösségi oldal fejlesztőknek
     szóló oldalán kell további lépéseket tennünk, ehhez minden szükséges teendőt leír az alábbi hivatalos segítség:
     \url{https://docs.microsoft.com/en-us/azure/active-directory-b2c/active-directory-b2c-setup-fb-app}
     \item Az oldal legalján meg kell adnunk a \textbf{Redirect URL} - t, mely az előző pontban lévő konfigurációnál is kelleni fog.
-    Példa url: \textbf{smarthomeapplicationservice://easyauth.callback}
+    Példa url: \textbf{smarthomeapplicationservice://easyaut.callback}
 \end{enumerate}
 
     Ha mindent jól csináltunk, akkor az Azure oldalán már nincs további teendőnk, még a szerver forráskódjában \textbf{szükséges}
-    egy helyen változtatni, utána rendben fog működni az authentikáció. A Windows 10 kliensalkalmazás leírásában megtalálható a hátralévő változtatás.
+    egy helyen változtatni, utána rendben fog működni az autentikáció. A Windows 10 kliensalkalmazás leírásában megtalálható a hátralévő változtatás.
 
 \section{Az alkalmazás felépítése}
     Miután minden előzetes követelményt teljesítettünk, a szükséges szolgáltatásokat igénybe vettük, megfelelően konfiguráltuk,
@@ -830,7 +833,7 @@ urlcolor=blue,
     (MVC) tervezési mintát. A Solution Explorerer - ben \textbf{SmartHomeApplication.Service} néven találhatjuk a projektet.
 
 \subsubsection{Publish}
-    Alkalmazásunkat még futtatnunk kell a már elkészített \textbf{Mobile App} - ban. Ezt könnyen megtehetjük Visual Studio - ban.
+    Alkalmazásunkat még futtatnunk kell a már elkészített \textbf{Mobile App} - ban. Ezt könnyen megtehetjük Visual Studio segítségével.
     Solution Explorer - ben kattintsunk jobb egérgombbal az alkalmazás nevére, majd a most megjelent lehetőségek közül válasszuk
     a ``\textbf{Publish}'' opciót. Ez egy másik oldalra fog navigálni, ahol ki kell töltenünk a szükséges adatokat, majd ha mindent
     megfelelően konfiguráltunk, akkor az alkalmazás hiba nélkül fog futni az App Service - ben.
@@ -873,7 +876,7 @@ urlcolor=blue,
 
 \begin{itemize}
     \item \textbf{LampState.cs} - Ez egy \textbf{Data Transfer Object} (DTO) osztály, mely a változás hozzáadásához szükséges
-    adatokat foglalja magába. Ezek a lámpa GUID-ja, a fel -vagy lekapcsolást jelentő logikai változó, illetve a DateTime típusú
+    adatokat foglalja magába. Ezek a lámpa GUID-ja, a fel- vagy lekapcsolást jelentő logikai változó, illetve a DateTime típusú
     dátum
     \item \textbf{NewLamp.cs} - Szintén \textbf{DTO} osztály, mely egy lámpa felhasználóhoz csatlakoztatásához szükséges adatokat
     (UserId, GUID) foglalja magában
@@ -912,7 +915,7 @@ urlcolor=blue,
      \item \textbf{Register} - \textbf{HttpPost} egy \textbf{UserInfo} objektumot kap paraméterül, benne a felhasználó nevével és UserProfileId - vel
      , ezen adatokkal regisztrálja az új ügyfelet az adatbázisba ha még nem szerepel benne
      \item \textbf{GetUserInfo} - \textbf{HttpGet} feladata a Facebook megfelelő oldaláról lekérni a felhasználó nevét, és avatar URI - ját.
-     Visszatérési értéke egy szerializált UserInfo objektum. Segédfüggvénye a \textbf{GetAccesToken}, mely
+     Visszatérési értéke egy szerializált UserInfo objektum. Segédfüggvénye a \textbf{GetAccessToken}.
  \end{itemize}
 
     \textbf{ChangeController} - A ``\textbf{Changes}'' adatbázis táblához tartozó Controller osztály, mely a lámpák változásait kezeli az adatbázisban.
@@ -940,13 +943,13 @@ urlcolor=blue,
     \item \textbf{RegisterDevice} - \textbf{HttpPost} egy \textbf{string} paramétert kap, mely az új eszköz GUID - ja. Ezt a végpontot
     az IoT kliensalkalmazás hívja meg, mikor egy olyan mikroproccesszor futtatja az alkalmazást, mely még nincs jelen az adatbázisban,
     és ezzel regisztrálja magát.
-    \item \textbf{TurnLamp} - \textbf{HttpPost} egy \textbf{bool} és egy \textbf{string} paramétert kap, a logikai változó a lámpa fel -vagy lekapcsolására
+    \item \textbf{TurnLamp} - \textbf{HttpPost} egy \textbf{bool} és egy \textbf{string} paramétert kap, a logikai változó a lámpa fel- vagy lekapcsolására
     szolgál, a karakterlánc pedig a kapcsolásra váró lámpa GUID - ját tartalmazza. Feladata az IoT kliensalkalmazást futtató eszközöknek
     jelet küldeni SignalR segítségével, hogy a megfelelő azonosítóval rendelkező lámpa végrehajtsa a változtatást. \textbf{Authorize}
     annotációval felruházott, tehát csak bejelentkezett felhasználók tudják meghívni.
     \item \textbf{GetChanges} - \textbf{HttpPost} egy \textbf{string} paramétert kap, mely egy eszköz azonosítóját takarja. A végpont visszaadja
     a GUID által reprezentált lámpa változásainak listáját, ami egy \textbf{ICollection}. \textbf{Authorize} annotációval felszerelt, csak Facebook
-    authentikáción sikeresen átesett felhasználók kliensalkalmazása hívhatja meg.
+    autentikáción sikeresen átesett felhasználók kliensalkalmazása hívhatja meg.
     \item \textbf{UpdateLamp} - \textbf{HttpPut} egy \textbf{LampState} objektumot kap paraméterül, melyben a lámpa GUID - ját fedő \textbf{string}
     illetve az állapot reprezentáló \textbf{bool} adattag található. A végpontot az IoT kliensalkalmazás hívja meg, feladata felülírni az adatbázisban
     az adott eszköz \textbf{IsOn} mezőjét.
@@ -998,7 +1001,7 @@ urlcolor=blue,
 
 \begin{itemize}
     \item \textbf{LampGuid} - \textbf{string property}, mely a lámpa GUID - ját tárolja, szolgáltatja a View - nek
-    \item \textbf{GpioController} - \textbf{GpioController property}, mely arra szolgál, hogy megnyissogn egy \textbf{LedPin} - t, így
+    \item \textbf{GpioController} - \textbf{GpioController property}, mely arra szolgál, hogy megnyisson egy \textbf{LedPin} - t, így
     lehessen azt vezérelni
     \item \textbf{LedPin} - \textbf{LedPin property} a GPIO pin, melyen keresztül áramot tudunk vezetni a lámpába
     \item \textbf{OpenedPin} - \textbf{readonly int} konstans, mely a megnyitandó GPIO pin számát tartalmazza
@@ -1017,7 +1020,7 @@ urlcolor=blue,
      A függvény egy \textbf{HttpClient} segítségével meghívja a szerver \textbf{/Lamp/RegisterDevice} végpontját a kapott karakterlánccal, így
      a lámpa be lesz regisztrálva az adatbázisba. A függvényt a \textbf{CreateOrReplaceGuid} metódus hívja meg, miután új azonosítót generál.
      \item \textbf{SetupHub} - \textbf{public async Task} függvény, mely feliratkozik a szerver által fenntartott \textbf{Hub} - ra, azon belül
-     az ``\textbf{OnSwitch}'' eseményre, mely a lámpa fel -és lekapcsolását kommunikálja a kliensek felé. A függvény függvény aszinkron módon hívódik
+     az ``\textbf{OnSwitch}'' eseményre, mely a lámpa fel- és lekapcsolását kommunikálja a kliensek felé. A függvény függvény aszinkron módon hívódik
      meg a \textbf{MainPage.xaml.cs} osztály konstruktorában.
      \item \textbf{SwitchLamp} - \textbf{private async void} egy \textbf{string} és egy \textbf{bool} paraméterrel rendelkező függvény, mely az ``OnSwitch''
      esemény bekövetkezésekor lefut. Ellenőrzi, hogy a string paraméter által reprezentált GUID megegyezik-e a \textbf{LampGuid} property - vel. Ha nem,
@@ -1082,13 +1085,13 @@ urlcolor=blue,
 
     \textbf{BooleanToOnOrOffStringConverter.cs} - egy \textbf{bool} értéket kap paraméterül, ez alapján ad vissza egy ``On'' vagy
     ``Off'' stringet. A \textbf{StatisticView} oldal használja, mikor a táblázatban meg kell jeleníteni, hogy egy adott változás
-    alkalmazával a lámpát be (``On'')  -vagy lekapcsolták. (``Off'')\\
+    alkalmazával a lámpát be- (``On'') vagy lekapcsolták. (``Off'')\\
 
     \textbf{NoGuidToCollapsedVisibilityConverter.cs} - egy \textbf{string} paramétert kap, ebből kell előállítania \textbf{Visibility} értéket.
     Ezt a Convertert a lámpával kapcsolatos oldalak használják, és a \textbf{LampGuid} alapján rejtik el vagy jelenítik meg
     a vizuális elemeket. Ha nincs lámpa csatolva a felhasználóhoz, akkor elrejti, ha van, akkor megjeleníti, például a kapcsolót.\\
 
-    \textbf{NoGuidToVisibleVisibilityConverter.cs} - az előző Converter inverze. Szintén \textbf{string} paraméterből állít elő
+    \textbf{NoGuidToVisibleVisibilityConverter.cs} - az előző Converter ellentéte. Szintén \textbf{string} paraméterből állít elő
     \textbf{Visibility} - t, hasonlóan a \textbf{LampGuid} adattag alapján, azonban ez az osztály akkor jeleníti meg az elemet,
     ha nincs lámpa csatolva a felhasználóhoz, tehát a LampGuid ``NOGUID'' értékkel rendelkezik. Ezt a konvertálót használják azok az
     elemek, melyek tájékoztatnak a hozzáadott eszköz hiányáról, például a \textbf{LampSwitchView} állományban.\\
@@ -1108,7 +1111,7 @@ urlcolor=blue,
     így végtelen átláthatatlan lenne a kód ha nem gyűjtenénk ki őket külön fájlba. Példa: \textbf{SplitViewButtonStyle}.
 
 \subsubsection{Model}
-    A tervezési minta része, mely lokális adatbázis \textbf{nem} tárol, ez az alkalmazás is közvetlenül a szervertől kéri le az
+    A tervezési minta része, mely lokális adatbázist \textbf{nem} tárol, ez az alkalmazás is közvetlenül a szervertől kéri le az
     adatokat. \textbf{Data Transfer Object} osztályokat tartalmaz, melyek a kommunikációt teszik lehetővé a szerveroldallal.
 
 \begin{itemize}
@@ -1156,9 +1159,9 @@ urlcolor=blue,
 \end{figure}
 
     \textbf{LampSwitchView.xaml} - A lámpa vezérlésére alkalmas oldal. Három elemet tartalmaz, egy \textbf{ToggleSwitch} - et, mely
-    egy szabályos kapcsoló, és ezzel lehet fel -vagy lekapcsolni a fényforrást, egy \textbf{controls:ViewButtonContent} - et, ami egy
+    egy szabályos kapcsoló, és ezzel lehet fel- vagy lekapcsolni a fényforrást, egy \textbf{controls:ViewButtonContent} - et, ami egy
     Button elemen belül található és az eszköz törlését lehet elindítani a hozzákötött \textbf{DeleteLampCommand} segítségével. Ezek
-    \textbf{NoGuidToCollapsedVisibilityConverter} - rel rendelkeznek, míg a TextBlock az ellenkezőjével, az hívja fel a figyelmünk
+    \textbf{NoGuidToCollapsedVisibilityConverter} - rel rendelkeznek, míg a TextBlock az ellenkezőjével, az hívja fel a figyelmünket
     a lámpa hiányára.
 
 \begin{figure}[H]
@@ -1210,28 +1213,28 @@ urlcolor=blue,
 
 \subsubsection{ViewModel}
     A ViewModel osztályok kulcsfontosságúak a program működésében. Ők állítják elő a nézetek számára a szükséges adatokat, melyeket \textbf{DataBindig} - gal
-    küldenek át a XAML fájloknak, valamint a szerverrel val kommunikációt is ők végzik. Az összes osztály \textbf{Galasoft.MvvmLight.ViewModelBase} leszármazott, így
+    küldenek át a XAML fájloknak, valamint a szerverrel való kommunikációt is ők végzik. Az összes osztály \textbf{Galasoft.MvvmLight.ViewModelBase} leszármazott, így
     megvalósítják az \textbf{INotifyPropertyChanged} interfészt. Az alkalmazás az alábbi négy ViewModel osztállyal rendelkezik:\\
 
-    \textbf{LoginViewModel.cs} - ez a LoginView - hoz tartozó ViewModel, tartalmazza az authentikáció szükséges eljárásokat. \\
+    \textbf{LoginViewModel.cs} - ez a LoginView - hoz tartozó ViewModel, tartalmazza az autentikáció szükséges eljárásokat. \\
 
     Két darab \textbf{property} - vel rendelkezik:
 
 \begin{itemize}
     \item \textbf{LoginCommand} - \textbf{ICommand}, a LoginView bejelentkező gombjához van kötve, mikor a gombra kattint a felhasználó
-    ez a parancs fut le, ami meghívja az \textbf{AuthenticateAsync} metódust.
+    ez a parancs fut le, ami meghívja az \textbf{autenticateAsync} metódust.
     \item \textbf{IsLoggedIn} - \textbf{bool}, igaz, ha a felhasználó sikeresen bejelentkezett, különben hamis. Az \textbf{App.xaml.cs}
-    állományban van szükség rá, a program nem fut tovább sikertelen authentikáció esetén.
+    állományban van szükség rá, a program nem fut tovább sikertelen autentikáció esetén.
 \end{itemize}
 
     Az alábbi metódusok találhatóak meg benne:
 
 \begin{itemize}
-    \item \textbf{AuthenticateAsync} - \textbf{private async Task<bool>}, ez a metódus végzi az authentikációt. Az \textbf{App.xaml.cs} - ben
-    található \textbf{MobileService} adattag \textbf{LoginAsync} függvényét hívja meg Facebook authentikációra. \\
+    \item \textbf{autenticateAsync} - \textbf{private async Task<bool>}, ez a metódus végzi az autentikációt. Az \textbf{App.xaml.cs} - ben
+    található \textbf{MobileService} adattag \textbf{LoginAsync} függvényét hívja meg Facebook autentikációra. \\
     \\\textbf{Fontos!} - Az \textbf{Azure Active Directory} - val kapcsolatban volt még egy dolog amit szükséges változtatni a programon ha saját
     szerveren szeretnénk futtatni. A LoginAsync eljárás második paramétere egy string \textbf{UriScheme}, melynek meg kell egyeznie
-    a \textbf{redirect url} első felével. Tehát a példánkban \textbf{smarthomeapplicationservice://easyauth.callback} volt az url,
+    a \textbf{redirect url} első felével. Tehát a példánkban \textbf{smarthomeapplicationservice://easyaut.callback} volt az url,
     ezért az UriScheme \textbf{smarthomeapplicationservice} lesz, ahogy a kódban is látszik.\\
     \\Sikeres bejelentkezés után az IsLoggedIn property - t ``true'' értékre állítja, valamint meghívja a \textbf{GetUserInfo} metódust.
     \item \textbf{GetUserInfo} - \textbf{private async Task}, sikeres bejelentkezés után a metódus meghívja a \textbf{/User/GetUserInfo} végpontot,
@@ -1328,7 +1331,7 @@ urlcolor=blue,
 \subsubsection{App.xaml.cs}
     Fontos kiemelni ezt az osztályt, mivel kulcsfontosságú szerepet játszik a program életében. Ez az alkalmazás belépési pontja,
     a keret méretét a konstruktor állítja be. A globális, ViewModellek által használt adattagok itt találhatóak, a felhasználó adatait
-    tároló \textbf{UserInfo}, valamint az authentikációt, és a szerverrel való kommunikációt végző \textbf{MobileServicClient} is.
+    tároló \textbf{UserInfo}, valamint az autentikációt, és a szerverrel való kommunikációt végző \textbf{MobileServiceClient} is.
     Az alkalmazás indításakor a program ellenőrzi az internetkapcsolatot, az ehhez szükséges függvény itt található \textbf{hasInternetCollection}
     néven.
 
@@ -1360,7 +1363,7 @@ urlcolor=blue,
 \begin{itemize}
     \item \textbf{Id} - a tábla elsődleges kulcsa
     \item \textbf{date} - a változás dátuma
-    \item \textbf{state} - a változás állapota \textbf{False - kikapcsolva}, \textbf{True - bekapcsolba}
+    \item \textbf{state} - a változás állapota \textbf{False - kikapcsolva}, \textbf{True - bekapcsolva}
     \item \textbf{lampid} - idegen kulcs a \textbf{Lamp} táblához
 \end{itemize}
 
@@ -1430,7 +1433,7 @@ urlcolor=blue,
     \item Készen vagyunk, már csak meg kell hívnunk a \textbf{SetupHub} függvényt a megfelelő \textbf{View} osztály konstruktorában.
 \end{enumerate}
 
-    A SignalR egy nagyon hasznos, könnyen kezelhető technológia, mely renegeteg lehetőséggel rendelkezik, és kíválóan alkalmas
+    A SignalR egy nagyon hasznos, könnyen kezelhető technológia, mely renegeteg lehetőséggel rendelkezik, és kiválóan alkalmas
     arra, hogy valósidejű kommunikációt valósítson meg szerver és kliens között.
 
 \section{Továbbfejlesztési lehetőségek}
@@ -1444,7 +1447,7 @@ urlcolor=blue,
     további nyelvekkel, hogy minél nagyobb réteg számára érthető legyen a program. Látássérült felhasználók számára komoly segítséget jelenthet
     az alkalmazás, egy profi frontend tervező kényelmes felületet tudna tervezni számukra.\\
 
-    Igény esetén az alkalmazás kiterjeszthető lehetne további platformokra, IOS és Android operációs rendszerekre is elkészülhetne
+    Igény esetén az alkalmazás kiterjeszthető lehetne további platformokra, iOS és Android operációs rendszerekre is elkészülhetne
     a program.
 
 \section{Tesztelés}
@@ -1468,7 +1471,7 @@ urlcolor=blue,
         ``Login with Facebook'' gombra kattintást, majd nem bejelentkezni a Facebook profilunkkal & Az alkalmazás nem jelentkezik be
         amíg nem adjuk meg az adatainkat. & Megfelelt az elvárásnak. \\ \hline
         ``Login with Facebook'' gombra kattintás, bejelentkezés a Facebook profilunkkal, majd nem engedélyezni az alkalmazásnak az
-        adatainkhoz való hozzáférést & Az alkalmazás nem enged belépni amíg nem engedélyezzük. & Megfelelt az elvárásnak. \\ \hline
+        adatainkhoz való hozzáférést & Az alkalmazás nem enged belépni amíg nem engedélyezzük. & Megfelelt az elvárásnak. \\
         \hline
     \end{tabular}
 \end{center}
@@ -1487,7 +1490,7 @@ urlcolor=blue,
         Helytelen, öt karakternél hosszabb GUID beírása a szöveges beviteli mezőbe. & Az alkalmazás felugró ablakban közli, hogy érvénytelen
         azonosítót adtunk meg, öt karakter hosszúnak kell lennie. & Megfelelt az elvárásnak. \\ \hline
         Nem létező, de öt karakter hosszú GUID beírása a szöveges beviteli mezőbe. & Az alkalmazás felugró ablakban közli, hogy sikertelen
-        hozzáadás történt, próbálkozzunk újra. & Megfelelt az elvárásnak. \\ \hline
+        hozzáadás történt, próbálkozzunk újra. & Megfelelt az elvárásnak. \\
         \hline
     \end{tabular}
 \end{center}
@@ -1505,7 +1508,7 @@ urlcolor=blue,
         ``Delete Lamp'' feliratú gombra kattintás. & Felugró ablakban kérdezi meg a program, hogy biztosan törölni szeretnénk-e a lámpát. & Megfelelt az elvárásnak. \\ \hline
         ``Delete Lamp'' feliratú gombra kattintás, majd a ``Yes'' opció választása a felugró ablakban. & A lámpa leválasztásra kerül. & Megfelelt az elvárásnak. \\ \hline
         ``Delete Lamp'' feliratú gombra kattintás, majd a ``Cancel'' opció választása a felugró ablakban. & A lámpa \textbf{nem} törlődik, a program zavartalanul fut tovább
-        & Megfelelt az elvárásnak. \\ \hline
+        & Megfelelt az elvárásnak. \\
         \hline
     \end{tabular}
 \end{center}
@@ -1521,12 +1524,12 @@ urlcolor=blue,
         a táblázatba. & Megfelelt az elvárásnak. \\ \hline
         A lámpát fel- vagy lekapcsolja egy felhasználó. & Az azonos lámpát használó másik ügyfél számára valós időben frissül az összesített
         időt tartalmazó TextBlock. & Megfelelt az elvárásnak. \\ \hline
-        ``Clear History'' gombra kattintás. & Felugró ablakban kérdezi meg a program, hogy biztosan szeretnénk - e törölni a lámpa előzményeit
+        ``Clear History'' gombra kattintás. & Felugró ablakban kérdezi meg a program, hogy biztosan szeretnénk-e törölni a lámpa előzményeit
         & Megfelelt az elvárásnak.\\ \hline
         A ``Clear History'' feliratú gombra kattintani, majd a felugró ablakban a ``Yes'' opciót választani. & A program kitörli a lámpa előzményeit
         , az oldalról eltűnik a táblázat és az összesített időt mutató TextBlock. & Megfelelt az elvárásnak.\\ \hline
         A ``Clear History'' feliratú gombra kattintani, majd a felugró ablakban a ``Cancel'' opciót választani. & A program zavartalanul folytatódik. &
-        Megfelelt az elvárásnak. \\ \hline
+        Megfelelt az elvárásnak. \\
         \hline
     \end{tabular}
 \end{center}
@@ -1549,7 +1552,7 @@ urlcolor=blue,
         Megfelelt az elvárásnak.\\ \hline
         A felugró ablakban a ``Yes'' opciót választani. & Az alkalmazás kijelentkezteti a felhasználót, majd a bejelentkezés oldalra navigál &
         Megfelelt az elvárásnak.\\ \hline
-        A felugró ablakban a ``Cancel'' opciót választani & A program zavartalanul folytatódik & Megfelelt az elvárásnak.\\ \hline
+        A felugró ablakban a ``Cancel'' opciót választani & A program zavartalanul folytatódik & Megfelelt az elvárásnak.\\
         \hline
     \end{tabular}
 \end{center}
@@ -1566,7 +1569,7 @@ urlcolor=blue,
         Az alkalmazás jobb felső sarkában lévő ``X'' - re kattintani. & Az alkalmazás bezárul. & Megfelelt az elvárásnak.\\ \hline
         Az alkalmazás jobb felső sarkában található ablak ikonra kattintani. & Az alkalmazás teljes képernyős nézetre vált. &
         Megfelelt az elvárásnak.\\ \hline
-        Az alkalmazás jobb felső sarkában található vízszintes vonalra kattintani & Az alkalmazás tálcára kerül & Megfelelt az elvárásnak.\\ \hline
+        Az alkalmazás jobb felső sarkában található vízszintes vonalra kattintani & Az alkalmazás tálcára kerül & Megfelelt az elvárásnak.\\
         \hline
     \end{tabular}
 \end{center}
@@ -1581,7 +1584,7 @@ urlcolor=blue,
     mely eddig ismeretlen volt számomra. A legújabb technológiákkal kerültem kapcsolatba, ez a tudás a későbbiekben biztosan
     a hasznomra fog még válni.\\
     A fejlesztés folyamata alatt az eddig megtanult ismereteket sikerült elmélyítenem, együtt használva őket pedig képet kaphattam
-    arról, hogy milyen lépésekből áll egy szoftver elkészítése, valamint milyen nehézségekbe ütközhetünk a fejlesztés során.
+    arról, hogy milyen lépésekből áll egy komplex szoftver elkészítése, valamint milyen nehézségekbe ütközhetünk a fejlesztés során.
 
 \section{Köszönetnyilvánítás}
     Szeretném köszönetemet és tiszteletemet kifejezni Heizlerné Bakonyi Viktória tanárnőnek, aki annak ellenére vállalta el
@@ -1595,9 +1598,16 @@ urlcolor=blue,
     mellettem álltak, bíztattak. Nagyon sokat jelentett a támogatásuk.\\
 
     \textbf{Köszönöm!}
+
+\section{Melléklet}
+    A DVD melléklet az alábbi elemeket tartalmazza:
+
+\begin{itemize}
+    \item a program forráskódja, lefordított állományok
+    \item a dokumentáció PDF formátumban
+\end{itemize}
 % ------------------------------------------------------------------------------
 \begin{thebibliography}{9}
-    \pagenumbering{gobble}
 
     \bibitem{MyDriving}
     MyDriving,
@@ -1633,6 +1643,11 @@ urlcolor=blue,
     SignalR documentation,
     \\\texttt{https://www.asp.net/signalr}\\
     (2018.03.20)
+
+    \bibitem{WikiRaspberry}
+    Wikipedia - Raspberry Pi,
+    \\\texttt{https://hu.wikipedia.org/wiki/Raspberry\_Pi}\\
+    (2018.04.25)
 
 \end{thebibliography}
 
