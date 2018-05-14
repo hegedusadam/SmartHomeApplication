@@ -2,19 +2,16 @@
 using GalaSoft.MvvmLight.Command;
 using Newtonsoft.Json.Linq;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Windows.UI.Popups;
 
 namespace SmartHomeApplication.ClientUWP.ViewModel
 {
-	public class AddLampViewModel : ViewModelBase
+    public class AddLampViewModel : ViewModelBase
 	{
 		private string newLampGuid;
 		private string lampGuid;

@@ -2,26 +2,19 @@
 using GalaSoft.MvvmLight.Command;
 using Microsoft.AspNet.SignalR.Client;
 using Microsoft.AspNet.SignalR.Client.Transports;
-using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using SmartHomeApplication.ClientUWP.Model;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Windows.UI.Core;
 using Windows.UI.Popups;
-using Windows.UI.Xaml;
 
 namespace SmartHomeApplication.ClientUWP.ViewModel
 {
-	class LampSwitchViewModel : ViewModelBase
+    class LampSwitchViewModel : ViewModelBase
 	{
 		private bool isOn;
 		private bool isInit = true;

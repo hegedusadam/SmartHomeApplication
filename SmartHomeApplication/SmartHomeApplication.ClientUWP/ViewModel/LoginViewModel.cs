@@ -1,23 +1,14 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using Microsoft.WindowsAzure.MobileServices;
-using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using SmartHomeApplication.ClientUWP.Model;
-using SmartHomeApplication.ClientUWP.View;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.IO;
-using System.Linq;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Windows.UI.Popups;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Media.Imaging;
 
 namespace SmartHomeApplication.ClientUWP.ViewModel
 {

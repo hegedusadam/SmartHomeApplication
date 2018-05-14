@@ -2,27 +2,22 @@
 using Microsoft.AspNet.SignalR.Client;
 using Microsoft.AspNet.SignalR.Client.Transports;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using SmartHomeApplication.LampUWP.Model;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.IO;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.Devices.Gpio;
 using Windows.Storage;
-using Windows.UI.Xaml.Navigation;
 
 namespace SmartHomeApplication.LampUWP.ViewModel
 {
-	class MainViewModel : ViewModelBase
+    class MainViewModel : ViewModelBase
 	{
 		private string lampGuid;
-        private readonly string key = "lampguid8";
+        private readonly string key = "lampguid9";
 
 		public string LampGuid
 		{
@@ -111,21 +106,21 @@ namespace SmartHomeApplication.LampUWP.ViewModel
 					return;
 				}
 
-				//if (LedPin == null)
-				//{
-				//	return;
-				//}
+                if (LedPin == null)
+                {
+                    return;
+                }
 
-				//if (TurnOn)
-				//{
-				//	LedPin.Write(GpioPinValue.Low);
-				//}
-				//else if (!TurnOn)
-				//{
-				//	LedPin.Write(GpioPinValue.High);
-				//}
+                if (TurnOn)
+                {
+                    LedPin.Write(GpioPinValue.Low);
+                }
+                else if (!TurnOn)
+                {
+                    LedPin.Write(GpioPinValue.High);
+                }
 
-				await SendLampState(TurnOn);
+                await SendLampState(TurnOn);
 			}
 			catch (Exception e)
 			{
