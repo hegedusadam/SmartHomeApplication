@@ -1,0 +1,70 @@
+﻿<Page
+    x:Class="SmartHomeApplication.ClientUWP.View.SplitViewShell"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:SmartHomeApplication.ClientUWP.View"
+    xmlns:controls="using:SmartHomeApplication.ClientUWP.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid x:Name="MainGrid" Background="{StaticResource ViewColor}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="48"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="48"/>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <Grid Background="{StaticResource SplitViewColor}" x:Name="HamburgerGrid">
+            <Button x:Name="HamburgerButton" Height="48" Width="48" FontFamily="Segoe MDL2 Assets" Content="&#xE700;" Background="Transparent" Click="HamburgerButton_Click" VerticalAlignment="Center" 
+                    Foreground="White" FontSize="20" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+        </Grid>
+        
+        <Grid Grid.Column="1" Background="{StaticResource SplitViewColor}"  x:Name="TitleGrid">
+            <TextBlock x:Name="PageTitle" Margin="10,0,0,0" Foreground="White" 
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Left"/>
+        </Grid>
+        
+        <SplitView x:Name="SmartHomeSplitView" OpenPaneLength="200" CompactPaneLength="48"  
+        DisplayMode="Overlay" IsPaneOpen="False" Grid.Row="1" Grid.ColumnSpan="2" BorderThickness="0">
+            <SplitView.Pane>
+                <Grid x:Name="SplitGrid" Background="{StaticResource SplitViewColor}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Grid.Row="0">
+                        <Ellipse Width="50" Height="50">
+                            <Ellipse.Fill>
+                                <ImageBrush x:Name="ProfileImage"/>
+                            </Ellipse.Fill>
+                        </Ellipse>
+
+                        <TextBlock Name="ProfileName" HorizontalAlignment="Center" Style="{StaticResource SplitViewText}" Margin="0,0,0,5"/>
+
+                        <Button x:Name="AddLampButton"  Click="AddLampButton_Click" Style="{StaticResource SplitViewButtonStyle}">
+                            <controls:SplitViewButtonContent x:Name="AddLamp"/>
+                        </Button>
+
+                        <Button x:Name="SwitchLampButton" Click="SwitchLampButton_Click" Style="{StaticResource SplitViewButtonStyle}">
+                            <controls:SplitViewButtonContent x:Name="SwitchLamp"/>
+                        </Button>
+
+                        <Button x:Name="StatisticButton" Click="StatisticButton_Click" Style="{StaticResource SplitViewButtonStyle}">
+                            <controls:SplitViewButtonContent x:Name="Statistic"/>
+                        </Button>
+                    </StackPanel>
+
+                    <Button Grid.Row="1" x:Name="LogoutButton" Click="LogoutButton_Click" Style="{StaticResource SplitViewButtonStyle}" VerticalAlignment="Bottom">
+                        <controls:SplitViewButtonContent x:Name="Logout"/>
+                    </Button>                   
+                </Grid>
+            </SplitView.Pane>
+        </SplitView>
+    </Grid>
+</Page>

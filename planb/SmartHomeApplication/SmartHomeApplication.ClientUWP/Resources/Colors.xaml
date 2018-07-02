@@ -1,0 +1,8 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <SolidColorBrush x:Key="FacebookLoginButtonColor" Color="#324e97"/>
+    <SolidColorBrush x:Key="SplitViewColor" Color="Gray" />
+    <SolidColorBrush x:Key="ViewColor" Color="#A9A9A9" />
+</ResourceDictionary>

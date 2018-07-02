@@ -1,0 +1,93 @@
+﻿<Page
+    x:Class="SmartHomeApplication.ClientUWP.View.StatisticView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:SmartHomeApplication.ClientUWP.View"
+    xmlns:controls="using:SmartHomeApplication.ClientUWP.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{StaticResource ViewColor}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="{Binding LampGuid, Converter={StaticResource NoGuidToCollapsedVisibilityConverter}}">
+            <TextBlock x:Name="TotaltTimeText" 
+                       Style="{StaticResource ViewText}"
+                       HorizontalAlignment="Center">
+                
+            </TextBlock>
+            <TextBlock Style="{StaticResource ViewText}" 
+                       Text="{Binding TotalTimeOn, Converter={StaticResource TimeSpanToStringConverter}}"
+                       HorizontalAlignment="Center">
+                
+            </TextBlock>
+            <Button Command="{Binding DeleteChangesCommand}"
+                    HorizontalAlignment="Center"
+                    Margin="0,15,0,0">
+                <controls:ViewButtonContent x:Name="DeleteChanges"/>
+            </Button>
+        </StackPanel>
+
+        <TextBlock x:Name="NoLampTextBlock"
+                   HorizontalAlignment="Center" 
+                   VerticalAlignment="Bottom"
+                   Grid.Row="0"
+                   Visibility="{Binding LampGuid, Converter={StaticResource NoGuidToVisibleVisibilityConverter}}"
+                   Style="{StaticResource ViewText}"/>
+
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            
+            <Grid HorizontalAlignment="Center" Grid.Row="0" Visibility="{Binding LampGuid, Converter={StaticResource NoGuidToCollapsedVisibilityConverter}}">
+                <Grid.ColumnDefinitions> 
+                    <ColumnDefinition Width="200"/>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="200"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock x:Name="WhenTextBlock" HorizontalAlignment="Center" Grid.Column="0"/>
+                <TextBlock x:Name="StateTextBlock" HorizontalAlignment="Center" Grid.Column="1"/>
+                <TextBlock x:Name="MinutesOnTextBlock" HorizontalAlignment="Center" Grid.Column="2"/>
+            </Grid>
+
+            <ScrollViewer Visibility="{Binding LampGuid, Converter={StaticResource NoGuidToCollapsedVisibilityConverter}}" Grid.Row="1">
+                <GridView ItemsSource="{Binding ChangesCollection}"
+                      IsItemClickEnabled="True"
+                      IsSwipeEnabled="true"
+                      SelectionMode="Single"
+                      HorizontalAlignment="Center"
+                      Visibility="{Binding LampGuid, Converter={StaticResource NoGuidToCollapsedVisibilityConverter}}">
+
+                    <GridView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapGrid Orientation="Vertical"/>
+                        </ItemsPanelTemplate>
+                    </GridView.ItemsPanel>
+
+                    <GridView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="200"/>
+                                    <ColumnDefinition Width="100"/>
+                                    <ColumnDefinition Width="200"/>
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock HorizontalAlignment="Center" Grid.Column="0" Text="{Binding date}"/>
+                                <TextBlock HorizontalAlignment="Center" Grid.Column="1" Text="{Binding state, Converter={StaticResource BooleanToOnOrOffStringConverter}}"/>
+                                <TextBlock HorizontalAlignment="Center" Grid.Column="2" Text="{Binding timeOn, Converter={StaticResource TimeSpanToStringConverter}}"/>
+                            </Grid>
+                        </DataTemplate>
+                    </GridView.ItemTemplate>
+                </GridView>
+            </ScrollViewer>
+        </Grid>
+    </Grid>
+</Page>
